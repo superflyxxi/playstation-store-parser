@@ -1,0 +1,5 @@
+language: php
+php:
+        - "7.0"
+script:
+        find ./ -name "*.php" | xargs -L1 php -l

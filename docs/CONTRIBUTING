@@ -1,0 +1,4 @@
+- For any issue that's being fixed, you must prefix the branch with the "issue.<issueNumber>". This will make reviewing easier.
+- For any new pull requets, give a description of the changes made. Especially if there are significant changes and the framework has changed.
+- Builds must be successful and automation passing. Otherwise, don't bother making a pull request.
+- Any new functionality *must* have test cases written.

@@ -1,0 +1,2 @@
+https://raw.githubusercontent.com/danger89/metacritic_api/master/metacritic.php
+

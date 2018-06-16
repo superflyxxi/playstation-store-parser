@@ -1,0 +1,1 @@
+curl https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/STORE-MSF77008-FLASHSALE18LP

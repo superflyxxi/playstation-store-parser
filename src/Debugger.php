@@ -1,8 +1,10 @@
 <?php
 
+include_once "Properties.php";
+
 class Debugger {
 
-	private static $loglevel = 3;
+	private static $loglevel = NULL;
 
 	const errorLevel = 1;
 	const warnLevel = 2;
@@ -10,8 +12,15 @@ class Debugger {
 	const debugLevel = 4;
 	const verboseLevel = 5;
 
+	private static function getLogLevel() {
+		if (self::$loglevel == NULL) {
+			self::$loglevel = Properties::getProperty("log.level");
+		}
+		return self::$loglevel;
+	}
+
 	private static function logmsg($arrData, $level) {
-		if (self::$loglevel >= $level) {
+		if (self::getLogLevel() >= $level) {
 			print_r(date("Y-m-d H:i:s"));
 			print_r(":");
 			switch ($level) {
@@ -53,7 +62,7 @@ class Debugger {
 	}
 
 	public static function debug2() {
-		if (self::$loglevel >= self::$debugLevel) {
+		if (self::getLogLevel() >= self::$debugLevel) {
 			print_r(date("Y-m-d H:i:s"));
 			print_r(":DEBUG: ");
 			foreach (func_get_args() as $arg) {

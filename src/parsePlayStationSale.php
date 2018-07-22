@@ -5,17 +5,17 @@ include_once "Debugger.php";
 include_once "PlayStationContainer.php";
 include_once "PlayStationGame.php";
 include_once "PlayStationGameRepository.php";
+include_once "Properties.php";
 
 #print_r($argv);
-$saleId = "STORE-MSF77008-WEEKLYDEALS";
+$saleId = Properties::getProperty("default.containerid");
 if (isset($argv[1])) {
 	$saleId = $argv[1];
 }
 
-$fileDir = "/home/sigrejas/public_html/";
+$fileDir = Properties::getProperty("html.dir");
 
-#$url = "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/".$saleId."?size=50&gameContentType=games%2Ccontainer&platform=ps4";
-$url = "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/".$saleId."";
+$url = Properties::getProperty("api.url").$saleId."";
 
 Debugger::info("Starting with sale: ", $saleId);
 $start = time();

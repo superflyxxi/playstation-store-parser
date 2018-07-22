@@ -1,0 +1,12 @@
+; Logging. 1=error, 2=warn, 3=info, 4=debug, 5=verbose
+log.level=3
+
+; where the HTML file will be generated
+html.dir=./
+
+; default container ID
+default.containerid=STORE-MSF77008-WEEKLYDEALS
+
+; api URL
+api.url=https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/
+

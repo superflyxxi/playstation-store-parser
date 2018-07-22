@@ -14,12 +14,12 @@ if (isset($argv[1])) {
 }
 
 $fileDir = Properties::getProperty("html.dir");
-
-$url = Properties::getProperty("api.url").$saleId."";
+$webUrl = Properties::getProperty("web.url");
+$apiUrl = Properties::getProperty("api.url").$saleId."";
 
 Debugger::info("Starting with sale: ", $saleId);
 $start = time();
-$rootContainer = new PlayStationContainer($url);
+$rootContainer = new PlayStationContainer($apiUrl);
 Debugger::info("Fetched containers - ", time() - $start);
 
 $start = time();
@@ -69,10 +69,9 @@ foreach ($gameList as $game) {
 	} else {
 		$color = "red";
 	}
-	$html .= "<td>".$game->getShortName()."</td>";
+	$html .= "<td><a href='".$webUrl.$game->getID()."'>".$game->getShortName()."</a></td>";
 	$html .= "<td>$".$game->getOriginalPrice()."</td>";
 	$html .= "<td>$".$game->getSalePrice()."</td>";
-	#$html = "<tr><td><a href=\"".$game->getURL()."\">".$game->getShortName()."</a></td><td>$".$game->getOriginalPrice()."</td><td>$".$game->getSalePrice()."</td><td>";
 	$html .= "<td bgcolor=\"".$color."\">";
 	if ($score == 0) {
 		$html .= "&nbsp;";

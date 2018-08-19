@@ -19,8 +19,12 @@ class PlayStationGame {
 		$this->url = $json->url;
 		$this->id = $json->id;
 		$arr = array();
-		preg_match_all("/[A-Za-z0-9-':\.]+/", $json->name, $arr);
+		Debugger::debug("PlayStation Game Name: ", $json->name);
+		preg_match_all("/[A-Za-z0-9\-'&+’!:\.]+/", $json->name, $arr);
 		$this->shortName = implode($arr[0], " ");
+		$this->shortName = preg_replace("/ :/", ":", $this->shortName); // remove space before :
+		$this->shortName = preg_replace("/’/", "'", $this->shortName); // replace weird apostrophe with normal '
+		Debugger::debug("Converted Game Name: ", $this->shortName);
 		foreach ($json->playable_platform as $platform) {
 			$arr = array();
 			preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
@@ -66,7 +70,9 @@ class PlayStationGame {
 	        	$arrSystems = array("playstation-4", "pc", "playstation-2");
 		        foreach ($arrSystems as $system) {
 				if ($this->metaCritic < 0) {
-        		        	$mcApi = new MetacriticAPI($system);
+					$mcApi = new MetacriticAPI($system);
+					$testName = $this->shortName;
+					$testName = preg_replace("/\.\.\./", " ", $testName);
 	                		$arrGameName = explode(" ", $this->shortName);
 					Debugger::debug("Original Game Name: ", $this->shortName);
 					for ($i=count($arrGameName); $i>0; $i--) {
@@ -74,13 +80,15 @@ class PlayStationGame {
 						for ($j=0; $j<$i; $j++) {
 							$testName.=$arrGameName[$j]." ";
 						}
-	
 						$testName = trim($testName);
 						Debugger::debug("Testing Metacritic for system (", $system, "): ", $testName);
-						$mcApi->get_metacritic_page($testName);
-						$mcResult = json_decode($mcApi->get_metacritic_scores());
-						if (isset($mcResult->metascritic_score) && $mcResult->metascritic_score > 0) {
-							$this->metaCritic = $mcResult->metascritic_score;
+						if ($mcApi->get_metacritic_page($testName)) {
+							$mcResult = json_decode($mcApi->get_metacritic_scores());
+							if (isset($mcResult->metascritic_score) && $mcResult->metascritic_score > 0) {
+								$this->metaCritic = $mcResult->metascritic_score;
+							} else {
+								$this->metaCritic = 0;
+							}
 							break;
 						}
 					}

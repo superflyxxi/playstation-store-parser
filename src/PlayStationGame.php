@@ -82,13 +82,10 @@ class PlayStationGame {
 						}
 						$testName = trim($testName);
 						Debugger::debug("Testing Metacritic for system (", $system, "): ", $testName);
-						if ($mcApi->get_metacritic_page($testName)) {
-							$mcResult = json_decode($mcApi->get_metacritic_scores());
-							if (isset($mcResult->metascritic_score) && $mcResult->metascritic_score > 0) {
-								$this->metaCritic = $mcResult->metascritic_score;
-							} else {
-								$this->metaCritic = 0;
-							}
+						$mcApi->get_metacritic_page($testName);
+						$mcResult = json_decode($mcApi->get_metacritic_scores());
+						if (isset($mcResult->metascritic_score) && $mcResult->metascritic_score > 0) {
+							$this->metaCritic = $mcResult->metascritic_score;
 							break;
 						}
 					}

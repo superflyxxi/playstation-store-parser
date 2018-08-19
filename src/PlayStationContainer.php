@@ -38,7 +38,12 @@ class PlayStationContainer {
 	function loadData() {
 		$this->arrContainers = array();
 		$this->arrGames = array();
-		$url = $this->url."?size=50";
+		if (strpos($this->url, '?') !== false) {
+			$url = $this->url."&";
+		} else {
+			$url = $this->url."?";
+		}
+		$url = $url."size=50";
 		$gameList = array();
 		$json = file_get_contents($url);
 		$sale = json_decode($json);

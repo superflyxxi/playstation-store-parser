@@ -31,6 +31,9 @@ class PlayStationGame {
 		$this->salePrice = $this->originalPrice;
 		foreach ($json->default_sku->rewards as $singleReward) {
 			$this->salePrice = min($this->salePrice, $singleReward->price/100);
+			if (isset($singleReward->bonus_price)) {
+				$this->salePrice = min($this->salePrice, $singleReward->bonus_price/100);
+			}
 		}
 	}
 

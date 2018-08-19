@@ -15,7 +15,7 @@ if (isset($argv[1])) {
 
 $fileDir = Properties::getProperty("html.dir");
 $webUrl = Properties::getProperty("web.url");
-$apiUrl = Properties::getProperty("api.url").$saleId."";
+$apiUrl = Properties::getProperty("api.url").$saleId."";//?platform=ps4";
 
 Debugger::info("Starting with sale: ", $saleId);
 $start = time();

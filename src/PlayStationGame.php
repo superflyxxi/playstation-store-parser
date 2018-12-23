@@ -20,9 +20,11 @@ class PlayStationGame {
 		$this->id = $json->id;
 		$arr = array();
 		Debugger::debug("PlayStation Game Name: ", $json->name);
-		preg_match_all("/[A-Za-z0-9\-'&+’!:\.]+/", $json->name, $arr);
+		preg_match_all("/[A-Za-z0-9\-'&+!:.]+/", $json->name, $arr);
 		$this->shortName = implode($arr[0], " ");
+		Debugger::debug("Converted Game Name: ", $this->shortName);
 		$this->shortName = preg_replace("/ :/", ":", $this->shortName); // remove space before :
+		Debugger::debug("Converted Game Name: ", $this->shortName);
 		$this->shortName = preg_replace("/’/", "'", $this->shortName); // replace weird apostrophe with normal '
 		Debugger::debug("Converted Game Name: ", $this->shortName);
 		foreach ($json->playable_platform as $platform) {

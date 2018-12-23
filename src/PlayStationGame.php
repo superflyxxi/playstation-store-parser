@@ -1,6 +1,6 @@
 <?php
 
-include_once "metacritic_api-1.0/metacritic.php";
+include_once "metacritic_api-1.1/metacritic.php";
 include_once "Debugger.php";
 
 class PlayStationGame {

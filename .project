@@ -25,11 +25,4 @@
 		<nature>org.eclipse.php.core.PHPNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>metacritic_api</name>
-			<type>2</type>
-			<location>D:/Users/sigrejas/Documents/src/superflyxxi/metacritic_api</location>
-		</link>
-	</linkedResources>
 </projectDescription>

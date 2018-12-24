@@ -16,8 +16,11 @@ class PlayStationGame {
 	private $id = "";
 	
 	function __construct($json) {
-		$this->url = $json->url;
+	    if (array_key_exists("url", $json)) {
+	        $this->url = $json->url;
+	    }
 		$this->id = $json->id;
+		$this->actualName = $json->name;
 		$arr = array();
 		$gameName = $json->name;
 		Debugger::debug("PlayStation Game Name: ", $gameName);
@@ -31,7 +34,6 @@ class PlayStationGame {
 			preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
 			$this->arrPlatform[] = implode($arr[0], " ");
 		}
-		$this->actualName = $json->name;
 		$this->originalPrice = $json->default_sku->price/100;
 		$this->salePrice = $this->originalPrice;
 		foreach ($json->default_sku->rewards as $singleReward) {

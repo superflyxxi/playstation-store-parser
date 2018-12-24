@@ -4,9 +4,13 @@ php:
 
 script:
    - ./build.sh
-   - tar -cjvf playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 src/*
    - cd tests
    - ./runTests.sh
+   - cd ../
+   - mkdir playstation-store-parser-${TRAVIS_BRANCH}
+   - cp -vR src/* playstation-store-parser-${TRAVIS_BRANCH}/
+   - cd playstation-store-parser-${TRAVIS_BRANCH}
+   - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 *
    - cd ../
 
 deploy:
@@ -14,6 +18,5 @@ deploy:
    api_key: ${GITHUB_OAUTH_TOKEN}
    skip_cleanup: true
    file: "playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2"
-   draft: true
    on:
       tags: true

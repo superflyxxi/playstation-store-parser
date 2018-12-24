@@ -1,8 +1,18 @@
 language: php
 php:
-        - "7.0"
-script:
-        - find ./ -name "*.php" | xargs -L1 php -l
-        - cd tests
-        - ./runTests.sh
+   - "7.0"
 
+script:
+   - ./build.sh
+   - tar -cjvf playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 src/*
+   - cd tests
+   - ./runTests.sh
+
+deploy:
+   provider: releases
+   api_key: ${GITHUB_OAUTH_TOKEN}
+   skip_cleanup: true
+   file: "playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2"
+   draft: true
+#   on:
+#      tags: true

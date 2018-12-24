@@ -7,6 +7,7 @@ script:
    - tar -cjvf playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 src/*
    - cd tests
    - ./runTests.sh
+   - cd ../
 
 deploy:
    provider: releases

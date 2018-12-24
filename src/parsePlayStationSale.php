@@ -76,7 +76,7 @@ foreach ($gameList as $game) {
 	if ($score == 0) {
 		$html .= "&nbsp;";
 	} else {
-		$html .= $score;
+		$html .= "<a href='".$game->getMetaCriticURL()."'>".$score."</a>";
 	}
 	$html .= "</td>";
 	$html .= "</tr>\n";

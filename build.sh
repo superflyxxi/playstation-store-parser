@@ -1,7 +1,7 @@
 #!/bin/bash
 
 METACRITIC_API_SRC_URL=${METACRITIC_API_SRC_URL:-"https://github.com/superflyxxi/metacritic_api/archive/"}
-METACRITIC_API_VERSION=${METACRITIC_API_VERSION:-"v1.1"}
+METACRITIC_API_VERSION=${METACRITIC_API_VERSION:-"v1.2"}
 
 find ./ -name "*.php" | xargs -L1 php -l
 

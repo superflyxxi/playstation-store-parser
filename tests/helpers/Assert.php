@@ -1,12 +1,14 @@
 <?php
 
 function assertEquals($message, $expected, $actual) {
-	print($message."[".$expected."]v[".$actual."]::");
+	$msg = $message." [".$expected."]v[".$actual."]==";
 	if ($expected != $actual) {
-		print("FAILED\n");
+		$msg .= "FAILED";
+		Debugger::error($msg);
 		exit (1);
 	}
-	print("PASSED\n");
+	$msg .= "PASSED";
+	Debugger::info($msg);
 }
 
 ?>

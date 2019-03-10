@@ -1,8 +1,11 @@
 <?php
 
+include_once "../src/Debugger.php";
 include_once "../src/PlayStationGame.php";
 include_once "helpers/PlayStationGameHelper.php";
 include_once "helpers/Assert.php";
+
+Debugger::info(basename(__FILE__));
 
 $game = new GameJSON();
 $game->url = "https://store/product/123";
@@ -23,6 +26,6 @@ assertEquals("ShortName", "Game", $psGame->getShortName());
 assertEquals("Platform[0]", "PS4", $psGame->getPlatforms()[0]);
 assertEquals("OriginalPrice", 10, $psGame->getOriginalPrice());
 assertEquals("SalePrice", 10, $psGame->getSalePrice());
-assertEquals("MetaCriticScore", 0, $psGame->getMetaCriticScore());
+assertEquals("MetaCriticScore", -1, $psGame->getMetaCriticScore());
 ?>
 

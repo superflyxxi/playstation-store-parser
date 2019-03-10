@@ -2,5 +2,5 @@
 
 cp ../src/settings.ini ./
 
-find ./ -name "*.php" | xargs -L1 php 
+find ./ -name "*.php" | sort | xargs -L1 php 
 

@@ -1,8 +1,11 @@
 <?php
 
+include_once "../src/Debugger.php";
 include_once "../src/PlayStationGame.php";
 include_once "helpers/PlayStationGameHelper.php";
 include_once "helpers/Assert.php";
+
+Debugger::info(basename(__FILE__));
 
 $gameId = "UP0001-CUSA00010_00-AC4GAMEPS4000001";
 $json = file_get_contents("https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/".$gameId);

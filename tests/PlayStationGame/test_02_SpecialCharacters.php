@@ -1,8 +1,11 @@
 <?php
 
+include_once "../src/Debugger.php";
 include_once "../src/PlayStationGame.php";
 include_once "helpers/PlayStationGameHelper.php";
 include_once "helpers/Assert.php";
+
+Debugger::info(basename(__FILE__));
 
 $game = new GameJSON();
 $game->url = "https://store/product/123";

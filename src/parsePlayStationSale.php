@@ -59,7 +59,9 @@ $topFive .= ".<br /><!--more-->\n";
 file_put_contents($outputHtml, $topFive, FILE_APPEND);
 file_put_contents($outputHtml, "<table border=\"1\">\n"
 	."<tr><th>Game</th><th>Original Price</th><th>Sale Price</th><th>Metacritic Score</th></tr>\n", FILE_APPEND);
+$i=0;
 foreach ($gameList as $game) {
+	Debugger::info("Game ".(++$i)." out of ".count($gameList));
 	$html = "<tr>";
 	$score = $game->getMetaCriticScore();
 	if ($score >= 75) {

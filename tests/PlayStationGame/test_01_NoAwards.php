@@ -26,6 +26,5 @@ assertEquals("ShortName", "Game", $psGame->getShortName());
 assertEquals("Platform[0]", "PS4", $psGame->getPlatforms()[0]);
 assertEquals("OriginalPrice", 10, $psGame->getOriginalPrice());
 assertEquals("SalePrice", 10, $psGame->getSalePrice());
-assertEquals("MetaCriticScore", -1, $psGame->getMetaCriticScore());
 ?>
 

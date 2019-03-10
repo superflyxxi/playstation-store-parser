@@ -1,7 +1,7 @@
 <?php
 
 function assertEquals($message, $expected, $actual) {
-	$msg = $message." [".$expected."]v[".$actual."]==";
+	$msg = $message." [".$expected."]vs[".$actual."]==";
 	if ($expected != $actual) {
 		$msg .= "FAILED";
 		Debugger::error($msg);

@@ -53,12 +53,20 @@ class Debugger {
 	}
 
 
+	public static function error() {
+		return self::logmsg(func_get_args(), self::errorLevel);
+	}
+	
 	public static function info() {
 		return self::logmsg(func_get_args(), self::infoLevel);
 	}
 	
 	public static function debug() {
 		return self::logmsg(func_get_args(), self::debugLevel);
+	}
+	
+	public static function verbose() {
+		return self::logmsg(func_get_args(), self::verboseLevel);
 	}
 
 	public static function debug2() {

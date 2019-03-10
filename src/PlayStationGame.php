@@ -1,6 +1,6 @@
 <?php
 
-include_once "metacritic_api-1.2/metacritic.php";
+include_once "Metacritic.php";
 include_once "Debugger.php";
 
 class PlayStationGame {
@@ -73,28 +73,24 @@ class PlayStationGame {
 	private function loadMetaCriticDataIfNecessary() {
 	    if (!$this->metaCriticLoaded) {
 	        $arrSystems = array("playstation-4", "pc", "playstation-2");
-	        foreach ($arrSystems as $system) {
-	            if ($this->metaCriticScore < 0) {
-	                $mcApi = new MetacriticAPI($system);
-	                $testName = $this->shortName;
-	                $testName = preg_replace("/\.\.\./", " ", $testName);
-	                $arrGameName = explode(" ", $this->shortName);
-	                Debugger::debug("Original Game Name: ", $this->shortName);
-	                for ($i=count($arrGameName); $i>0; $i--) {
-	                    $testName = "";
-	                    for ($j=0; $j<$i; $j++) {
-	                        $testName.=$arrGameName[$j]." ";
-	                    }
-	                    $testName = trim($testName);
-	                    Debugger::debug("Testing Metacritic for system (", $system, "): ", $testName);
-			    $mcUrl = $mcApi->get_metacritic_page($testName);
-	                    $mcResult = json_decode($mcApi->get_metacritic_scores());
-	                    if (isset($mcResult->metascritic_score) && $mcResult->metascritic_score > 0) {
-	                        $this->metaCriticScore = $mcResult->metascritic_score;
-				$this->metaCriticUrl = $mcUrl;
-	                        break;
-	                    }
-	                }
+	        $mcApi = new Metacritic();
+	        $testName = $this->shortName;
+	        $testName = preg_replace("/\.\.\./", " ", $testName);
+	        $arrGameName = explode(" ", $this->shortName);
+	        Debugger::debug("Original Game Name: ", $this->shortName);
+	        for ($i=count($arrGameName); $i>0; $i--) {
+	            $testName = "";
+	            for ($j=0; $j<$i; $j++) {
+	                $testName.=$arrGameName[$j]." ";
+	            }
+	            $testName = trim($testName);
+	            Debugger::debug("Testing Metacritic for ", $testName);
+		    $mcResult = $mcApi->search($testName);
+		    Debugger::verbose("Result", $mcResult);
+	            if (count($mcResult) > 0 && isset($mcResult[0]["metaScore"])) {
+	                $this->metaCriticScore = $mcResult[0]["metaScore"];
+	                $this->metaCriticUrl = $mcResult[0]["url"];
+	                break;
 	            }
 	        }
 	        $this->metaCriticLoaded = true;

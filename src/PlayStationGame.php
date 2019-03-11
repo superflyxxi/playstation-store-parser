@@ -73,7 +73,6 @@ class PlayStationGame {
 	private function loadMetaCriticDataIfNecessary() {
 	    if (!$this->metaCriticLoaded) {
 	        $arrSystems = array("playstation-4", "pc", "playstation-2");
-	        $mcApi = new Metacritic();
 	        $testName = $this->shortName;
 	        $testName = preg_replace("/\.\.\./", " ", $testName);
 	        $arrGameName = explode(" ", $this->shortName);
@@ -85,11 +84,11 @@ class PlayStationGame {
 	            }
 	            $testName = trim($testName);
 	            Debugger::debug("Testing Metacritic for ", $testName);
-		    $mcResult = $mcApi->search($testName);
-		    Debugger::verbose("Result", $mcResult);
-	            if (count($mcResult) > 0 && isset($mcResult[0]["metaScore"])) {
-	                $this->metaCriticScore = $mcResult[0]["metaScore"];
-	                $this->metaCriticUrl = $mcResult[0]["url"];
+	            $mcApi = new Metacritic($testName);
+		    $mcResult = $mcApi->find();
+	            if (isset($mcResult["url"])) {
+	                $this->metaCriticScore = $mcResult["metaScore"];
+	                $this->metaCriticUrl = $mcResult["url"];
 	                break;
 	            }
 	        }

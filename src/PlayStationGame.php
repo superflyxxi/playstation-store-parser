@@ -21,6 +21,7 @@ class PlayStationGame {
 	    if (array_key_exists("url", $json)) {
 	        $this->url = $json->url;
 	    }
+		$this->originalPrice = 0.0;
 		$this->id = $json->id;
 		$this->actualName = $json->name;
 		$arr = array();
@@ -36,12 +37,14 @@ class PlayStationGame {
 			preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
 			$this->arrPlatform[] = implode($arr[0], " ");
 		}
-		$this->originalPrice = $json->default_sku->price/100;
-		$this->salePrice = $this->originalPrice;
-		foreach ($json->default_sku->rewards as $singleReward) {
-			$this->salePrice = min($this->salePrice, $singleReward->price/100);
-			if (isset($singleReward->bonus_price)) {
-				$this->salePrice = min($this->salePrice, $singleReward->bonus_price/100);
+		if (isset($json->default_sku)) {
+			$this->originalPrice = $json->default_sku->price/100;
+			$this->salePrice = $this->originalPrice;
+			foreach ($json->default_sku->rewards as $singleReward) {
+				$this->salePrice = min($this->salePrice, $singleReward->price/100);
+				if (isset($singleReward->bonus_price)) {
+					$this->salePrice = min($this->salePrice, $singleReward->bonus_price/100);
+				}
 			}
 		}
 	}

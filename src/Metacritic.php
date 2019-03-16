@@ -1,16 +1,17 @@
 <?php
 include_once "Debugger.php";
+include_once "Properties.php";
 
 class Metacritic {
 
-	const URL = 'https://www.metacritic.com/search/popular';
 	private static $BEST_MATCH = array("https://www.metacritic.com/game/playstation-4/",
 		"https://www.metacritic.com/game/playstation-3/",
 		"https://www.metacritic.com/game/playstation-2/",
 		"https://www.metacritic.com/game/playstation/",
 		"https://www.metacritic.com/game/pc/");
 
-	protected $user_agent;
+	private $user_agent;
+	private $url;
 	private $game;
 
 	public function getUserAgent() {
@@ -20,6 +21,7 @@ class Metacritic {
 	public function __construct($game) {
 		$this->user_agent = "PlayStationStore Parser";
 		$this->game = $game;
+		$this->url = Properties::getProperty("metacritic.api.url");
 	}
 
 	public function find() {
@@ -27,7 +29,7 @@ class Metacritic {
 
 		// filter out results that are not for a game
 		$arrResults = array_filter($arrResults, function($k) {
-			$res = $k["refTypeId"] == 30;//substr_compare($k["url"], "https://www.metacritic.com/game/", 0);
+			$res = $k["refTypeId"] == 30;// Game
 			return $res;
 		});
 		Debugger::verbose("After filtering: ", $arrResults);
@@ -46,7 +48,7 @@ class Metacritic {
 			return $name;
 		});
 		Debugger::verbose("After sorting: ", $arrResults);
-		return $arrResults[0];
+		return sizeof($arrResults) > 0 ? $arrResults[0] : NULL;
 	}
 
 	private static function compareUrl($url, $a, $b) {
@@ -61,7 +63,7 @@ class Metacritic {
 			'search_term' => $query
 		];
 
-		$response = $this->request(self::URL, $data, "POST");
+		$response = $this->request($this->url, $data, "POST");
 		$results = json_decode($response, TRUE);
 
 		return isset($results['autoComplete']) ? $results['autoComplete'] : [];
@@ -76,7 +78,7 @@ class Metacritic {
         CURLOPT_POSTFIELDS => $data,
         CURLOPT_HTTPHEADER => [
           'X-Requested-With: XMLHttpRequest',
-          'Referer: ' . self::URL,
+          'Referer: ' . $this->url,
         ],
       ]);
     }

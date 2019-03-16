@@ -14,8 +14,8 @@ if (isset($argv[1])) {
 }
 
 $fileDir = Properties::getProperty("html.dir");
-$webUrl = Properties::getProperty("web.url");
-$apiUrl = Properties::getProperty("api.url").$saleId."";//?platform=ps4";
+$webUrl = Properties::getProperty("playstation.web.url");
+$apiUrl = Properties::getProperty("playstation.api.url").$saleId."";//?platform=ps4";
 
 Debugger::info("Starting with sale: ", $saleId);
 $start = time();
@@ -27,8 +27,12 @@ $gameList = PlayStationGameRepository::getInstance()->getAllGames();
 Debugger::info("Got all games (".count($gameList).") - ", time() - $start);
 $start = time();
 $i=0;
+$iPrintEvery=intval(count($gameList)*.1);
+Debugger::info("Prefetching Metacritic Scores ".$iPrintEvery);
 foreach ($gameList as $game) {
-	Debugger::info("Prefetching Metacritic Score ".(++$i)." out of ".count($gameList));
+	if (($i++)%$iPrintEvery == 0) {
+		Debugger::info("Fetched ".$i." of ".count($gameList)." games.");
+	}
 	$game->getMetaCriticScore();
 }
 Debugger::info("Prefetched MetaCritic Scores (".count($gameList).") - ", time() - $start);

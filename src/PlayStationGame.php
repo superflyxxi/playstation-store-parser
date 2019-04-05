@@ -85,7 +85,7 @@ class PlayStationGame {
 	            for ($j=0; $j<$i; $j++) {
 	                $testName.=$arrGameName[$j]." ";
 	            }
-	            $testName = trim($testName);
+	            $testName = rtrim(trim($testName), ":");
 	            Debugger::debug("Testing Metacritic for ", $testName);
 	            $mcApi = new Metacritic($testName);
 		    $mcResult = $mcApi->find();

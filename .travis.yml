@@ -12,6 +12,7 @@ script:
    - cd playstation-store-parser-${TRAVIS_BRANCH}
    - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 *
    - cd ../
+   - rm src/settings_override.ini
 
 deploy:
    provider: releases

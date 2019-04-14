@@ -8,7 +8,8 @@ class Metacritic {
 		"https://www.metacritic.com/game/playstation-3/",
 		"https://www.metacritic.com/game/playstation-2/",
 		"https://www.metacritic.com/game/playstation/",
-		"https://www.metacritic.com/game/pc/");
+		"https://www.metacritic.com/game/pc/",
+		"https://www.metacritic.com/game/xbox-one/");
 
 	private $user_agent;
 	private $url;
@@ -35,17 +36,33 @@ class Metacritic {
 		Debugger::verbose("After filtering: ", $arrResults);
 
 		// sort results based on best match
+		// 1000 points for having a score
+		// 100 points for best match platform; 90 points for 2nd best; 80 points for 3rd etc.
+		// 1 points for exact match name
 		usort($arrResults, function($a, $b) {
+		    $alphaResult = 0;
+		    $betaResult = 0;
+		    
+		    $alphaResult += $a["metaScore"] > 0 ? 1000 : 0;
+		    $betaResult += $b["metaScore"] > 0 ? 1000 : 0;
+		        $nameMatched = 0;   
 			foreach (self::$BEST_MATCH as $url) {
 				$result = self::compareUrl($url, $a["url"], $b["url"]);
-				if ($result != 0) {
-					return $result;
+				if ($result < 0) {
+				    $alphaResult += 100 - $nameMatched*10;
+					break;
+				} else if ($result > 0) {
+				    $betaResult += 100 - $nameMatched*10;
+				    break;
 				}
+				$nameMatched++;
 			}
 			
-			$name = (strcmp($this->game, $a["name"]) ? + 1 : 0)
-				+ (strcmp($this->game, $b["name"]) ? -1 : 0);
-			return $name;
+			Debugger::verbose($this->game, " = ", $a["name"], " vs ", $b["name"]);
+			$alphaResult += strcasecmp($this->game, $a["name"]) == 0 ? 1 : 0;
+			$betaResult += strcasecmp($this->game, $b["name"]) == 0 ? 1 : 0;
+			Debugger::verbose($a["url"], " vs ", $b["url"], " = ", $alphaResult, " vs ", $betaResult);
+			return $betaResult - $alphaResult;
 		});
 		Debugger::verbose("After sorting: ", $arrResults);
 		return sizeof($arrResults) > 0 ? $arrResults[0] : NULL;

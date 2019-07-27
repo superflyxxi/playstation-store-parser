@@ -5,7 +5,7 @@ class Properties
 
     private static $prop = NULL;
 
-    const resourceDir = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "resources";
+    private static $resourceDir = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "resources";
 
     // = parse_ini_file("settings.ini");
     public static function getProperty($sName)

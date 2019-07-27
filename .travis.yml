@@ -9,10 +9,11 @@ script:
    - cd ../
    - mkdir playstation-store-parser-${TRAVIS_BRANCH}
    - cp -vR src/* playstation-store-parser-${TRAVIS_BRANCH}/
+   - cp -vR resources/* playstation-store-parser-${TRAVIS_BRANCH}/
+   - rm -v playstation-store-parser-${TRAVIS_BRANCH}/src/settings_override.ini || true
    - cd playstation-store-parser-${TRAVIS_BRANCH}
    - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 *
    - cd ../
-   - rm src/settings_override.ini
 
 deploy:
    provider: releases

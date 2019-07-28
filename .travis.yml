@@ -6,6 +6,7 @@ script:
    - ./build.sh
    - cd tests
    - ./runTests.sh
+   - cd ../
 
 after_success:
    - mkdir -p playstation-store-parser-${TRAVIS_BRANCH}/resources
@@ -13,8 +14,7 @@ after_success:
    - cp -vR src/* playstation-store-parser-${TRAVIS_BRANCH}/bin/
    - cp -vR resources/* playstation-store-parser-${TRAVIS_BRANCH}/resources/
    - find playstation-store-parser-${TRAVIS_BRANCH}/ -name 'settings_override.ini' -exec rm -v {} \;
-   - cd playstation-store-parser-${TRAVIS_BRANCH}
-   - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 * 
+   - tar -cjvf playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 playstation-store-parser-${TRAVIS_BRANCH}/*
 
 deploy:
    provider: releases

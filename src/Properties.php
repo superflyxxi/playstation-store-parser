@@ -5,7 +5,14 @@ class Properties
 
     private static $prop = NULL;
 
-    private static $resourceDir = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "resources";
+    private static $resourceDir = NULL;
+
+    static function init()
+    {
+        if (NULL == self::$resourceDir) {
+            self::$resourceDir = __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "resources";
+        }
+    }
 
     // = parse_ini_file("settings.ini");
     public static function getProperty($sName)
@@ -21,6 +28,8 @@ class Properties
         return self::$prop[$sName];
     }
 }
+
+Properties::init();
 
 ?>
 

@@ -27,6 +27,8 @@ class PlayStationGame
 
     private $id = "";
 
+    private $gameContentTypes = array();
+
     function __construct($json)
     {
         if (array_key_exists("url", $json)) {
@@ -37,12 +39,12 @@ class PlayStationGame
         $this->actualName = $json->name;
         $arr = array();
         $gameName = $json->name;
-        Debugger::debug("PlayStation Game Name: ", $gameName);
+        Debugger::verbose("PlayStation Game Name: ", $gameName);
         $gameName = str_replace("’", "'", $gameName); // replace weird apostrophe with normal '
         preg_match_all("/[A-Za-z0-9\-'&+!:.]+/", $gameName, $arr);
         $this->shortName = implode($arr[0], " ");
         $this->shortName = str_replace(" :", ":", $this->shortName); // remove space before :
-        Debugger::debug("Converted Game Name: ", $this->shortName);
+        Debugger::verbose("Converted Game Name: ", $this->shortName);
         foreach ($json->playable_platform as $platform) {
             $arr = array();
             preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
@@ -56,6 +58,27 @@ class PlayStationGame
                 if (isset($singleReward->bonus_price)) {
                     $this->salePrice = min($this->salePrice, $singleReward->bonus_price / 100);
                 }
+            }
+        }
+        /*
+         * "gameContentTypesList": [
+         * {
+         * "name": "Full Game",
+         * "key": "FULL_GAME"
+         * },
+         * {
+         * "name": "PS Now",
+         * "key": "ps4_cloud"
+         * },
+         * {
+         * "name": "PS Now",
+         * "key": "cloud"
+         * },
+         * ]
+         */
+        if (isset($json->gameContentTypesList)) {
+            foreach ($json->gameContentTypesList as $content) {
+                $this->gameContentTypes[] = $content->key;
             }
         }
     }
@@ -90,6 +113,16 @@ class PlayStationGame
         return $this->url;
     }
 
+    public function isPSNow()
+    {
+        return in_array("cloud", $this->gameContentTypes) || in_array("ps4_cloud", $this->gameContentTypes);
+    }
+
+    public function getGameContentTypes()
+    {
+        return $this->gameContentTypes;
+    }
+
     private function loadMetaCriticDataIfNecessary()
     {
         if (! $this->metaCriticLoaded) {
@@ -100,22 +133,13 @@ class PlayStationGame
             );
             $testName = $this->shortName;
             $testName = preg_replace("/\.\.\./", " ", $testName);
-            $arrGameName = explode(" ", $this->shortName);
-            Debugger::debug("Original Game Name: ", $this->shortName);
-            for ($i = count($arrGameName); $i > 0; $i --) {
-                $testName = "";
-                for ($j = 0; $j < $i; $j ++) {
-                    $testName .= $arrGameName[$j] . " ";
-                }
-                $testName = rtrim(trim($testName), ":");
-                Debugger::debug("Testing Metacritic for ", $testName);
-                $mcApi = new Metacritic($testName);
-                $mcResult = $mcApi->find();
-                if (isset($mcResult["url"])) {
-                    $this->metaCriticScore = $mcResult["metaScore"];
-                    $this->metaCriticUrl = $mcResult["url"];
-                    break;
-                }
+            $testName = rtrim(trim($testName), ":");
+            Debugger::debug("Testing Metacritic for ", $testName);
+            $mcApi = new Metacritic($testName);
+            $mcResult = $mcApi->find();
+            if (isset($mcResult["url"])) {
+                $this->metaCriticScore = $mcResult["metaScore"];
+                $this->metaCriticUrl = $mcResult["url"];
             }
             $this->metaCriticLoaded = true;
             Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore);

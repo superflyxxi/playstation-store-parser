@@ -15,7 +15,7 @@ assertEquals("URL", "", $psGame->getURL());
 assertEquals("ShortName", "The Last Of Us Remastered", $psGame->getShortName());
 assertEquals("Platform[0]", "PS4", $psGame->getPlatforms()[0]);
 assertEquals("OriginalPrice", true, $psGame->getOriginalPrice() > 0);
-assertEquals("SalePrice", true, $psGame->getSalePrice() > 0);
+assertEquals("SalePrice", true, $psGame->getSalePrice() <= $psGame->getOriginalPrice());
 assertEquals("MetaCriticScore", 95, $psGame->getMetaCriticScore());
 assertEquals("MetaCriticURL", "https://www.metacritic.com/game/playstation-4/the-last-of-us-remastered", $psGame->getMetaCriticURL());
 ?>

@@ -3,6 +3,7 @@ include_once "Debugger.php";
 include_once "PlayStationGame.php";
 include_once "PlayStationGameRepository.php";
 include_once "PlayStationContainerRepository.php";
+include_once "PlayStationGameFilter.php";
 
 class PlayStationContainer
 {
@@ -15,9 +16,12 @@ class PlayStationContainer
 
     private $arrGames = NULL;
 
-    function __construct($url)
+    private $gameFilter = NULL;
+
+    function __construct($url, $gameFilter = NULL)
     {
         $this->url = $url;
+        $this->gameFilter = $gameFilter;
         $this->loadData();
     }
 
@@ -65,43 +69,31 @@ class PlayStationContainer
             Debugger::info($sale->id, " already loaded.");
             return;
         }
-        
+
         $total = $sale->total_results;
         $current = 1;
-        
+
         do {
-            
+
             foreach ($sale->links as $entry) {
-                
+
                 if (isset($entry->container_type))
                     switch ($entry->container_type) {
                         case "container":
-                            $container = new PlayStationContainer($entry->url);
+                            $container = new PlayStationContainer($entry->url, $this->gameFilter);
                             $container = PlayStationContainerRepository::getInstance()->addContainer($container);
                             $this->arrContainers[] = $container->getID();
                             break;
-                        
+
                         case "product":
-                            
-                            if (isset($entry->game_contentType))
-                                switch ($entry->game_contentType) {
-                                    case "Full Game":
-                                    case "PSN Game":
-                                        $game = new PlayStationGame($entry);
-                                        // if the game is PS4
-                                        if (count(array_intersect(array(
-                                            "PS4"
-                                        ), $game->getPlatforms())) > 0) {
-                                            $game = PlayStationGameRepository::getInstance()->addGame($game);
-                                            $this->arrGames[] = $game->getID();
-                                        }
-                                        break;
-                                    
-                                    default:
-                                        // game_contentType
-                                        break;
-                                }
-                        
+                            $game = new PlayStationGame($entry);
+                            if (NULL == $this->gameFilter || $this->gameFilter->meetsCriteria($game)) {
+                                Debugger::verbose($game->getShortName(), " considered for container");
+                                $game = PlayStationGameRepository::getInstance()->addGame($game);
+                                $this->arrGames[] = $game->getID();
+                            }
+                            break;
+
                         default:
                             // container_type
                             break;

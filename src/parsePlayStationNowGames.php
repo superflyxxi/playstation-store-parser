@@ -16,22 +16,19 @@ if (isset($argv[1])) {
 }
 
 $fileDir = Properties::getProperty("html.dir");
-$apiUrl = Properties::getProperty("playstation.api.url") . $saleId . ""; // ?platform=ps4";
+$apiUrl = Properties::getProperty("playstation.api.url") . "STORE-MSF77008-ALLGAMES";
 $hostBaseUrl = Properties::getProperty("host.base.url");
 
 $gameFilter = new PlayStationGameFilter();
 $gameFilter->allowedGameContentType = array(
-    "FULL_GAME",
-    "PSN_GAME"
-);
-$gameFilter->allowedPlayablePlatforms = array(
-    "PS4"
+    "cloud",
+    "ps4_cloud"
 );
 
-Debugger::info("Starting with sale: ", $saleId);
+Debugger::info("Starting with all games");
 $start = time();
 $rootContainer = new PlayStationContainer($apiUrl, $gameFilter);
-Debugger::info("Fetched containers - ", time() - $start);
+Debugger::info("Fetched all games - ", time() - $start);
 
 $start = time();
 $gameList = PlayStationGameRepository::getInstance()->getAllGames();
@@ -58,10 +55,10 @@ usort($gameList, function ($a, $b) {
 });
 Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
-$outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
+$outHtmlFilename = date("YmdHi") . "-PSNow.html";
 
-HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, $gameList);
-RssGenerator::write($fileDir . "/playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleId);
+HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, $gameList, array());
+RssGenerator::write($fileDir . "/playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "PSNow");
 
 Debugger::info("Done!");
 

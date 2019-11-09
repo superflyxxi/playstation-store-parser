@@ -35,14 +35,14 @@ class Metacritic
     public function find()
     {
         $arrResults = $this->search();
-        
+
         // filter out results that are not for a game
         $arrResults = array_filter($arrResults, function ($k) {
             $res = $k["refTypeId"] == 30; // Game
             return $res;
         });
         Debugger::verbose("After filtering: ", $arrResults);
-        
+
         // sort results based on best match
         // 1000 points for having a score
         // 100 points for best match platform; 90 points for 2nd best; 80 points for 3rd etc.
@@ -50,7 +50,7 @@ class Metacritic
         usort($arrResults, function ($a, $b) {
             $alphaResult = 0;
             $betaResult = 0;
-            
+
             $alphaResult += $a["metaScore"] > 0 ? 1000 : 0;
             $betaResult += $b["metaScore"] > 0 ? 1000 : 0;
             $nameMatched = 0;
@@ -65,7 +65,7 @@ class Metacritic
                 }
                 $nameMatched ++;
             }
-            
+
             Debugger::verbose($this->game, " = ", $a["name"], " vs ", $b["name"]);
             $alphaResult += strcasecmp($this->game, $a["name"]) == 0 ? 1 : 0;
             $betaResult += strcasecmp($this->game, $b["name"]) == 0 ? 1 : 0;
@@ -88,17 +88,17 @@ class Metacritic
         $data = [
             'search_term' => $query
         ];
-        
+
         $response = $this->request($this->url, $data, "POST");
         $results = json_decode($response, TRUE);
-        
+
         return isset($results['autoComplete']) ? $results['autoComplete'] : [];
     }
 
     private function request($url, array $data = [], $method = "GET")
     {
         $curl = curl_init();
-        
+
         if ($method == "POST") {
             curl_setopt_array($curl, [
                 CURLOPT_POST => TRUE,
@@ -111,21 +111,20 @@ class Metacritic
         } elseif (! empty($data)) {
             $url .= '?' . http_build_query($data);
         }
-        
+
         curl_setopt_array($curl, [
             CURLOPT_RETURNTRANSFER => TRUE,
             CURLOPT_URL => $url,
             CURLOPT_USERAGENT => $this->getUserAgent()
         ]);
-        
+
         $response = curl_exec($curl);
-        
+        curl_close($curl);
+
         if ($response === FALSE) {
             throw new Exception(curl_error($curl), curl_errno($curl));
         }
-        
-        curl_close($curl);
-        
+
         return $response;
     }
 }

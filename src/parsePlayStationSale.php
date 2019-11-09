@@ -38,7 +38,7 @@ $gameList = PlayStationGameRepository::getInstance()->getAllGames();
 Debugger::info("Got all games (" . count($gameList) . ") - ", time() - $start);
 $start = time();
 $i = 0;
-$iPrintEvery = intval(count($gameList) * .1);
+$iPrintEvery = max(1, intval(count($gameList) * .1));
 Debugger::info("Prefetching Metacritic Scores " . $iPrintEvery);
 foreach ($gameList as $game) {
     if (($i ++) % $iPrintEvery == 0) {

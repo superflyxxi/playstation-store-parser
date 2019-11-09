@@ -2,26 +2,65 @@ language: php
 php:
    - "7.0"
 
-script:
-   - ./build.sh
-   - cd tests
-   - ./runTests.sh
-   - cd ../
+env:
+  global:
+    - THIS_DOCKER_REGISTRY=superflyxxi.dlinkddns.com:5000
+    - THIS_DOCKER_REPO=superflyxxi
+    - THIS_DOCKER_LABEL=${TRAVIS_BRANCH}
 
-after_success:
-   - mkdir -p tar/resources
-   - mkdir -p tar/bin
-   - cp -vR src/* tar/bin/
-   - cp -vR resources/* tar/resources/
-   - find tar/ -name 'settings_override.ini' -exec rm -v {} \;
-   - cd tar/
-   - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 * 
-   - cd ..
+script: skip
 
 deploy:
-   provider: releases
-   api_key: ${GITHUB_OAUTH_TOKEN}
-   skip_cleanup: true
-   file: "playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2"
-   on:
+  - provider: releases
+    api_key: ${GITHUB_OAUTH_TOKEN}
+    skip_cleanup: true
+    file: "playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2"
+    on:
       tags: true
+
+jobs:
+  include:
+    - stage: "Build"
+      name: "Check for syntax"
+      script:
+        - ./build.sh
+      after_success:
+        - find ./ -name 'settings_override.ini' -exec rm -v {} \;
+        - mkdir -p tar/resources
+        - mkdir -p tar/bin
+        - cp -vR src/* tar/bin/
+        - cp -vR resources/* tar/resources/
+        - cd tar/
+        - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 * 
+        - cd ..
+    - stage: "Validation"
+      name: "Run tests"
+      script:
+        - cd tests/
+        - ./runTests.sh
+      after_success: skip
+    - name: "Build docker"
+      language: minimal
+      before_script:
+        - sudo apt-get install -y jq
+        - sudo service docker stop
+        - sudo cat /etc/docker/daemon.json
+        - sudo cat /etc/docker/daemon.json | jq ". + {\"insecure-registries\":[\"${THIS_DOCKER_REGISTRY}\"] }" | sudo tee /etc/docker/daemon.json
+        - sudo cat /etc/docker/daemon.json
+        - sudo service docker start
+        - echo ${THIS_DOCKER_REGISTRY_PASSWORD} | docker login --username ${THIS_DOCKER_REGISTRY_USERNAME} --password-stdin ${THIS_DOCKER_REGISTRY}
+      script:
+        - docker build -t ps-store:build -f docker/Dockerfile .
+      after_success:
+        - docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}
+        - docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}
+        - if [[ ! -z "${TRAVIS_TAG}" ]]; then
+            docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
+            docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
+          fi
+    - name: "Checkstyle"
+      language: java
+      script:
+        - wget --progress=dot:mega "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.26/checkstyle-8.26-all.jar" -O checkstyle.jar
+        - java -jar checkstyle.jar -c checkstyle.xml .
+

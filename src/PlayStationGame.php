@@ -136,13 +136,18 @@ class PlayStationGame
             $testName = rtrim(trim($testName), ":");
             Debugger::debug("Testing Metacritic for ", $testName);
             $mcApi = new Metacritic($testName);
-            $mcResult = $mcApi->find();
-            if (isset($mcResult["url"])) {
-                $this->metaCriticScore = $mcResult["metaScore"];
-                $this->metaCriticUrl = $mcResult["url"];
+            try {
+                $mcResult = $mcApi->find();
+                if (isset($mcResult["url"])) {
+                    $this->metaCriticScore = $mcResult["metaScore"];
+                    $this->metaCriticUrl = $mcResult["url"];
+                }
+                $this->metaCriticLoaded = true;
+                Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore);
+            } catch (Exception $e) {
+                Debugger::error("Got an error (", $e->getMessage(), ") while getting score for ", $testName);
+                Debugger::debug("Skipping this for now.");
             }
-            $this->metaCriticLoaded = true;
-            Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore);
         }
     }
 

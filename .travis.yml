@@ -41,16 +41,18 @@ jobs:
       after_success: skip
     - name: "Build docker"
       language: minimal
-      before_script:
-        - sudo apt-get install -y jq
-        - sudo service docker stop
-        - sudo cat /etc/docker/daemon.json
-        - sudo cat /etc/docker/daemon.json | jq ". + {\"insecure-registries\":[\"${THIS_DOCKER_REGISTRY}\"] }" | sudo tee /etc/docker/daemon.json
-        - sudo cat /etc/docker/daemon.json
-        - sudo service docker start
+      before_install:
+        - sudo mkdir -p "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}"
+        - openssl s_client -showcerts -connect ${THIS_DOCKER_REGISTRY} < /dev/null 2> /dev/null | openssl x509 -outform PEM | sudo tee "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}/ca.crt"
         - echo ${THIS_DOCKER_REGISTRY_PASSWORD} | docker login --username ${THIS_DOCKER_REGISTRY_USERNAME} --password-stdin ${THIS_DOCKER_REGISTRY}
+      install:
+        - if [[ ! ${TRAVIS_BRANCH} =~ (master|v.*) ]]; then
+          echo "Caching from ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:master";
+          export CACHE_FROM_ARGS="--cache-from ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/httpd-cron:master";
+          docker pull ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:master || true;
+         fi
       script:
-        - docker build -t ps-store:build -f docker/Dockerfile .
+        - docker build -t ps-store:build -f docker/Dockerfile ${CACHE_FROM_ARGS} .
       after_success:
         - docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}
         - docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}

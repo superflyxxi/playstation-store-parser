@@ -45,10 +45,12 @@ class PlayStationGame
         $this->shortName = implode($arr[0], " ");
         $this->shortName = str_replace(" :", ":", $this->shortName); // remove space before :
         Debugger::verbose("Converted Game Name: ", $this->shortName);
-        foreach ($json->playable_platform as $platform) {
-            $arr = array();
-            preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
-            $this->arrPlatform[] = implode($arr[0], " ");
+        if (isset($json->playable_platform)) {
+	    foreach ($json->playable_platform as $platform) {
+            	$arr = array();
+            	preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
+            	$this->arrPlatform[] = implode($arr[0], " ");
+	    }
         }
         if (isset($json->default_sku)) {
             $this->originalPrice = $json->default_sku->price / 100;

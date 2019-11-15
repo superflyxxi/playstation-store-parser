@@ -119,10 +119,14 @@ class Metacritic
         ]);
 
         $response = curl_exec($curl);
+        if ($response === FALSE) {
+            $ex = new Exception(curl_error($curl), curl_errno($curl));
+        }
+
         curl_close($curl);
 
-        if ($response === FALSE) {
-            throw new Exception(curl_error($curl), curl_errno($curl));
+        if (isset($ex)) {
+            throw $ex;
         }
 
         return $response;

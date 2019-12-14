@@ -1,0 +1,33 @@
+.metaBad {
+	background-color: red
+}
+
+.metaOkay {
+	background-color: orange
+}
+
+.metaGood { 
+	background-color: green
+}
+
+a {
+	color: black
+}
+
+.hidden {
+	display: none
+}
+
+.filter {
+}
+
+table {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto
+}
+
+#gameTitle {
+	width: 50%
+}
+

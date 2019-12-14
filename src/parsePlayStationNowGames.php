@@ -57,7 +57,7 @@ Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
 $outHtmlFilename = date("YmdHi") . "-PSNow.html";
 
-HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, $gameList, array());
+HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, "PlayStation Now Games", $gameList, array());
 RssGenerator::write($fileDir . "/playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "PSNow");
 
 Debugger::info("Done!");

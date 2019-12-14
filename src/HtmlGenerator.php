@@ -4,10 +4,24 @@ include_once "Debugger.php";
 class HtmlGenerator
 {
 
-    public static function write($outputHtml, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
+    public static function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
     {
         $start = time();
         Debugger::info("Writing HTML to ", $outputHtml);
+        $hostBaseUrl = Properties::getProperty("host.base.url");
+
+        file_put_contents($outputHtml, "<html>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<head>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<title>", FILE_APPEND);
+        file_put_contents($outputHtml, $title, FILE_APPEND);
+        file_put_contents($outputHtml, "</title>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<link media='screen' type='text/css' rel='stylesheet' href='", FILE_APPEND);
+        file_put_contents($outputHtml, Properties::getProperty("style", "styles/style.css"), FILE_APPEND);
+        file_put_contents($outputHtml, "' />\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<script src='js/common.js'></script>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "</head>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<body>\n", FILE_APPEND);
+
         $webUrl = Properties::getProperty("playstation.web.url");
         // Top 5
         $topFive = "The top 5 games are ";
@@ -19,44 +33,53 @@ class HtmlGenerator
             if ($i == $iMax - 1) {
                 $topFive .= "and ";
             }
-            $topFive .= $gameList[$i]->getShortName();
+            $topFive .= "<a href='" . $webUrl . $gameList[$i]->getID() . "'>" . $gameList[$i]->getShortName() . "</a>";
         }
         $topFive .= ".<br /><!--more-->\n";
         file_put_contents($outputHtml, $topFive, FILE_APPEND);
         file_put_contents($outputHtml, "<table border=\"1\">\n", FILE_APPEND);
-        file_put_contents($outputHtml, "<tr><th>Game</th>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<tr><th id='gameTitle'>Game</th>\n", FILE_APPEND);
 
         foreach ($columnList as $column) {
             switch ($column) {
                 case "psNow":
-                    file_put_contents($outputHtml, "<th>On PS Now</th>", FILE_APPEND);
+                    file_put_contents($outputHtml, "<th id='psNow'>On PS Now<br/>", FILE_APPEND);
+                    file_put_contents($outputHtml, "(<a class='filter' onclick='hideAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>hide</a>|<a class='filter' onclick='showAllClasses(\".onPsNow\");hideAllClasses(\".offPsNow\")'>only</a>|<a class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</a>)</th>", FILE_APPEND);
                     break;
 
                 case "originalPrice":
-                    file_put_contents($outputHtml, "<th>Original Price</th>", FILE_APPEND);
+                    file_put_contents($outputHtml, "<th id='originalPrice'>Original Price</th>", FILE_APPEND);
                     break;
 
                 case "salePrice":
-                    file_put_contents($outputHtml, "<th>Sale Price</th>", FILE_APPEND);
+                    file_put_contents($outputHtml, "<th id='salePrice'>Sale Price</th>", FILE_APPEND);
                     break;
             }
         }
-        file_put_contents($outputHtml, "<th>Metacritic Score</th></tr>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<th id='metaCritic'>Metacritic Score<br/>\n(", FILE_APPEND);
+        file_put_contents($outputHtml, "<a class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</a>|", FILE_APPEND);
+        file_put_contents($outputHtml, "<a class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</a>|", FILE_APPEND);
+        file_put_contents($outputHtml, "<a class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</a>|", FILE_APPEND);
+        file_put_contents($outputHtml, "<a class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</a>)</th></tr>", FILE_APPEND);
         foreach ($gameList as $game) {
-            $html = "<tr>";
             $score = $game->getMetaCriticScore();
+            $class = "";
             if ($score >= 75) {
                 $color = "green";
+                $class .= " metaGood";
             } else if ($score >= 60) {
                 $color = "orange";
+                $class .= " metaOkay";
             } else {
                 $color = "red";
+                $class .= " metaBad";
             }
-            $html .= "<td><a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a></td>";
+            $html = "<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a></td>";
             foreach ($columnList as $column) {
                 switch ($column) {
                     case "psNow":
                         $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
+                        $class .= $game->isPSNow() ? " onPsNow" : " offPsNow";
                         break;
 
                     case "originalPrice":
@@ -68,7 +91,7 @@ class HtmlGenerator
                         break;
                 }
             }
-            $html .= "<td bgcolor=\"" . $color . "\">";
+            $html .= "<td >";
             if ($score <= 0) {
                 $html .= "&nbsp;";
             } else {
@@ -76,10 +99,12 @@ class HtmlGenerator
             }
             $html .= "</td>";
             $html .= "</tr>\n";
+            $html = "<tr class='" . $class . "' />" . $html;
             file_put_contents($outputHtml, $html, FILE_APPEND);
         }
         file_put_contents($outputHtml, "</table>\n", FILE_APPEND);
         file_put_contents($outputHtml, "Generated " . date("F jS, Y g:ia T"), FILE_APPEND);
+        file_put_contents($outputHtml, "</body>\n</html>\n", FILE_APPEND);
         Debugger::info("Generated HTML - ", time() - $start);
     }
 }

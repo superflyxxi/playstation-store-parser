@@ -18,7 +18,7 @@ assertEquals("ShortName", "I and Me", $psGame->getShortName());
 assertEquals("Platform[0]", "PS4", $psGame->getPlatforms()[0]);
 assertEquals("OriginalPrice", true, $psGame->getOriginalPrice() > 0);
 assertEquals("SalePrice", true, $psGame->getSalePrice() > 0);
-assertEquals("MetaCriticURL", "https://www.metacritic.com/game/playstation-4/metal-gear-solid-v-the-phantom-pain", $psGame->getMetaCriticURL());
-assertEquals("MetaCriticScore", 93, $psGame->getMetaCriticScore());
+assertEquals("MetaCriticURL", true, NULL != $psGame->getMetaCriticURL());
+assertEquals("MetaCriticScore", true, 0 < $psGame->getMetaCriticScore());
 
 ?>

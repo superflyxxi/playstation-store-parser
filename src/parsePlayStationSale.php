@@ -60,7 +60,7 @@ Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
 $outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
 
-HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, $gameList);
+HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, $saleId, $gameList);
 RssGenerator::write($fileDir . "/playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleId);
 
 Debugger::info("Done!");

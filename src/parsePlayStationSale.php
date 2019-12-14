@@ -15,7 +15,12 @@ if (isset($argv[1])) {
     $saleId = $argv[1];
 }
 
-$fileDir = Properties::getProperty("html.dir");
+$saleIdMapping = array(
+    "STORE-MSF77008-WEEKLYDEALS" => "Weekly Deals for " . date("F jS, Y"),
+    "STORE-MSF77008-PSPLUSFREEGAMES" => "PlayStation Plus Free Games for " . date("F Y"),
+    "STORE-MSF77008-NEWTHISWEEK" => "New Games the week of " . date("F jS, Y")
+);
+
 $apiUrl = Properties::getProperty("playstation.api.url") . $saleId . ""; // ?platform=ps4";
 $hostBaseUrl = Properties::getProperty("host.base.url");
 
@@ -60,8 +65,8 @@ Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
 $outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
 
-HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, $saleId, $gameList);
-RssGenerator::write($fileDir . "/playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleId);
+HtmlGenerator::write($outHtmlFilename, $saleIdMapping[$saleId], $gameList);
+RssGenerator::write("playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
 
 Debugger::info("Done!");
 

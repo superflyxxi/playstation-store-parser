@@ -7,8 +7,9 @@ RUN apk add --no-cache php php-openssl php-json php-curl php-simplexml
 
 ADD resources/ /home/ps-store/resources/
 ADD www ${WWW_DIR}
-ADD resources/init.rss.xml ${WWW_DIR}/playstationStore.rss.xml
-ADD resources/init.rss.xml ${WWW_DIR}/playStationNow.rss.xml
+RUN mkdir -p ${WWW_DIR}/logs ${WWW_DIR}/rss ${WWW_DIR}/entries
+ADD resources/init.rss.xml ${WWW_DIR}/rss/playstationStore.rss.xml
+ADD resources/init.rss.xml ${WWW_DIR}/rss/playStationNow.rss.xml
 ADD docker/crontab /etc/crontabs/root
 ADD src/ /home/ps-store/bin/
 

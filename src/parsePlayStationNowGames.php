@@ -15,7 +15,6 @@ if (isset($argv[1])) {
     $saleId = $argv[1];
 }
 
-$fileDir = Properties::getProperty("html.dir");
 $apiUrl = Properties::getProperty("playstation.api.url") . "STORE-MSF77008-ALLGAMES";
 $hostBaseUrl = Properties::getProperty("host.base.url");
 
@@ -57,8 +56,8 @@ Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
 $outHtmlFilename = date("YmdHi") . "-PSNow.html";
 
-HtmlGenerator::write($fileDir . "/" . $outHtmlFilename, "PlayStation Now Games", $gameList, array());
-RssGenerator::write($fileDir . "/playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "PSNow");
+HtmlGenerator::write($outHtmlFilename, "PlayStation Now Games", $gameList, array());
+RssGenerator::write("playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "Ranking PlayStation Now Games for the Month of " . date("F Y"));
 
 Debugger::info("Done!");
 

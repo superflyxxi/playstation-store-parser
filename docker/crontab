@@ -1,6 +1,6 @@
 # minute hour dayOfMonth monthOfYear (1=mon; 7=sun) dayOfWeak
-00 12 * * 5 /home/ps-store/bin/parsePlayStationSale.php >& /usr/local/apache2/htdocs/parse_Sales.log
-00 18 * * 3 /home/ps-store/bin/parsePlayStationSale.php STORE-MSF77008-NEWTHISWEEK >& /usr/local/apache2/htdocs/parse_New.log
-00 12 8 * * /home/ps-store/bin/parsePlayStationNowGames.php >& /usr/local/apache2/htdocs/parse_PSNow.log
-00 12 * * 4 /home/ps-store/bin/parsePlayStationSale.php STORE-MSF77008-PSPLUSFREEGAMES >& /usr/local/apache2/htdocs/parse_PSPlus.log
+00 12 * * 5 /home/ps-store/bin/parsePlayStationSale.php >& /usr/local/apache2/htdocs/logs/parse_Sales.log
+00 18 * * 3 /home/ps-store/bin/parsePlayStationSale.php STORE-MSF77008-NEWTHISWEEK >& /usr/local/apache2/htdocs/logs/parse_New.log
+00 12 8 * * /home/ps-store/bin/parsePlayStationNowGames.php >& /usr/local/apache2/htdocs/logs/parse_PSNow.log
+00 12 * * 4 /home/ps-store/bin/parsePlayStationSale.php STORE-MSF77008-PSPLUSFREEGAMES >& /usr/local/apache2/htdocs/logs/parse_PSPlus.log
 

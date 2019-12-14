@@ -7,6 +7,7 @@ class HtmlGenerator
     public static function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
     {
         $start = time();
+        $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
         Debugger::info("Writing HTML to ", $outputHtml);
         $hostBaseUrl = Properties::getProperty("host.base.url");
 
@@ -15,10 +16,10 @@ class HtmlGenerator
         file_put_contents($outputHtml, "<title>", FILE_APPEND);
         file_put_contents($outputHtml, $title, FILE_APPEND);
         file_put_contents($outputHtml, "</title>\n", FILE_APPEND);
-        file_put_contents($outputHtml, "<link media='screen' type='text/css' rel='stylesheet' href='", FILE_APPEND);
+        file_put_contents($outputHtml, "<link media='screen' type='text/css' rel='stylesheet' href='../", FILE_APPEND);
         file_put_contents($outputHtml, Properties::getProperty("style", "styles/style.css"), FILE_APPEND);
         file_put_contents($outputHtml, "' />\n", FILE_APPEND);
-        file_put_contents($outputHtml, "<script src='js/common.js'></script>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "<script src='../js/common.js'></script>\n", FILE_APPEND);
         file_put_contents($outputHtml, "</head>\n", FILE_APPEND);
         file_put_contents($outputHtml, "<body>\n", FILE_APPEND);
 
@@ -35,7 +36,7 @@ class HtmlGenerator
             }
             $topFive .= "<a href='" . $webUrl . $gameList[$i]->getID() . "'>" . $gameList[$i]->getShortName() . "</a>";
         }
-        $topFive .= ".<br /><!--more-->\n";
+        $topFive .= ".<!--more--><br />\n";
         file_put_contents($outputHtml, $topFive, FILE_APPEND);
         file_put_contents($outputHtml, "<table border=\"1\">\n", FILE_APPEND);
         file_put_contents($outputHtml, "<tr><th id='gameTitle'>Game</th>\n", FILE_APPEND);

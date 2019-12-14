@@ -46,11 +46,11 @@ class PlayStationGame
         $this->shortName = str_replace(" :", ":", $this->shortName); // remove space before :
         Debugger::verbose("Converted Game Name: ", $this->shortName);
         if (isset($json->playable_platform)) {
-	    foreach ($json->playable_platform as $platform) {
-            	$arr = array();
-            	preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
-            	$this->arrPlatform[] = implode($arr[0], " ");
-	    }
+            foreach ($json->playable_platform as $platform) {
+                $arr = array();
+                preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
+                $this->arrPlatform[] = implode($arr[0], " ");
+            }
         }
         if (isset($json->default_sku)) {
             $this->originalPrice = $json->default_sku->price / 100;
@@ -135,6 +135,7 @@ class PlayStationGame
             );
             $testName = $this->shortName;
             $testName = preg_replace("/\.\.\./", " ", $testName);
+            $testName = preg_replace("/[a-zA-Z]+ [Ee]dition/", "", $testName);
             $testName = rtrim(trim($testName), ":");
             Debugger::debug("Testing Metacritic for ", $testName);
             $mcApi = new Metacritic($testName);

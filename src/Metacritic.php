@@ -45,8 +45,8 @@ class Metacritic
 
         // sort results based on best match
         // 1000 points for having a score
-        // 100 points for best match platform; 90 points for 2nd best; 80 points for 3rd etc.
-        // 1 points for exact match name
+        // 100 points for exact match name
+        // 10 points for best match platform; 9 points for 2nd best; 8 points for 3rd etc.
         usort($arrResults, function ($a, $b) {
             $alphaResult = 0;
             $betaResult = 0;
@@ -57,18 +57,18 @@ class Metacritic
             foreach (self::$BEST_MATCH as $url) {
                 $result = self::compareUrl($url, $a["url"], $b["url"]);
                 if ($result < 0) {
-                    $alphaResult += 100 - $nameMatched * 10;
+                    $alphaResult += 10 - $nameMatched * 1;
                     break;
                 } else if ($result > 0) {
-                    $betaResult += 100 - $nameMatched * 10;
+                    $betaResult += 10 - $nameMatched * 1;
                     break;
                 }
                 $nameMatched ++;
             }
 
             Debugger::verbose($this->game, " = ", $a["name"], " vs ", $b["name"]);
-            $alphaResult += strcasecmp($this->game, $a["name"]) == 0 ? 1 : 0;
-            $betaResult += strcasecmp($this->game, $b["name"]) == 0 ? 1 : 0;
+            $alphaResult += strcasecmp($this->game, $a["name"]) == 0 ? 100 : 0;
+            $betaResult += strcasecmp($this->game, $b["name"]) == 0 ? 100 : 0;
             Debugger::verbose($a["url"], " vs ", $b["url"], " = ", $alphaResult, " vs ", $betaResult);
             return $betaResult - $alphaResult;
         });

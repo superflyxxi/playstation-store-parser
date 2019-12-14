@@ -135,22 +135,36 @@ class PlayStationGame
             );
             $testName = $this->shortName;
             $testName = preg_replace("/\.\.\./", " ", $testName);
-            $testName = preg_replace("/[a-zA-Z]+ [Ee]dition/", "", $testName);
-            $testName = rtrim(trim($testName), ":");
-            Debugger::debug("Testing Metacritic for ", $testName);
-            $mcApi = new Metacritic($testName);
             try {
-                $mcResult = $mcApi->find();
-                if (isset($mcResult["url"])) {
+                $mcResult = self::testMetacritic($testName);
+                if ($mcResult !== FALSE) {
                     $this->metaCriticScore = $mcResult["metaScore"];
                     $this->metaCriticUrl = $mcResult["url"];
-                }
+		}
                 $this->metaCriticLoaded = true;
                 Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore);
             } catch (Exception $e) {
                 Debugger::error("Got an error (", $e->getMessage(), ") while getting score for ", $testName);
                 Debugger::debug("Skipping this for now.");
             }
+        }
+    }
+
+    private static function testMetacritic($name) {
+        $testName = rtrim(trim($name), ":-");
+        Debugger::debug("Testing Metacritic for ", $testName);
+	$mcApi = new Metacritic($testName);
+        $mcResult = $mcApi->find();
+	if (isset($mcResult["url"])) {
+	    return $mcResult;
+	} else if (stripos($testName, "Remastered")) {
+	    return self::testMetacritic(preg_replace("/Remaster[ed]*/i", "", $testName));
+	} else if (stripos($testName, "Edition")) {
+            return self::testMetacritic(preg_replace("/[a-zA-Z]+ Edition/i", "", $testName));
+	} else if (preg_match("/PS[1-5]$/i", $testName)) {
+	    return self::testMetacritic(preg_replace("/PS[1-5]$/i", "", $testName));
+	} else {
+	    return FALSE;
         }
     }
 

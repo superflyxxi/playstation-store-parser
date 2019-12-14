@@ -18,7 +18,7 @@ if (isset($argv[1])) {
 $saleIdMapping = array(
     "STORE-MSF77008-WEEKLYDEALS" => "Weekly Deals for " . date("F jS, Y"),
     "STORE-MSF77008-PSPLUSFREEGAMES" => "PlayStation Plus Free Games for " . date("F Y"),
-    "STORE-MSF77008-NEWTHISWEEK" => "New Games the week of " . date("F jS, Y")
+    "STORE-MSF77008-NEWTHISWEEK" => "New Games for the Week of " . date("F jS, Y")
 );
 
 $apiUrl = Properties::getProperty("playstation.api.url") . $saleId . ""; // ?platform=ps4";

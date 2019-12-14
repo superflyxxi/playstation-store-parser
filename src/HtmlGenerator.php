@@ -66,15 +66,14 @@ class HtmlGenerator
             $score = $game->getMetaCriticScore();
             $class = "";
             if ($score >= 75) {
-                $color = "green";
                 $class .= " metaGood";
             } else if ($score >= 60) {
-                $color = "orange";
                 $class .= " metaOkay";
-            } else {
-                $color = "red";
+            } else if ($score > 0) {
                 $class .= " metaBad";
-            }
+            } else {
+		$score = "TBD";
+	    }
             $html = "<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a></td>";
             foreach ($columnList as $column) {
                 switch ($column) {
@@ -93,8 +92,8 @@ class HtmlGenerator
                 }
             }
             $html .= "<td >";
-            if ($score <= 0) {
-                $html .= "&nbsp;";
+	    if ($game->getMetaCriticURL() == "") {
+                $html .= "Not Found";
             } else {
                 $html .= "<a href='" . $game->getMetaCriticURL() . "'>" . $score . "</a>";
             }

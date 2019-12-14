@@ -19,7 +19,7 @@ class PlayStationGame
 
     private $metaCriticLoaded = false;
 
-    private $metaCriticScore = - 1;
+    private $metaCriticScore = -1;
 
     private $metaCriticUrl = "";
 
@@ -142,7 +142,7 @@ class PlayStationGame
                     $this->metaCriticUrl = $mcResult["url"];
 		}
                 $this->metaCriticLoaded = true;
-                Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore);
+                Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore, " (", $this->metaCriticUrl, ")");
             } catch (Exception $e) {
                 Debugger::error("Got an error (", $e->getMessage(), ") while getting score for ", $testName);
                 Debugger::debug("Skipping this for now.");

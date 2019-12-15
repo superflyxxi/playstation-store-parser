@@ -45,7 +45,9 @@ class HtmlGenerator
             switch ($column) {
                 case "psNow":
                     file_put_contents($outputHtml, "<th id='psNow'>On PS Now<br/>", FILE_APPEND);
-                    file_put_contents($outputHtml, "(<a class='filter' onclick='hideAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>hide</a>|<a class='filter' onclick='showAllClasses(\".onPsNow\");hideAllClasses(\".offPsNow\")'>only</a>|<a class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</a>)</th>", FILE_APPEND);
+                    file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>hide</button>", FILE_APPEND);
+                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");hideAllClasses(\".offPsNow\")'>only</button>", FILE_APPEND);
+                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</button>)</th>", FILE_APPEND);
                     break;
 
                 case "originalPrice":
@@ -58,10 +60,10 @@ class HtmlGenerator
             }
         }
         file_put_contents($outputHtml, "<th id='metaCritic'>Metacritic Score<br/>\n(", FILE_APPEND);
-        file_put_contents($outputHtml, "<a class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</a>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<a class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</a>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<a class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</a>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<a class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</a>)</th></tr>", FILE_APPEND);
+        file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</button>|", FILE_APPEND);
+        file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</button>|", FILE_APPEND);
+        file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</button>|", FILE_APPEND);
+        file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</button>)</th></tr>", FILE_APPEND);
         foreach ($gameList as $game) {
             $score = $game->getMetaCriticScore();
             $class = "";

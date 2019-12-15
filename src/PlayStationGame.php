@@ -157,10 +157,10 @@ class PlayStationGame
         $mcResult = $mcApi->find();
 	if (isset($mcResult["url"])) {
 	    return $mcResult;
-	} else if (stripos($testName, "Remastered")) {
+	} else if (preg_match("/Remaster[ed]*/i", $testName)) {
 	    return self::testMetacritic(preg_replace("/Remaster[ed]*/i", "", $testName));
-	} else if (stripos($testName, "Edition")) {
-            return self::testMetacritic(preg_replace("/[a-zA-Z]+ Edition/i", "", $testName));
+	} else if (preg_match("/[a-zA-Z0-9]+ Edition/i", $testName)) {
+            return self::testMetacritic(preg_replace("/[a-zA-Z0-9]+ Edition/i", "", $testName));
 	} else if (preg_match("/PS[1-5]$/i", $testName)) {
 	    return self::testMetacritic(preg_replace("/PS[1-5]$/i", "", $testName));
 	} else {

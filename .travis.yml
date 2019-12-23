@@ -33,12 +33,6 @@ jobs:
         - cd tar/
         - tar -cjvf ../playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2 * 
         - cd ..
-    - stage: "Validation"
-      name: "Run tests"
-      script:
-        - cd tests/
-        - ./runTests.sh
-      after_success: skip
     - name: "Build docker"
       language: minimal
       before_install:
@@ -60,6 +54,18 @@ jobs:
             docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
             docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
           fi
+    - stage: "Validation"
+      name: "Run tests"
+      before_install:
+        - sudo mkdir -p "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}"
+        - openssl s_client -showcerts -connect ${THIS_DOCKER_REGISTRY} < /dev/null 2> /dev/null | openssl x509 -outform PEM | sudo tee "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}/ca.crt"
+        - echo ${THIS_DOCKER_REGISTRY_PASSWORD} | docker login --username ${THIS_DOCKER_REGISTRY_USERNAME} --password-stdin ${THIS_DOCKER_REGISTRY}
+      script:
+        - cd tests/
+        - docker build -t ps-store:test --build-arg FROM_IMAGE=${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} .
+        - docker run -t --name tests ps-store:test
+        - docker rm tests
+      after_success: skip
     - name: "Checkstyle"
       language: java
       script:

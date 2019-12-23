@@ -3,7 +3,7 @@ MAINTAINER SuperFlyXXI <superflyxxi@yahoo.com>
 
 ENV WWW_DIR=/usr/local/apache2/htdocs
 
-RUN apk add --no-cache php php-openssl php-json php-curl php-simplexml
+RUN apk add --no-cache php php-openssl php-json php-curl php-dom
 
 ADD resources/ /home/ps-store/resources/
 ADD www ${WWW_DIR}

@@ -12,26 +12,45 @@ class RssGenerator
         if (! file_exists($rssFile)) {
             copy("../resources/init.rss.xml", $rssFile);
         }
-        $rss = simplexml_load_file($rssFile);
-        $rss->channel->lastBuildDate = date(DATE_RSS);
-        $rss->channel->pubDate = date(DATE_RSS);
-        $item = $rss->channel->addChild("item");
-        $item->title = $saleTitle;
-        $item->link = $newLink;
-        $item->description = self::getDescription($newLink);
-        $item->pubDate = date(DATE_RSS);
-        $rss->asXML($rssFile);
+        $rss = DOMDocument::load($rssFile);
+        $channel = $rss->documentElement->getElementsByTagName("channel")->item(0);
+        $channel->setAttribute("lastBuildDate", date(DATE_RSS));
+        $channel->setAttribute("pubDate", date(DATE_RSS));
+	$item = $rss->createElement("item");
+	$firstItem = $channel->getElementsByTagName("item")->item(0);
+	if (NULL == $firstItem) {
+	    $channel->appendChild($item);
+	} else {
+	    $channel->insertBefore($item, $firstItem);
+	}
+
+	$title = $item->appendChild($rss->createElement("title"));
+	$title->appendChild($rss->createTextNode($saleTitle));
+
+	$link = $item->appendChild($rss->createElement("link"));
+	$link->appendChild($rss->createTextNode($newLink));
+
+	$desc = $item->appendChild($rss->createElement("description"));
+	$desc->appendChild($rss->createTextNode(self::getDescription($newLink)));
+
+	$pubDate = $item->appendChild($rss->createElement("pubDate"));
+	$pubDate->appendChild($rss->createTextNode(date(DATE_RSS)));
+
+        $rss->save($rssFile);
     }
 
     private static function getDescription($link)
     {
-        $desc = file_get_contents($link);
-        $start = strpos($desc, "<body>") + 6;
-        $end = strpos($desc, "<!--more-->");
-        if ($end <= 0) {
-            $end = strpos($desc, "</body>");
-        }
-        return substr($desc, $start, $end - $start);
+        $desc = @file_get_contents($link);
+	if ($desc !== FALSE) {
+	        $start = strpos($desc, "<body>") + 6;
+        	$end = strpos($desc, "<!--more-->");
+	        if ($end <= 0) {
+        	    $end = strpos($desc, "</body>");
+     	        }
+                return substr($desc, $start, $end - $start);
+	}
+	return "Not Available";
     }
 }
 ?>

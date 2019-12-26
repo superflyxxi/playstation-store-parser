@@ -7,9 +7,9 @@ class RowHtmlGenerator extends HtmlGenerator
 
     public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
     {
-        $start = time();
+        Debugger::beginTimer("generateHtml");
         $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
-        Debugger::info("Writing HTML to ", $outputHtml);
+        Debugger::verbose("Writing HTML to ", $outputHtml);
         $hostBaseUrl = Properties::getProperty("host.base.url");
 
         file_put_contents($outputHtml, "<html>\n", FILE_APPEND);
@@ -64,7 +64,7 @@ class RowHtmlGenerator extends HtmlGenerator
         file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</button>|", FILE_APPEND);
         file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</button>|", FILE_APPEND);
         file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</button>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</button>)</th></tr>", FILE_APPEND);
+        file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</button>)</th></tr>\n", FILE_APPEND);
         foreach ($gameList as $game) {
             $score = $game->getMetaCriticScore();
             $class = "";
@@ -102,13 +102,13 @@ class RowHtmlGenerator extends HtmlGenerator
             }
             $html .= "</td>";
             $html .= "</tr>\n";
-            $html = "<tr class='" . $class . "' />" . $html;
+            $html = "<tr class='" . $class . "' >" . $html;
             file_put_contents($outputHtml, $html, FILE_APPEND);
         }
         file_put_contents($outputHtml, "</table>\n", FILE_APPEND);
         file_put_contents($outputHtml, "Generated " . date("F jS, Y g:ia T"), FILE_APPEND);
         file_put_contents($outputHtml, "</body>\n</html>\n", FILE_APPEND);
-        Debugger::info("Generated HTML - ", time() - $start);
+        Debugger::endTimer("generateHtml");
     }
 }
 ?>

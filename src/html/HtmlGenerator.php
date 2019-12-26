@@ -10,7 +10,7 @@ class HtmlGenerator
 
     public static function getInstance()
     {
-	if (NULL === $instance) {
+        if (NULL === $instance) {
             switch (Properties::getProperty("html.generator")) {
                 case "row":
                 default:
@@ -26,7 +26,6 @@ class HtmlGenerator
         throw new Exception("Missing html.generator implementation.");
     }
 }
-
 
 ?>
 

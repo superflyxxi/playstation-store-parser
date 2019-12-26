@@ -134,11 +134,6 @@ class PlayStationGame
     private function loadMetaCriticDataIfNecessary()
     {
         if (! $this->metaCriticLoaded) {
-            $arrSystems = array(
-                "playstation-4",
-                "pc",
-                "playstation-2"
-            );
             $testName = $this->shortName;
             $testName = preg_replace("/\.\.\./", " ", $testName);
             try {

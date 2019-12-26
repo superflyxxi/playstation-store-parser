@@ -6,15 +6,19 @@ class Debugger
 
     private static $loglevel = NULL;
 
+    private static $timings = array();
+
     const errorLevel = 1;
 
     const warnLevel = 2;
 
     const infoLevel = 3;
 
-    const debugLevel = 4;
+    const timerLevel = 4;
 
-    const verboseLevel = 5;
+    const debugLevel = 5;
+
+    const verboseLevel = 6;
 
     private static function getLogLevel()
     {
@@ -40,16 +44,19 @@ class Debugger
                     print_r("INFO   ");
                     break;
                 case 4:
-                    print_r("DEBUG  ");
+                    print_r("TIMER  ");
                     break;
                 case 5:
+                    print_r("DEBUG  ");
+                    break;
+                case 6:
                     print_r("VERBOSE");
                     break;
-                
+
                 default:
                     break;
             }
-            
+
             print_r(": ");
             foreach ($arrData as $arg) {
                 print_r($arg);
@@ -71,6 +78,27 @@ class Debugger
     public static function debug()
     {
         return self::logmsg(func_get_args(), self::debugLevel);
+    }
+
+    public static function beginTimer($name)
+    {
+        self::$timings[$name] = time();
+        return self::logmsg(array(
+            $name,
+            " - Begin"
+        ), self::timerLevel);
+    }
+
+    public static function endTimer($name)
+    {
+        $time = time() - self::$timings[$name];
+        unset(self::$timings[$name]);
+        return self::logmsg(array(
+            $name,
+            " - End [",
+            $time,
+            "]"
+        ), self::timerLevel);
     }
 
     public static function verbose()

@@ -52,9 +52,7 @@ jobs:
         - cd tests/
         - find ./ -name "*.php" | xargs -L1 php -l
         - docker build -t ps-store:test --build-arg FROM_IMAGE=${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} .
-        - docker run -t --name tests ps-store:test
-        - docker rm tests
-      after_success: skip
+        - docker run -t --rm --name tests ps-store:test
     - name: "Checkstyle"
       language: java
       script:

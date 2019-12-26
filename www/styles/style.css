@@ -6,7 +6,7 @@
 	background-color: orange
 }
 
-.metaGood { 
+.metaGood {
 	background-color: green
 }
 
@@ -19,10 +19,10 @@ a {
 }
 
 .filter {
-        border: none;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
 }
 
 table {
@@ -34,4 +34,3 @@ table {
 #gameTitle {
 	width: 50%
 }
-

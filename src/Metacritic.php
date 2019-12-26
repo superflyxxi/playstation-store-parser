@@ -37,6 +37,7 @@ class Metacritic
         $arrResults = $this->search();
 
         // filter out results that are not for a game
+        Debugger::verbose("Before filtering: ", $arrResults);
         $arrResults = array_filter($arrResults, function ($k) {
             $res = $k["refTypeId"] == 30; // Game
             return $res;
@@ -91,6 +92,8 @@ class Metacritic
 
         $response = $this->request($this->url, $data, "POST");
         $results = json_decode($response, TRUE);
+
+	Debugger::verbose("Results from search: ", $results);
 
         return isset($results['autoComplete']) ? $results['autoComplete'] : [];
     }

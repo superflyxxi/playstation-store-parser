@@ -6,7 +6,7 @@ include_once "PlayStationGame.php";
 include_once "PlayStationGameRepository.php";
 include_once "Properties.php";
 include_once "RssGenerator.php";
-include_once "HtmlGenerator.php";
+include_once "html/HtmlGenerator.php";
 include_once "PlayStationGameFilter.php";
 
 // print_r($argv);
@@ -56,7 +56,7 @@ Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
 $outHtmlFilename = date("YmdHi") . "-PSNow.html";
 
-HtmlGenerator::write($outHtmlFilename, "PlayStation Now Games", $gameList, array());
+HtmlGenerator::getInstance()->write($outHtmlFilename, "PlayStation Now Games", $gameList, array());
 RssGenerator::write("playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "Ranking PlayStation Now Games for the Month of " . date("F Y"));
 
 Debugger::info("Done!");

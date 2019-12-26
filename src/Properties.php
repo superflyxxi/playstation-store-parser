@@ -25,7 +25,7 @@ class Properties
             }
         }
 
-        return self::$prop[$sName];
+        return array_key_exists($sName, self::$prop) ? self::$prop[$sName] : NULL;
     }
 }
 

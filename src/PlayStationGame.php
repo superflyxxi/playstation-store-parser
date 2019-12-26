@@ -19,13 +19,15 @@ class PlayStationGame
 
     private $metaCriticLoaded = false;
 
-    private $metaCriticScore = -1;
+    private $metaCriticScore = - 1;
 
     private $metaCriticUrl = "";
 
     private $url = "";
 
     private $id = "";
+
+    private $imageUrl = "";
 
     private $gameContentTypes = array();
 
@@ -61,6 +63,10 @@ class PlayStationGame
                     $this->salePrice = min($this->salePrice, $singleReward->bonus_price / 100);
                 }
             }
+        }
+        if (isset($json->images)) {
+            // same the first image as the image
+            $this->imageUrl = $json->images[0]->url;
         }
         /*
          * "gameContentTypesList": [
@@ -140,7 +146,7 @@ class PlayStationGame
                 if ($mcResult !== FALSE) {
                     $this->metaCriticScore = $mcResult["metaScore"];
                     $this->metaCriticUrl = $mcResult["url"];
-		}
+                }
                 $this->metaCriticLoaded = true;
                 Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore, " (", $this->metaCriticUrl, ")");
             } catch (Exception $e) {
@@ -150,21 +156,22 @@ class PlayStationGame
         }
     }
 
-    private static function testMetacritic($name) {
+    private static function testMetacritic($name)
+    {
         $testName = rtrim(trim($name), ":-");
         Debugger::debug("Testing Metacritic for ", $testName);
-	$mcApi = new Metacritic($testName);
+        $mcApi = new Metacritic($testName);
         $mcResult = $mcApi->find();
-	if (isset($mcResult["url"])) {
-	    return $mcResult;
-	} else if (preg_match("/Remaster[ed]*/i", $testName)) {
-	    return self::testMetacritic(preg_replace("/Remaster[ed]*/i", "", $testName));
-	} else if (preg_match("/[a-zA-Z0-9]+ Edition/i", $testName)) {
+        if (isset($mcResult["url"])) {
+            return $mcResult;
+        } else if (preg_match("/Remaster[ed]*/i", $testName)) {
+            return self::testMetacritic(preg_replace("/Remaster[ed]*/i", "", $testName));
+        } else if (preg_match("/[a-zA-Z0-9]+ Edition/i", $testName)) {
             return self::testMetacritic(preg_replace("/[a-zA-Z0-9]+ Edition/i", "", $testName));
-	} else if (preg_match("/PS[1-5]$/i", $testName)) {
-	    return self::testMetacritic(preg_replace("/PS[1-5]$/i", "", $testName));
-	} else {
-	    return FALSE;
+        } else if (preg_match("/PS[1-5]$/i", $testName)) {
+            return self::testMetacritic(preg_replace("/PS[1-5]$/i", "", $testName));
+        } else {
+            return FALSE;
         }
     }
 

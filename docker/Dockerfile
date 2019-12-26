@@ -4,6 +4,7 @@ MAINTAINER SuperFlyXXI <superflyxxi@yahoo.com>
 ENV WWW_DIR=/usr/local/apache2/htdocs
 
 RUN apk add --no-cache php php-openssl php-json php-curl php-dom
+RUN sed -i 's#^include_path = "\(.*\)"$#include_path = "\1:/home/ps-store/bin"#g' /etc/php7/php.ini
 
 ADD resources/ /home/ps-store/resources/
 ADD www ${WWW_DIR}

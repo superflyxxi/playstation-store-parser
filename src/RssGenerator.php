@@ -14,8 +14,14 @@ class RssGenerator
         }
         $rss = DOMDocument::load($rssFile);
         $channel = $rss->documentElement->getElementsByTagName("channel")->item(0);
-        $channel->setAttribute("lastBuildDate", date(DATE_RSS));
-        $channel->setAttribute("pubDate", date(DATE_RSS));
+	$elemDate = $channel->getElementsByTagName("lastBuildDate")[0];
+	$elemNew = $rss->createElement("lastBuildDate");
+	$elemNew->appendChild($rss->createTextNode(date(DATE_RSS)));
+        $channel->replaceChild($elemNew, $elemDate);
+	$elemDate = $channel->getElementsByTagName("pubDate")[0];
+	$elemNew = $rss->createElement("pubDate");
+	$elemNew->appendChild($rss->createTextNode(date(DATE_RSS)));
+        $channel->replaceChild($elemNew, $elemDate);
 	$item = $rss->createElement("item");
 	$firstItem = $channel->getElementsByTagName("item")->item(0);
 	if (NULL == $firstItem) {

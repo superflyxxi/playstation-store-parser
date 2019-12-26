@@ -6,7 +6,7 @@ include_once "PlayStationGame.php";
 include_once "PlayStationGameRepository.php";
 include_once "Properties.php";
 include_once "RssGenerator.php";
-include_once "HtmlGenerator.php";
+include_once "html/HtmlGenerator.php";
 include_once "PlayStationGameFilter.php";
 
 // print_r($argv);
@@ -65,7 +65,7 @@ Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
 
 $outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
 
-HtmlGenerator::write($outHtmlFilename, $saleIdMapping[$saleId], $gameList);
+HtmlGenerator::getInstance()->write($outHtmlFilename, $saleIdMapping[$saleId], $gameList);
 RssGenerator::write("playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
 
 Debugger::info("Done!");

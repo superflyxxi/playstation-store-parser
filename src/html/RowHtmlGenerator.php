@@ -1,10 +1,11 @@
 <?php
 include_once "Debugger.php";
+include_once "html/HtmlGenerator.php";
 
-class HtmlGenerator
+class RowHtmlGenerator extends HtmlGenerator
 {
 
-    public static function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
+    public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
     {
         $start = time();
         $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
@@ -74,8 +75,8 @@ class HtmlGenerator
             } else if ($score > 0) {
                 $class .= " metaBad";
             } else {
-		$score = "TBD";
-	    }
+                $score = "TBD";
+            }
             $html = "<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a></td>";
             foreach ($columnList as $column) {
                 switch ($column) {
@@ -94,7 +95,7 @@ class HtmlGenerator
                 }
             }
             $html .= "<td >";
-	    if ($game->getMetaCriticURL() == "") {
+            if ($game->getMetaCriticURL() == "") {
                 $html .= "Not Found";
             } else {
                 $html .= "<a href='" . $game->getMetaCriticURL() . "'>" . $score . "</a>";

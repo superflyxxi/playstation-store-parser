@@ -5,7 +5,7 @@ include_once "html/HtmlGenerator.php";
 class RowHtmlGenerator extends HtmlGenerator
 {
 
-    public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
+    public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "price"))
     {
         Debugger::beginTimer("generateHtml");
         $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
@@ -51,6 +51,10 @@ class RowHtmlGenerator extends HtmlGenerator
                     file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</button>)</th>", FILE_APPEND);
                     break;
 
+		case "price":
+		    file_put_contents($outputHtml, "<th id='price'>Price</th>", FILE_APPEND);
+		    break;
+
                 case "originalPrice":
                     file_put_contents($outputHtml, "<th id='originalPrice'>Original Price</th>", FILE_APPEND);
                     break;
@@ -84,6 +88,10 @@ class RowHtmlGenerator extends HtmlGenerator
                         $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
                         $class .= $game->isPSNow() ? " onPsNow" : " offPsNow";
                         break;
+
+		    case "price":
+			$html .= "<td>" . $game->getSalePrice() . " (<strike>". $game->getOriginalPrice() . "</strike>)</td>";
+			break;
 
                     case "originalPrice":
                         $html .= "<td>$" . $game->getOriginalPrice() . "</td>";

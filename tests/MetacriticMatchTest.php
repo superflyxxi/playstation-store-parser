@@ -110,13 +110,13 @@ final class MetaCriticMatchTest extends TestCase
 
     public function testMatchRemastered()
     {
-        $json = $this->getGameJson($gameId = "UP9000-CUSA06171_00-UCUS987110000001");
+        $json = $this->getGameJson($gameId = "UP9000-CUSA07321_00-UCES011770000001");
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Patapon Remastered", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Patapon 2 Remastered", $psGame->getShortName(), "ShortName");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
-        $this->assertEquals("https://www.metacritic.com/game/playstation-4/patapon", $psGame->getMetaCriticURL(), "MetaCriticURL");
+        $this->assertEquals("https://www.metacritic.com/game/playstation-4/patapon-2-remastered", $psGame->getMetaCriticURL(), "MetaCriticURL");
     }
 }
 

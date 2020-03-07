@@ -15,7 +15,7 @@ class Properties
     }
 
     // = parse_ini_file("settings.ini");
-    public static function getProperty($sName)
+    public static function getProperty($sName, $default = NULL)
     {
         if (self::$prop == NULL) {
             if (file_exists(self::$resourceDir . DIRECTORY_SEPARATOR . "settings_override.ini")) {
@@ -24,12 +24,11 @@ class Properties
                 self::$prop = parse_ini_file(self::$resourceDir . DIRECTORY_SEPARATOR . "settings.ini");
             }
         }
-        
-        return array_key_exists($sName, self::$prop) ? self::$prop[$sName] : NULL;
+
+        return array_key_exists($sName, self::$prop) ? self::$prop[$sName] : $default;
     }
 }
 
 Properties::init();
 
 ?>
-

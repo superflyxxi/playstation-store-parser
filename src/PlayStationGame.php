@@ -2,7 +2,7 @@
 include_once "Metacritic.php";
 include_once "Debugger.php";
 
-class PlayStationGame
+class PlayStationGame implements JsonSerializable
 {
 
     private $actualName = "";
@@ -31,42 +31,42 @@ class PlayStationGame
 
     private $gameContentTypes = array();
 
-    function __construct($json)
+    function __construct($decodedJson)
     {
-        if (array_key_exists("url", $json)) {
-            $this->url = $json->url;
+        if (array_key_exists("url", $decodedJson)) {
+            $this->url = $decodedJson->url;
         }
         $this->originalPrice = 0.0;
-        $this->id = $json->id;
-        $this->actualName = $json->name;
+        $this->id = $decodedJson->id;
+        $this->actualName = $decodedJson->name;
         $arr = array();
-        $gameName = $json->name;
+        $gameName = $decodedJson->name;
         Debugger::verbose("PlayStation Game Name: ", $gameName);
         $gameName = str_replace("’", "'", $gameName); // replace weird apostrophe with normal '
         preg_match_all("/[A-Za-z0-9\-'&+!:.]+/", $gameName, $arr);
         $this->shortName = implode($arr[0], " ");
         $this->shortName = str_replace(" :", ":", $this->shortName); // remove space before :
         Debugger::verbose("Converted Game Name: ", $this->shortName);
-        if (isset($json->playable_platform)) {
-            foreach ($json->playable_platform as $platform) {
+        if (isset($decodedJson->playable_platform)) {
+            foreach ($decodedJson->playable_platform as $platform) {
                 $arr = array();
                 preg_match_all("/[A-Za-z0-9-\':\.]+/", $platform, $arr);
                 $this->arrPlatform[] = implode($arr[0], " ");
             }
         }
-        if (isset($json->default_sku)) {
-            $this->originalPrice = $json->default_sku->price / 100;
+        if (isset($decodedJson->default_sku)) {
+            $this->originalPrice = $decodedJson->default_sku->price / 100;
             $this->salePrice = $this->originalPrice;
-            foreach ($json->default_sku->rewards as $singleReward) {
+            foreach ($decodedJson->default_sku->rewards as $singleReward) {
                 $this->salePrice = min($this->salePrice, $singleReward->price / 100);
                 if (isset($singleReward->bonus_price)) {
                     $this->salePrice = min($this->salePrice, $singleReward->bonus_price / 100);
                 }
             }
         }
-        if (isset($json->images)) {
+        if (isset($decodedJson->images)) {
             // same the first image as the image
-            $this->imageUrl = $json->images[0]->url;
+            $this->imageUrl = $decodedJson->images[0]->url;
         }
         /*
          * "gameContentTypesList": [
@@ -84,8 +84,8 @@ class PlayStationGame
          * },
          * ]
          */
-        if (isset($json->gameContentTypesList)) {
-            foreach ($json->gameContentTypesList as $content) {
+        if (isset($decodedJson->gameContentTypesList)) {
+            foreach ($decodedJson->gameContentTypesList as $content) {
                 $this->gameContentTypes[] = $content->key;
             }
         }
@@ -180,6 +180,22 @@ class PlayStationGame
     {
         $this->loadMetaCriticDataIfNecessary();
         return $this->metaCriticUrl;
+    }
+
+    public function jsonSerialize()
+    {
+        $json = array();
+        $json["id"] = $this->id;
+        $json["name"] = $this->actualName;
+        $json["url"] = $this->url;
+        $json["playable_platform"] = $this->arrPlatform;
+        $json["default_sku"]["price"] = $this->originalPrice * 100;
+        $json["default_sku"]["rewards"][0]["price"] = $this->salePrice * 100;
+        $json["images"][0]["url"] = $this->imageUrl;
+        foreach ($this->gameContentTypes as $key) {
+            $json["gameContentTypesList"]["key"] = $key;
+        }
+        return json_encode($json);
     }
 }
 

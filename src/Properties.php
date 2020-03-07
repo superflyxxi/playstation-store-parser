@@ -24,7 +24,7 @@ class Properties
                 self::$prop = parse_ini_file(self::$resourceDir . DIRECTORY_SEPARATOR . "settings.ini");
             }
         }
-
+        
         return array_key_exists($sName, self::$prop) ? self::$prop[$sName] : NULL;
     }
 }

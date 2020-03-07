@@ -52,11 +52,11 @@ class Debugger
                 case 6:
                     print_r("VERBOSE");
                     break;
-
+                
                 default:
                     break;
             }
-
+            
             print_r(": ");
             foreach ($arrData as $arg) {
                 print_r($arg);

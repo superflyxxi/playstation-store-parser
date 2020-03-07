@@ -19,7 +19,7 @@ class PlayStationGameFilter
                 return false;
             }
         }
-
+        
         if (NULL != $this->allowedPlayablePlatforms) {
             if (count(array_intersect($this->allowedPlayablePlatforms, $game->getPlatforms())) == 0) {
                 Debugger::debug($game->getID(), ": ", $game->getShortName(), " not a valid platform (", $game->getPlatforms(), ") ", $this->allowedPlayablePlatforms);

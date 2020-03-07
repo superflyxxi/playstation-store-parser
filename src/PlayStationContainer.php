@@ -69,14 +69,14 @@ class PlayStationContainer
             Debugger::info($sale->id, " already loaded.");
             return;
         }
-
+        
         $total = $sale->total_results;
         $current = 1;
-
+        
         do {
-
+            
             foreach ($sale->links as $entry) {
-
+                
                 if (isset($entry->container_type))
                     switch ($entry->container_type) {
                         case "container":
@@ -84,7 +84,7 @@ class PlayStationContainer
                             $container = PlayStationContainerRepository::getInstance()->addContainer($container);
                             $this->arrContainers[] = $container->getID();
                             break;
-
+                        
                         case "product":
                             $game = new PlayStationGame($entry);
                             if (NULL == $this->gameFilter || $this->gameFilter->meetsCriteria($game)) {
@@ -93,7 +93,7 @@ class PlayStationContainer
                                 $this->arrGames[] = $game->getID();
                             }
                             break;
-
+                        
                         default:
                             // container_type
                             break;

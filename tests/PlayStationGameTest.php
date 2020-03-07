@@ -24,7 +24,7 @@ final class PlayStationGameTest extends TestCase
         $game->playable_platform[] = "PS4";
         $game->default_sku = new SKUJSON();
         $game->default_sku->price = 1000;
-
+        
         $json = json_encode($game);
         Debugger::verbose("Input ", $json);
         $psGame = new PlayStationGame(json_decode($json));
@@ -45,7 +45,7 @@ final class PlayStationGameTest extends TestCase
         $game->playable_platform[] = "PS4";
         $game->default_sku = new SKUJSON();
         $game->default_sku->price = 1000;
-
+        
         $json = json_encode($game);
         Debugger::verbose("Input ", $json);
         $psGame = new PlayStationGame(json_decode($json));
@@ -55,7 +55,7 @@ final class PlayStationGameTest extends TestCase
     public function testActualGame()
     {
         $json = $this->getGameJson("UP9000-CUSA00552_00-THELASTOFUS00000");
-
+        
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("UP9000-CUSA00552_00-THELASTOFUS00000", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
@@ -70,7 +70,7 @@ final class PlayStationGameTest extends TestCase
     public function testActualGameWithWeirdApostrophe()
     {
         $json = $this->getGameJson("UP0001-CUSA00010_00-AC4GAMEPS4000001");
-
+        
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("UP0001-CUSA00010_00-AC4GAMEPS4000001", $psGame->getID(), "ID");
         $this->assertEquals("Assassin's Creed IV Black Flag", $psGame->getShortName(), "ShortName");
@@ -79,9 +79,9 @@ final class PlayStationGameTest extends TestCase
     public function testActualGameWithScore()
     {
         $json = $this->getGameJson("UP9000-CUSA00552_00-THELASTOFUS00000");
-
+        
         $psGame = new PlayStationGame(json_decode($json));
-
+        
         $this->assertEquals("UP9000-CUSA00552_00-THELASTOFUS00000", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
         $this->assertEquals("The Last Of Us Remastered", $psGame->getShortName(), "ShortName");

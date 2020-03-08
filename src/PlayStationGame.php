@@ -31,6 +31,8 @@ class PlayStationGame implements JsonSerializable
 
     private $gameContentTypes = array();
 
+    private $isEaAccess = FALSE;
+
     function __construct($decodedJson)
     {
         if (array_key_exists("url", $decodedJson)) {
@@ -58,9 +60,17 @@ class PlayStationGame implements JsonSerializable
             $this->originalPrice = $decodedJson->default_sku->price / 100;
             $this->salePrice = $this->originalPrice;
             foreach ($decodedJson->default_sku->rewards as $singleReward) {
-                $this->salePrice = min($this->salePrice, $singleReward->price / 100);
-                if (isset($singleReward->bonus_price)) {
-                    $this->salePrice = min($this->salePrice, $singleReward->bonus_price / 100);
+                $startDate = isset($singleReward->start_date) ? strtotime($singleReward->start_date) : 0;
+                $endDate = isset($singleReward->end_date) ? strtotime($singleReward->end_date) : PHP_INT_MAX;
+                if (time() >= $startDate && time() <= $endDate) {
+                    if (isset($singleReward->isEAAccess) && $singleReward->isEAAccess) {
+                        $this->isEaAccess = TRUE;
+                    } else {
+                        $this->salePrice = min($this->salePrice, $singleReward->price / 100);
+                        if (isset($singleReward->bonus_price)) {
+                            $this->salePrice = min($this->salePrice, $singleReward->bonus_price / 100);
+                        }
+                    }
                 }
             }
         }
@@ -124,6 +134,11 @@ class PlayStationGame implements JsonSerializable
     public function isPSNow()
     {
         return in_array("cloud", $this->gameContentTypes) || in_array("ps4_cloud", $this->gameContentTypes);
+    }
+
+    public function isEAAccess()
+    {
+        return $this->isEaAccess;
     }
 
     public function getGameContentTypes()

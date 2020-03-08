@@ -1,0 +1,2840 @@
+{
+  "age_limit": 17,
+  "attributes": {
+    "facets": {
+      "price": [
+        {
+          "name": "Free",
+          "count": 1,
+          "key": "0-0"
+        },
+        {
+          "name": "Under $1.99",
+          "count": 2,
+          "key": "0-199"
+        },
+        {
+          "name": "$5.00-$9.99",
+          "count": 6,
+          "key": "500-999"
+        },
+        {
+          "name": "$10.00-$19.99",
+          "count": 4,
+          "key": "1000-1999"
+        },
+        {
+          "name": "$20.00-39.99",
+          "count": 5,
+          "key": "2000-3999"
+        },
+        {
+          "name": "$40.00-$59.99",
+          "count": 1,
+          "key": "4000-5999"
+        }
+      ],
+      "top_category": [
+        {
+          "name": "Add-On",
+          "count": 17,
+          "key": "add_on"
+        },
+        {
+          "name": "Game Content",
+          "count": 1,
+          "key": "game_content"
+        }
+      ],
+      "relationship": [
+        {
+          "name": "Add-Ons",
+          "count": 17,
+          "key": "addons"
+        },
+        {
+          "name": "Other Extras",
+          "count": 1,
+          "key": "extras"
+        }
+      ]
+    },
+    "next": []
+  },
+  "bucket": "games",
+  "cloud_only_platform": [
+    "NONE"
+  ],
+  "container_type": "product",
+  "content_descriptors": [
+    {
+      "description": "Violence",
+      "url": null,
+      "name": "Violence"
+    },
+    {
+      "description": "Strong Language",
+      "url": null,
+      "name": "Strong Language"
+    },
+    {
+      "description": "Blood",
+      "url": null,
+      "name": "Blood"
+    },
+    {
+      "description": "Online Interactions Not Rated by the ESRB",
+      "url": null,
+      "name": "Online Interactions Not Rated by the ESRB"
+    }
+  ],
+  "content_origin": 0,
+  "content_rating": {
+    "description": "ESRB Mature",
+    "rating_system": "ESRB",
+    "url": "https://cdn-a.sonyentertainmentnetwork.com/grc/images/ratings/hd/esrb/m.png"
+  },
+  "content_type": "1",
+  "default_sku": {
+    "amortizeFlag": false,
+    "bundleExclusiveFlag": false,
+    "chargeImmediatelyFlag": false,
+    "charge_type_id": 0,
+    "credit_card_required_flag": 0,
+    "defaultSku": true,
+    "display_price": "$19.99",
+    "eligibilities": [],
+    "entitlements": [
+      {
+        "description": null,
+        "drms": [],
+        "duration": 0,
+        "durationOverrideTypeId": null,
+        "exp_after_first_use": 0,
+        "feature_type_id": 3,
+        "id": "UP0006-CUSA02429_00-BATTLEFIELD01000",
+        "license_type": 0,
+        "metadata": null,
+        "name": "Battlefield™ 1",
+        "packageType": "PS4GD",
+        "packages": [
+          {
+            "platformId": 13,
+            "platformName": "ps4",
+            "size": 45496336384
+          }
+        ],
+        "preorder_placeholder_flag": false,
+        "size": 0,
+        "subType": 0,
+        "subtitle_language_codes": null,
+        "type": 5,
+        "use_count": 0,
+        "voice_language_codes": null
+      }
+    ],
+    "id": "UP0006-CUSA02429_00-BATTLEFIELD01000-U003",
+    "is_original": false,
+    "name": "Full Game",
+    "platforms": [
+      0,
+      10,
+      13
+    ],
+    "price": 1999,
+    "rewards": [
+      {
+        "id": "CAMP-RWD-SCEA-10288579",
+        "discount": 30,
+        "price": 1399,
+        "reward_type": 2,
+        "display_price": "$13.99",
+        "isPlus": false,
+        "campaigns": [
+          {
+            "id": "CAMP-SCEA-00769347",
+            "start_date": "2020-03-04T16:00:00Z",
+            "end_date": "2020-03-18T15:00:00Z"
+          }
+        ],
+        "start_date": "2020-03-04T16:00:00Z",
+        "bonus_discount": 60,
+        "bonus_entitlement_id": "IP9101-NPIA90005_00-PLUS00",
+        "bonus_price": 799,
+        "end_date": "2020-03-18T15:00:00Z",
+        "reward_source_type_id": 2,
+        "bonus_display_price": "$7.99"
+      },
+      {
+        "id": "CAMP-RWD-SCEA-08577795",
+        "entitlement_id": "UP5498-CUSA15086_00-000000",
+        "discount": 10,
+        "price": 1799,
+        "reward_type": 2,
+        "display_price": "$17.99",
+        "isPlus": false,
+        "isEAAccess": true,
+        "campaigns": [
+          {
+            "id": "CAMP-SCEA-00441539",
+            "start_date": "2019-07-24T15:00:00Z",
+            "end_date": "2199-01-01T08:00:00Z"
+          }
+        ],
+        "start_date": "2018-11-14T16:00:00Z",
+        "reward_source_type_id": 2
+      },
+      {
+        "id": "UP5498-CUSA15087_00-RWD-7592323",
+        "entitlement_id": "UP5498-CUSA15087_00-RWD-7592323",
+        "service_provider_id": "UP5498",
+        "discount": 100,
+        "price": 0,
+        "reward_type": 2,
+        "display_price": "Free",
+        "name": "EA Access Vault",
+        "description": "EA Access Vault",
+        "isPlus": false,
+        "isEAAccess": true,
+        "rewardSourceId": 6,
+        "start_date": "2019-07-24T15:00:00Z",
+        "end_date": "2199-01-01T00:00:00Z",
+        "reward_source_type_id": 1
+      }
+    ],
+    "seasonPassExclusiveFlag": false,
+    "skuAvailabilityOverrideFlag": false,
+    "sku_type": 0,
+    "type": "standard"
+  },
+  "dob_required": true,
+  "gameContentTypesList": [
+    {
+      "name": "Full Game",
+      "key": "FULL_GAME"
+    }
+  ],
+  "game_contentType": "Full Game",
+  "id": "UP0006-CUSA02429_00-BATTLEFIELD01000",
+  "images": [
+    {
+      "type": 1,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/alE5KSy7t50k2JT7rRyBdFZOJRM79IVD.png"
+    },
+    {
+      "type": 2,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/JYoVDUoGwRhOUSOSiHpwZHn0mAcU5BoP.png"
+    },
+    {
+      "type": 9,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/UhxPRCQPwmg5N3o9fweGiDsTdTQkqX1M.png"
+    },
+    {
+      "type": 10,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/OiogYov24Z1qOACNXqDgXG6HDilA0amk.png"
+    },
+    {
+      "type": 12,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/3mDOoluodQ03cnF3cdIKlFTgGS8nE9Yl.jpg"
+    },
+    {
+      "type": 13,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/txHnjVrJmnnIxkojTEe38Bddj9eC6gvp.png"
+    }
+  ],
+  "links": [
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$14.99",
+        "eligibilities": [
+          {
+            "id": "UP0006-CUSA02429_00-PREMIUM000000000",
+            "operand": "IS_ACTIVE",
+            "operator": "FALSE",
+            "rightOperand": null,
+            "name": "Battlefield™ 1 Premium",
+            "description": null,
+            "entitlement_type": null,
+            "drms": []
+          }
+        ],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-XPACK02000000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ In The Name of The Tsar",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-XPACK02000000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 1499,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 1349,
+            "reward_type": 2,
+            "display_price": "$13.49",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2018-06-12T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-XPACK02000000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/ucFJS9QJuecl4TGk3a1da82aonJZanKE.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/9waDWqWSPanSnKDdLMuv17Z8Bqs29brP.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/ey1wjDEz0TAo5wzYHeQbToo21T9EMcny.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/ZqOFleMryoQuPGIn5SYCKk2noVgsAWO0.png"
+        }
+      ],
+      "name": "Battlefield™ 1 In the Name of the Tsar",
+      "parent_name": "Battlefield™ 1",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2017-09-19T00:00:00Z",
+      "restricted": false,
+      "revision": 15,
+      "short_name": "In the Name of the Tsar",
+      "timestamp": 1583286556000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-XPACK02000000000/1583286556"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$14.99",
+        "eligibilities": [
+          {
+            "id": "UP0006-CUSA02429_00-PREMIUM000000000",
+            "operand": "IS_ACTIVE",
+            "operator": "FALSE",
+            "rightOperand": null,
+            "name": "Battlefield™ 1 Premium",
+            "description": null,
+            "entitlement_type": null,
+            "drms": []
+          }
+        ],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-XPACK01000000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 They Shall Not Pass",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-XPACK01000000000-U002",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 1499,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 1349,
+            "reward_type": 2,
+            "display_price": "$13.49",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2019-12-05T01:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-XPACK01000000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/JX6cahPgPIKIhqUmu7eWSMZfVQR8K94W.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/k3jWgX6jsoHZeeGJixlQx4qGVq7Op0WX.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/odOgwsBuW8cE5bsURjX2fATccBxQQ1jO.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/cjmDPbJWE79TQ69yguX04BKaHma8zVvN.png"
+        }
+      ],
+      "name": "Battlefield™ 1 They Shall Not Pass",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2017-03-28T00:00:00Z",
+      "restricted": false,
+      "revision": 15,
+      "short_name": "Battlefield™ 1 They Shall Not Pass",
+      "timestamp": 1583284853000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-XPACK01000000000/1583284853"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$54.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BPAC40",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Battlepacks x 40",
+            "packageType": null,
+            "packages": [],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 1,
+            "use_count": 40,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BATTLEPACK400000-UK01",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 5499,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 4949,
+            "reward_type": 2,
+            "display_price": "$49.49",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2017-02-14T16:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BATTLEPACK400000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/UlDQsjO2Vi6J6gTNK55B9Od4cEW3z1Uj.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/GpIk6kafWl8mJTOZY8iCSvObgqbHLnJg.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/LAs7l5ZYhI2SokLYtHrJDu0l5X6CHDei.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/kQUUKoHYanZUz92BOuqbiEjHv4zkwrFc.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Battlepacks x 40",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2017-02-14T00:00:00Z",
+      "restricted": false,
+      "revision": 10,
+      "short_name": "Battlefield™ 1 Battlepacks x 40",
+      "timestamp": 1583284897000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEPACK400000/1583284897"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$9.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCASSAULT0000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Shortcut Kit: Assault Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCASSAULT0000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 899,
+            "reward_type": 2,
+            "display_price": "$8.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCASSAULT0000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/o9w8dpzfQU7o3aNtYhIoyIiFOaLIZrR1.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FbQMmwGO6G0bwZZWBxKbA3lmVGuzPfMW.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/sMSeMlSlbjNq4K2F09V0SNjzahZqjfae.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/Ykugy3koRHho2R2a4aPtpJj45R3V9Yof.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Assault Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Assault Bundle",
+      "timestamp": 1583285057000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCASSAULT0000000/1583285057"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$9.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCMEDIC000000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Shortcut Kit: Medic Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCMEDIC000000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 899,
+            "reward_type": 2,
+            "display_price": "$8.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCMEDIC000000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/W0mbJQ0WdjDNXCXeJ8zgaFyw52BacNmG.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/aFNl3kS4ucjfceFcg9AzMNQO5eEORbFG.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/Bo2qCghEKr7zGFLKDOoOHsMLJaafopwK.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/EGq9LwaI6EzjOWwSURLbPObNk7fzciBS.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Medic Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Medic Bundle",
+      "timestamp": 1583286506000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCMEDIC000000000/1583286506"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$29.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCPLAYER00000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Shortcut Kit: Infantry Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCPLAYER00000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 2999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 2699,
+            "reward_type": 2,
+            "display_price": "$26.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCPLAYER00000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/wL7UBEsC1GwZ2qnU2qfmY6ahsPAh5Gcg.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/2TKUoZBIxyH8c05a3ilu6LMvKhVrzUqt.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/fpCs8GxO1u7bJkNL1txeufviglU4XzUp.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/L1RQWicAMhp8k7SfYUWzd4Ar6siTThKQ.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Infantry Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Infantry Bundle",
+      "timestamp": 1583285060000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCPLAYER00000000/1583285060"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$9.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCSCOUT000000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Shortcut Kit: Scout Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCSCOUT000000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 899,
+            "reward_type": 2,
+            "display_price": "$8.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCSCOUT000000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/B8NMHGjQuiS1uBcXr0NyWziv196gMAQz.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/tF0R0frQP7ReuDGwYhbubXvfJ7et6inz.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/2g48PZ0THJLdTwsj4H0ONNuUuTpxBEfA.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/Z6uMD1SiPLAuMg107pH65w8XrgbcM3sc.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Scout Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Scout Bundle",
+      "timestamp": 1583284899000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCSCOUT000000000/1583284899"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$9.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCENGINEER000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1  Shortcut Kit: Support Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCENGINEER000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 899,
+            "reward_type": 2,
+            "display_price": "$8.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCENGINEER000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/1Pv9hjleGHf1L9n48QvCOOgibltYCIe5.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/fjAl8zU3OjjIInLcfGJ0usIDSjaO7xhE.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/n0BJfPQwJ6585SHvmwZV7rJHIb2ZsKis.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/OAKXIt7xJgVJHUCjAVKIEuJOXGaWM8N4.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Support Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Support Bundle",
+      "timestamp": 1583284908000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCENGINEER000000/1583284908"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$39.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCULTIMATE000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Shortcut Kit: Ultimate Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCULTIMATE000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 3999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 3599,
+            "reward_type": 2,
+            "display_price": "$35.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCULTIMATE000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/lWJm7QIXFEKKXueinQvGx072gWVYZT7I.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/QHYCl8BGo1lqHWevz6PnsYLioeP5Rv8F.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/tOffzCDB1rXobigt4i4vsgWIAEQkGyHx.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/IfVFfmNQaPbBARX1UjYIkgE9k9pcu4Ni.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Ultimate Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Ultimate Bundle",
+      "timestamp": 1583286518000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCULTIMATE000000/1583286518"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$14.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-SCVEHICLE0000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Shortcut Kit: Vehicle Bundle",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-SCVEHICLE0000000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 1499,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 1349,
+            "reward_type": 2,
+            "display_price": "$13.49",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-12-20T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-SCVEHICLE0000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/cUL319qHI8vBboCS52WYzc15vzQSED97.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/hsAYhJERbagJbaJQKYBksQZPifTWKf6L.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/tM1kKV6zmn8DqR0FuTcPrgtLYZOfxYOH.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/RNeJ4Eo1Fl7hx3KzUIdqcGjWMEEeHza7.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Shortcut Kit: Vehicle Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-12-20T00:00:00Z",
+      "restricted": false,
+      "revision": 6,
+      "short_name": "Battlefield™ 1 Shortcut Kit: Vehicle Bundle",
+      "timestamp": 1583284943000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-SCVEHICLE0000000/1583284943"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$39.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-PREMIUM000000000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Premium",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-PREMIUM000000000-U002",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 3999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 3599,
+            "reward_type": 2,
+            "display_price": "$35.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2019-03-27T15:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-PREMIUM000000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/7VhBKNzo5k7PYw4XlhIZFjwFRL7duHEx.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/XW5KaMbooVtgCY1Iypa2qMzcleU6iDwb.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/Pgen9AENk1u5IJPL12EHF9Hs4XVrDsX4.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/rhpgJSqRQRUyU1OlyYEz3p4pCL3yuWjZ.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Premium Pass",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-10-18T00:00:00Z",
+      "restricted": false,
+      "revision": 25,
+      "short_name": "Battlefield™ 1 Premium Pass",
+      "timestamp": 1583286567000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-PREMIUM000000000/1583286567"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$1.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BPACK1",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Battlepack",
+            "packageType": null,
+            "packages": [],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 1,
+            "use_count": 1,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BATTLEPACK000000-UK01",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 199,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 179,
+            "reward_type": 2,
+            "display_price": "$1.79",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-11-22T16:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BATTLEPACK000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/AfG0w6aAHQQx7Eg6GoNm3wPr83Dh5fPg.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/qICXhwJh7OzbFBOEDdIjZTqoyqF8CVL3.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/2cknyZ7w9GWtIpVxcYbVl8qZUsfekyFS.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/ltFP6TxkxQuhBrZ1lpzHb7AZWMiaUfzr.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Battlepack",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-11-22T00:00:00Z",
+      "restricted": false,
+      "revision": 4,
+      "short_name": "Battlefield™ 1 Battlepack",
+      "timestamp": 1583285036000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEPACK000000/1583285036"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$5.49",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BPACK3",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Battlepacks x 3",
+            "packageType": null,
+            "packages": [],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 1,
+            "use_count": 3,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BATTLEPACK030000-UK01",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 549,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 494,
+            "reward_type": 2,
+            "display_price": "$4.94",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-11-22T16:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BATTLEPACK030000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/VHWYUXbep7ta4D7x4LHy3waHmAimYo9S.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/ZH9AzkF57MaZwoAE4c4Nyajckm9qacr7.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/cmDPBQAT19zUUWYeEpXfseAOQMeByC7M.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/xfIB0YeU5IjFcOkGZRsrphHgREscoFl2.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Battlepacks x 3",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-10-17T00:00:00Z",
+      "restricted": false,
+      "revision": 4,
+      "short_name": "Battlefield™ 1 Battlepacks x 3",
+      "timestamp": 1583284964000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEPACK030000/1583284964"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$8.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BPACK5",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Battlepacks x 5",
+            "packageType": null,
+            "packages": [],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 1,
+            "use_count": 5,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BATTLEPACK050000-UK01",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 899,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 809,
+            "reward_type": 2,
+            "display_price": "$8.09",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-11-22T16:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BATTLEPACK050000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/xRAX8UE4Uw936ebH1LwFrPbo6rCGcvn8.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/2fkPu7S6nSekZb0VWEKX04oZreeW33Am.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/KzSDBh8foRh8NmDojiVbLFY0riwlv8RD.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/54po4jTSLplLHtYojPccrLtDnWvaPBQ2.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Battlepacks x 5",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-11-22T00:00:00Z",
+      "restricted": false,
+      "revision": 4,
+      "short_name": "Battlefield™ 1 Battlepacks x 5",
+      "timestamp": 1583284973000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEPACK050000/1583284973"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$16.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BPAC10",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Battlepacks x 10",
+            "packageType": null,
+            "packages": [],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 1,
+            "use_count": 10,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BATTLEPACK100000-UK01",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 1699,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 1529,
+            "reward_type": 2,
+            "display_price": "$15.29",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-11-22T16:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BATTLEPACK100000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/z8StsV7lJDEhF5zoHgoXvIHAjiACgQfU.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/nSl4T9pSzbuFwUNWKzNi16IlKfyhOkiM.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/cq0RgB6Mmx5CuwW2Efx5wGQU25TEOHnr.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/kjYBxAojdcP6VYD6SGmfPyeiocvrWDTL.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Battlepacks x 10",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-11-22T00:00:00Z",
+      "restricted": false,
+      "revision": 4,
+      "short_name": "Battlefield™ 1 Battlepacks x 10",
+      "timestamp": 1583286520000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEPACK100000/1583286520"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$29.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BPAC20",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Battlepacks x 20",
+            "packageType": null,
+            "packages": [],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 1,
+            "use_count": 20,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BATTLEPACK200000-UK01",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 2999,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 2699,
+            "reward_type": 2,
+            "display_price": "$26.99",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-11-22T16:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADD-ON"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BATTLEPACK200000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/84WHncvDelLS8sZC7feLMCEupHF4yidi.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/7FVgFfiA0ynzvBJ1VBn2UGiavDUnOqNb.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/AWXffVysxvBMCsc7YTSg0dT1Zouwy95T.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/rt8vGwHLWKw0FDFokkc3Qp9HhSesLxUY.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Battlepacks x 20",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-11-22T00:00:00Z",
+      "restricted": false,
+      "revision": 4,
+      "short_name": "Battlefield™ 1 Battlepacks x 20",
+      "timestamp": 1583284964000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEPACK200000/1583284964"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "$24.99",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-DELUXEEDITION000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Deluxe Edition Pack",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          },
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-HELLFIGHTER00000",
+            "license_type": 0,
+            "metadata": null,
+            "name": "Battlefield™ 1 Hellfighter Pack",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 1114112
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-DELUXEUPGRADE000-U001",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 2499,
+        "rewards": [
+          {
+            "id": "CAMP-RWD-SCEA-08577795",
+            "entitlement_id": "UP5498-CUSA15086_00-000000",
+            "discount": 10,
+            "price": 2249,
+            "reward_type": 2,
+            "display_price": "$22.49",
+            "isPlus": false,
+            "isEAAccess": true,
+            "campaigns": [
+              {
+                "id": "CAMP-SCEA-00441539",
+                "start_date": "2019-07-24T15:00:00Z",
+                "end_date": "2199-01-01T08:00:00Z"
+              }
+            ],
+            "start_date": "2016-10-21T04:00:00Z",
+            "reward_source_type_id": 2
+          }
+        ],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "id": "UP0006-CUSA02429_00-DELUXEUPGRADE000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/zDwZARHDGQIi9qQ0mXlHbzeKFxSFHxbM.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/DEyFaBVIwMGDHo0kAYHOsVEyLBRMaPp3.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/JHQ608bFJa4uJpx6RkixOaw7sBJdeyhs.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/PH7kEmxcEkqjTdX07oeHWbBpVB8PeMrE.png"
+        }
+      ],
+      "name": "Battlefield™ 1 Heroes of the Great War Bundle",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-10-21T00:00:00Z",
+      "restricted": false,
+      "revision": 11,
+      "short_name": "Battlefield™ 1 Heroes of the Great War Bundle",
+      "timestamp": 1583285052000,
+      "top_category": "add_on",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-DELUXEUPGRADE000/1583285052"
+    },
+    {
+      "bucket": "games",
+      "cloud_only_platform": [
+        "NONE"
+      ],
+      "container_type": "product",
+      "content_type": "1",
+      "default_sku": {
+        "amortizeFlag": false,
+        "bundleExclusiveFlag": false,
+        "chargeImmediatelyFlag": false,
+        "charge_type_id": 0,
+        "credit_card_required_flag": 0,
+        "defaultSku": true,
+        "display_price": "Free",
+        "eligibilities": [],
+        "entitlements": [
+          {
+            "description": null,
+            "drms": [],
+            "duration": 0,
+            "durationOverrideTypeId": null,
+            "exp_after_first_use": 0,
+            "feature_type_id": 0,
+            "id": "UP0006-CUSA02429_00-BF1SFTHEME000000",
+            "license_type": 0,
+            "metadata": {
+              "packageSubType": [
+                "ADDON_SHAREFACTORY"
+              ]
+            },
+            "name": "BATTLEFIELD 1™ SHAREfactory™ Theme",
+            "packageType": "PS4AC",
+            "packages": [
+              {
+                "platformId": 13,
+                "platformName": "ps4",
+                "size": 52101120
+              }
+            ],
+            "preorder_placeholder_flag": false,
+            "size": 0,
+            "subType": 0,
+            "subtitle_language_codes": null,
+            "type": 5,
+            "use_count": 0,
+            "voice_language_codes": null
+          }
+        ],
+        "id": "UP0006-CUSA02429_00-BF1SFTHEME000000-U099",
+        "is_original": false,
+        "name": "Add-On Content",
+        "platforms": [
+          0,
+          10,
+          13
+        ],
+        "price": 0,
+        "rewards": [],
+        "seasonPassExclusiveFlag": false,
+        "skuAvailabilityOverrideFlag": false,
+        "sku_type": 0,
+        "type": "standard"
+      },
+      "gameContentTypesList": [
+        {
+          "name": "Add-On",
+          "key": "ADDON_SHAREFACTORY"
+        }
+      ],
+      "game_contentType": "Add-On",
+      "id": "UP0006-CUSA02429_00-BF1SFTHEME000000",
+      "images": [
+        {
+          "type": 1,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/fxhCdxC2VIpYqvcQZvYBCrsGZvCXYf6x.png"
+        },
+        {
+          "type": 2,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/SdUYdXqcCoi1EfLyWzudAn82h9xgTDuz.png"
+        },
+        {
+          "type": 9,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/5LjlVHjKlVb1satrA8zb6XbhVNYK4cYc.png"
+        },
+        {
+          "type": 10,
+          "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/m5n4tnbXzUWe0rNTAYkznoWnKhPp0Edd.png"
+        }
+      ],
+      "name": "Battlefield™ 1 SHAREfactory™ Theme",
+      "playable_platform": [
+        "PS4™"
+      ],
+      "provider_name": "Electronic Arts Inc",
+      "release_date": "2016-11-22T00:00:00Z",
+      "restricted": false,
+      "revision": 3,
+      "short_name": "Battlefield™ 1 SHAREfactory™ Theme",
+      "timestamp": 1583271570000,
+      "top_category": "game_content",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BF1SFTHEME000000/1583271570"
+    }
+  ],
+  "long_desc": "Experience the dawn of all-out war only in Battlefield™ 1. Fight your way through epic battles ranging from tight urban combat in a besieged French city to the heavily defended mountain forts in the Italian Alps or frantic combats in the deserts of Arabia. Use innovative weaponry and vehicles as you battle across the land, air and sea, and adapt your tactics to earth-shattering destruction. <br><br>Discover a world at war through an adventure-filled campaign, or join in epic multiplayer clashes with up to 64 players, in the most dynamic battles in Battlefield history.<br><br>Remote Play requires PS Vita system and sufficiently robust Wi-Fi connection.<br><br>Online features require an account and are subject to terms of service and applicable privacy policy (playstationnetwork.com/terms-of-service & playstationnetwork.com/privacy-policy).<br><br><br>1 player<br>Network Players 2-64<br>32GB minimum save size<br>DUALSHOCK®4<br>Remote Play<br>Online Play (Optional)<br><br>  Software subject to license (us.playstation.com/softwarelicense). Online features require an account and are subject to terms of service and applicable privacy policy (playstationnetwork.com/terms-of-service & playstationnetwork.com/privacy-policy). One-time license fee for play on account’s designated primary PS4™ system and other PS4™ systems when signed in with that account.<br><br>©2016 Electronic Arts Inc. Battlefield and Battlefield 1 are trademarks of Electronic Arts Inc. or its subsidiaries.<br><br>NO WEAPON, VEHICLE OR GEAR MANUFACTURER IS AFFILIATED WITH OR HAS SPONSORED OR ENDORSED THIS GAME.<br><br>Conditions and restrictions apply.  See www.battlefield.com/disclaimers for details.",
+  "mediaList": {
+    "previews": [
+      {
+        "type": "PREVIEW",
+        "typeId": 2,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTqdwGCcErQIKWpmg7KM2m/PREVIEW_GAMEPLAY_VIDEO_115104.mp4",
+        "order": 0,
+        "streamUrl": "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/PREVIEW_GAMEPLAY_VIDEO_115104_playlist.m3u8",
+        "shots": [
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0000.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0001.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0002.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0003.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0004.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0005.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0006.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0007.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0008.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0009.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0010.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/95e55849a0b7688e91e7037e108bc98519a1dede/frame_0011.jpg"
+        ]
+      },
+      {
+        "type": "PREVIEW",
+        "typeId": 2,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTJfuLeEur8AIvyCcH0xwh/PREVIEW_TRAILER_VIDEO_115104.mp4",
+        "order": 1,
+        "streamUrl": "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/PREVIEW_TRAILER_VIDEO_115104_playlist.m3u8",
+        "shots": [
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0000.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0001.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0002.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0003.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0004.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0005.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0006.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0007.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0008.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0009.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0010.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/2aa6ad9ae6cd79efd38e8820fa3634885febdc96/frame_0011.jpg"
+        ]
+      },
+      {
+        "type": "PREVIEW",
+        "typeId": 2,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTvHVouKy6P5Wq3cDURxdV/PREVIEW_GAMEPLAY_VIDEO_3_115104.mp4",
+        "order": 2,
+        "streamUrl": "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/PREVIEW_GAMEPLAY_VIDEO_3_115104_playlist.m3u8",
+        "shots": [
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0000.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0001.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0002.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0003.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0004.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0005.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0006.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0007.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0008.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0009.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0010.jpg",
+          "http://d1v33d7b5ul6gp.cloudfront.net/fefa94364f1a279adf332418f238854a3c7ef29e/frame_0011.jpg"
+        ]
+      }
+    ],
+    "screenshots": [
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTvRXAhs3awhzoVUyklNqx/PREVIEW_SCREENSHOT1_115104.jpg",
+        "order": 3
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENT3sABDk1wewIAm7yINnfo/PREVIEW_SCREENSHOT2_115104.jpg",
+        "order": 4
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTJMVsmW7cgJsuOrNOvGqX/PREVIEW_SCREENSHOT3_115104.jpg",
+        "order": 5
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTudIRgbqxb4Fm6b0fS8n0/PREVIEW_SCREENSHOT4_115104.jpg",
+        "order": 6
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTG02FDhQxRDkYxeRpu4u5/PREVIEW_SCREENSHOT5_115104.jpg",
+        "order": 7
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTol6z0MQAAUHWkTdg6r58/PREVIEW_SCREENSHOT6_115104.jpg",
+        "order": 8
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTeghZPGj8GjNWV8MTDojf/PREVIEW_SCREENSHOT7_115104.jpg",
+        "order": 9
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTCFbYGKBV1QpvPjql8SGW/PREVIEW_SCREENSHOT8_115104.jpg",
+        "order": 10
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTuYhGwuczyd7RdvOPyWlF/PREVIEW_SCREENSHOT9_115104.jpg",
+        "order": 11
+      },
+      {
+        "type": "SCREENSHOT",
+        "typeId": 4,
+        "source": "PRODUCT_MEDIA",
+        "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTsr8X7x9qEnSPgkY4Yn39/PREVIEW_SCREENSHOT10_115104.jpg",
+        "order": 12
+      }
+    ]
+  },
+  "media_layouts": [
+    {
+      "type": "description",
+      "height": 1,
+      "width": 4
+    }
+  ],
+  "metadata": {
+    "cn_remotePlay": {
+      "name": "cn_remotePlay",
+      "values": [
+        "TRUE"
+      ]
+    },
+    "cloud_only_platform": {
+      "name": "cloud_only_platform",
+      "values": [
+        "NONE"
+      ]
+    },
+    "cn_vrEnabled": {
+      "name": "cn_vrEnabled",
+      "values": [
+        "FALSE"
+      ]
+    },
+    "cn_playstationMove": {
+      "name": "cn_playstationMove",
+      "values": [
+        "NOTREQUIRED"
+      ]
+    },
+    "cn_wirelessController": {
+      "name": "cn_wirelessController",
+      "values": [
+        "NOTREQUIRED"
+      ]
+    },
+    "cn_numberOfNetworkPlayers": {
+      "name": "cn_numberOfNetworkPlayers",
+      "values": [
+        "64"
+      ]
+    },
+    "secondary_classification": {
+      "name": "secondary_classification",
+      "values": [
+        "GAME"
+      ]
+    },
+    "cn_vrRequired": {
+      "name": "cn_vrRequired",
+      "values": [
+        "FALSE"
+      ]
+    },
+    "game_genre": {
+      "name": "Genre",
+      "values": [
+        "SHOOTER"
+      ]
+    },
+    "playable_platform": {
+      "name": "playable_platform",
+      "values": [
+        "PS4™"
+      ]
+    },
+    "cn_dualshockVibration": {
+      "name": "cn_dualshockVibration",
+      "values": [
+        "TRUE"
+      ]
+    },
+    "tertiary_classification": {
+      "name": "tertiary_classification",
+      "values": [
+        "NA"
+      ]
+    },
+    "genre": {
+      "name": "Genre",
+      "values": [
+        "Shooter"
+      ]
+    },
+    "cn_psVrAimRequired": {
+      "name": "cn_psVrAimRequired",
+      "values": [
+        "FALSE"
+      ]
+    },
+    "cn_playstationCamera": {
+      "name": "cn_playstationCamera",
+      "values": [
+        "NOTREQUIRED"
+      ]
+    },
+    "cn_singstarMicrophone": {
+      "name": "cn_singstarMicrophone",
+      "values": [
+        "NOTREQUIRED"
+      ]
+    },
+    "cn_crossPlatformPSVita": {
+      "name": "cn_crossPlatformPSVita",
+      "values": [
+        "FALSE"
+      ]
+    },
+    "cn_psVrAimEnabled": {
+      "name": "cn_psVrAimEnabled",
+      "values": [
+        "FALSE"
+      ]
+    },
+    "primary_classification": {
+      "name": "primary_classification",
+      "values": [
+        "PREMIUM_GAME"
+      ]
+    }
+  },
+  "name": "Battlefield™ 1",
+  "pageTypeId": 2,
+  "playable_platform": [
+    "PS4™"
+  ],
+  "promomedia": [
+    {
+      "id": 0,
+      "key": "preview",
+      "type": 2,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTqdwGCcErQIKWpmg7KM2m/PREVIEW_GAMEPLAY_VIDEO_115104.mp4?country=US"
+    },
+    {
+      "id": 0,
+      "key": "preview",
+      "type": 2,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTJfuLeEur8AIvyCcH0xwh/PREVIEW_TRAILER_VIDEO_115104.mp4?country=US"
+    },
+    {
+      "id": 0,
+      "key": "preview",
+      "type": 2,
+      "url": "https://apollo2.dl.playstation.net/cdn/UP0006/CUSA02429_00/FREE_CONTENTvHVouKy6P5Wq3cDURxdV/PREVIEW_GAMEPLAY_VIDEO_3_115104.mp4?country=US"
+    }
+  ],
+  "provider_name": "Electronic Arts Inc",
+  "relationships": [
+    {
+      "count": 17,
+      "id": "ADD-ONS",
+      "key_name": "add-ons",
+      "name": "Add-Ons",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEFIELD01000/1583629769?relationship=ADD-ONS"
+    },
+    {
+      "count": 1,
+      "id": "EXTRAS",
+      "key_name": "extras",
+      "name": "Other Extras",
+      "url": "https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/UP0006-CUSA02429_00-BATTLEFIELD01000/1583629769?relationship=EXTRAS"
+    }
+  ],
+  "release_date": "2016-10-21T00:00:00Z",
+  "restricted": false,
+  "revision": 50,
+  "short_name": "Battlefield™ 1",
+  "size": 18,
+  "sku_links": [],
+  "skus": [
+    {
+      "amortizeFlag": false,
+      "bundleExclusiveFlag": false,
+      "chargeImmediatelyFlag": false,
+      "charge_type_id": 0,
+      "credit_card_required_flag": 0,
+      "defaultSku": true,
+      "display_price": "$19.99",
+      "eligibilities": [],
+      "entitlements": [
+        {
+          "description": null,
+          "drms": [],
+          "duration": 0,
+          "durationOverrideTypeId": null,
+          "exp_after_first_use": 0,
+          "feature_type_id": 3,
+          "id": "UP0006-CUSA02429_00-BATTLEFIELD01000",
+          "license_type": 0,
+          "metadata": null,
+          "name": "Battlefield™ 1",
+          "packageType": "PS4GD",
+          "packages": [
+            {
+              "platformId": 13,
+              "platformName": "ps4",
+              "size": 45496336384
+            }
+          ],
+          "preorder_placeholder_flag": false,
+          "size": 0,
+          "subType": 0,
+          "subtitle_language_codes": null,
+          "type": 5,
+          "use_count": 0,
+          "voice_language_codes": null
+        }
+      ],
+      "id": "UP0006-CUSA02429_00-BATTLEFIELD01000-U003",
+      "is_original": false,
+      "name": "Full Game",
+      "platforms": [
+        0,
+        10,
+        13
+      ],
+      "price": 1999,
+      "rewards": [
+        {
+          "id": "CAMP-RWD-SCEA-10288579",
+          "discount": 30,
+          "price": 1399,
+          "reward_type": 2,
+          "display_price": "$13.99",
+          "isPlus": false,
+          "campaigns": [
+            {
+              "id": "CAMP-SCEA-00769347",
+              "start_date": "2020-03-04T16:00:00Z",
+              "end_date": "2020-03-18T15:00:00Z"
+            }
+          ],
+          "start_date": "2020-03-04T16:00:00Z",
+          "bonus_discount": 60,
+          "bonus_entitlement_id": "IP9101-NPIA90005_00-PLUS00",
+          "bonus_price": 799,
+          "end_date": "2020-03-18T15:00:00Z",
+          "reward_source_type_id": 2,
+          "bonus_display_price": "$7.99"
+        },
+        {
+          "id": "CAMP-RWD-SCEA-08577795",
+          "entitlement_id": "UP5498-CUSA15086_00-000000",
+          "discount": 10,
+          "price": 1799,
+          "reward_type": 2,
+          "display_price": "$17.99",
+          "isPlus": false,
+          "isEAAccess": true,
+          "campaigns": [
+            {
+              "id": "CAMP-SCEA-00441539",
+              "start_date": "2019-07-24T15:00:00Z",
+              "end_date": "2199-01-01T08:00:00Z"
+            }
+          ],
+          "start_date": "2018-11-14T16:00:00Z",
+          "reward_source_type_id": 2
+        },
+        {
+          "id": "UP5498-CUSA15087_00-RWD-7592323",
+          "entitlement_id": "UP5498-CUSA15087_00-RWD-7592323",
+          "service_provider_id": "UP5498",
+          "discount": 100,
+          "price": 0,
+          "reward_type": 2,
+          "display_price": "Free",
+          "name": "EA Access Vault",
+          "description": "EA Access Vault",
+          "isPlus": false,
+          "isEAAccess": true,
+          "rewardSourceId": 6,
+          "start_date": "2019-07-24T15:00:00Z",
+          "end_date": "2199-01-01T00:00:00Z",
+          "reward_source_type_id": 1
+        }
+      ],
+      "seasonPassExclusiveFlag": false,
+      "skuAvailabilityOverrideFlag": false,
+      "sku_type": 0,
+      "type": "standard"
+    }
+  ],
+  "sort": "static",
+  "star_rating": {
+    "total": "14434",
+    "score": "4.55",
+    "count": [
+      {
+        "star": 1,
+        "count": 842
+      },
+      {
+        "star": 2,
+        "count": 220
+      },
+      {
+        "star": 3,
+        "count": 481
+      },
+      {
+        "star": 4,
+        "count": 1545
+      },
+      {
+        "star": 5,
+        "count": 11346
+      }
+    ]
+  },
+  "start": 0,
+  "timestamp": 1583629769000,
+  "title_name": "Battlefield™ 1",
+  "top_category": "downloadable_game",
+  "total_results": 18
+}

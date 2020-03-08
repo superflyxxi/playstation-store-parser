@@ -54,6 +54,13 @@ class RowHtmlGenerator extends HtmlGenerator
 
         foreach ($columnList as $column) {
             switch ($column) {
+                case "eaAccess":
+                    file_put_contents($outputHtml, "<th id='eaAccess'>On EA Access<br/>", FILE_APPEND);
+                    file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onEaAccess\");showAllClasses(\".offEaAccess\")'>hide</button>", FILE_APPEND);
+                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onEaAccess\");hideAllClasses(\".offEaAccess\")'>only</button>", FILE_APPEND);
+                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onEaAccess\");showAllClasses(\".offEaAccess\")'>all</button>)</th>", FILE_APPEND);
+                    break;
+
                 case "psNow":
                     file_put_contents($outputHtml, "<th id='psNow'>On PS Now<br/>", FILE_APPEND);
                     file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>hide</button>", FILE_APPEND);
@@ -97,6 +104,11 @@ class RowHtmlGenerator extends HtmlGenerator
                     case "psNow":
                         $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
                         $class .= $game->isPSNow() ? " onPsNow" : " offPsNow";
+                        break;
+
+                    case "eaAccess":
+                        $html .= "<td>" . ($game->isEAAccess() ? "Yes" : "No") . "</td>";
+                        $class .= $game->isEAccess() ? " onEaAccess" : " offEaAccess";
                         break;
 
                     case "price":

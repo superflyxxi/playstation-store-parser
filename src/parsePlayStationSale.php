@@ -34,26 +34,26 @@ $gameFilter->allowedPlayablePlatforms = array(
 );
 
 Debugger::info("Starting with sale: ", $saleId);
-$start = time();
-$rootContainer = new PlayStationContainer($apiUrl, $gameFilter);
-Debugger::info("Fetched containers - ", time() - $start);
 
-$start = time();
+Debugger::beginTimer("Load games");
+$rootContainer = new PlayStationContainer($apiUrl, $gameFilter);
 $gameList = PlayStationGameRepository::getInstance()->getAllGames();
-Debugger::info("Got all games (" . count($gameList) . ") - ", time() - $start);
-$start = time();
+Debugger::endTimer("Load games");
+
+Debugger::info("Got all games: " . count($gameList));
+
+Debugger::beginTimer("Prefetch Metacritic");
 $i = 0;
 $iPrintEvery = max(1, intval(count($gameList) * .1));
-Debugger::info("Prefetching Metacritic Scores " . $iPrintEvery);
 foreach ($gameList as $game) {
     if (($i ++) % $iPrintEvery == 0) {
         Debugger::info("Fetched " . $i . " of " . count($gameList) . " games.");
     }
     $game->getMetaCriticScore();
 }
-Debugger::info("Prefetched MetaCritic Scores (" . count($gameList) . ") - ", time() - $start);
+Debugger::endTimer("Prefetch Metacritic");
 
-$start = time();
+Debugger::beginTimer("Sorting games");
 usort($gameList, function ($a, $b) {
     $res = $b->getMetaCriticScore() - $a->getMetaCriticScore();
     if ($res != 0) {
@@ -61,12 +61,13 @@ usort($gameList, function ($a, $b) {
     }
     return strcmp($a->getShortName(), $b->getShortName());
 });
-Debugger::info("Sorted Games (" . count($gameList) . ") - ", time() - $start);
+Debugger::endTimer("Sorting games");
 
 $outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
 
-HtmlGenerator::getInstance()->write($outHtmlFilename, $saleIdMapping[$saleId], $gameList);
-RssGenerator::write("playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
+if (HtmlGenerator::getInstance()->write($outHtmlFilename, $saleIdMapping[$saleId], $gameList)) {
+    RssGenerator::write("playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
+}
 
 Debugger::info("Done!");
 

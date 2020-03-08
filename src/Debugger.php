@@ -52,11 +52,11 @@ class Debugger
                 case 6:
                     print_r("VERBOSE");
                     break;
-                
+
                 default:
                     break;
             }
-            
+
             print_r(": ");
             foreach ($arrData as $arg) {
                 print_r($arg);
@@ -68,6 +68,11 @@ class Debugger
     public static function error()
     {
         return self::logmsg(func_get_args(), self::errorLevel);
+    }
+
+    public static function warn()
+    {
+        return self::logmsg(func_get_args(), self::warnLevel);
     }
 
     public static function info()

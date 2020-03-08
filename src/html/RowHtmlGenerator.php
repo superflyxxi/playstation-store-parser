@@ -7,11 +7,15 @@ class RowHtmlGenerator extends HtmlGenerator
 
     public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "price"))
     {
+        if (count($gameList) == 0) {
+            Debugger::warn("No games to write.");
+            return FALSE;
+        }
         Debugger::beginTimer("generateHtml");
         $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
         Debugger::verbose("Writing HTML to ", $outputHtml);
         $hostBaseUrl = Properties::getProperty("host.base.url");
-        
+
         file_put_contents($outputHtml, "<html>\n", FILE_APPEND);
         file_put_contents($outputHtml, "<head>\n", FILE_APPEND);
         file_put_contents($outputHtml, "<title>", FILE_APPEND);
@@ -23,25 +27,31 @@ class RowHtmlGenerator extends HtmlGenerator
         file_put_contents($outputHtml, "<script src='../js/common.js'></script>\n", FILE_APPEND);
         file_put_contents($outputHtml, "</head>\n", FILE_APPEND);
         file_put_contents($outputHtml, "<body>\n", FILE_APPEND);
-        
+
         $webUrl = Properties::getProperty("playstation.web.url");
+
         // Top 5
-        $topFive = "The top 5 games are ";
         $iMax = min(5, count($gameList));
-        for ($i = 0; $i < $iMax; $i ++) {
+        $topFive = "The top " . $iMax . " game(s) are ";
+        $i = 0;
+        foreach ($gameList as $game) {
+            if ($i >= $iMax) {
+                break;
+            }
             if ($i > 0) {
                 $topFive .= ", ";
             }
-            if ($i == $iMax - 1) {
+            if ($i > 0 && $i == $iMax - 1) {
                 $topFive .= "and ";
             }
-            $topFive .= "<a href='" . $webUrl . $gameList[$i]->getID() . "'>" . $gameList[$i]->getShortName() . "</a>";
+            $topFive .= "<a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a>";
+            $i ++;
         }
         $topFive .= ".<!--more--><br />\n";
         file_put_contents($outputHtml, $topFive, FILE_APPEND);
         file_put_contents($outputHtml, "<table border=\"1\">\n", FILE_APPEND);
         file_put_contents($outputHtml, "<tr><th id='gameTitle'>Game</th>\n", FILE_APPEND);
-        
+
         foreach ($columnList as $column) {
             switch ($column) {
                 case "psNow":
@@ -50,15 +60,15 @@ class RowHtmlGenerator extends HtmlGenerator
                     file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");hideAllClasses(\".offPsNow\")'>only</button>", FILE_APPEND);
                     file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</button>)</th>", FILE_APPEND);
                     break;
-                
+
                 case "price":
                     file_put_contents($outputHtml, "<th id='price'>Price</th>", FILE_APPEND);
                     break;
-                
+
                 case "originalPrice":
                     file_put_contents($outputHtml, "<th id='originalPrice'>Original Price</th>", FILE_APPEND);
                     break;
-                
+
                 case "salePrice":
                     file_put_contents($outputHtml, "<th id='salePrice'>Sale Price</th>", FILE_APPEND);
                     break;
@@ -88,7 +98,7 @@ class RowHtmlGenerator extends HtmlGenerator
                         $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
                         $class .= $game->isPSNow() ? " onPsNow" : " offPsNow";
                         break;
-                    
+
                     case "price":
                         $html .= "<td>" . $game->getSalePrice();
                         if ($game->getOriginalPrice() != $game->getSalePrice()) {
@@ -96,11 +106,11 @@ class RowHtmlGenerator extends HtmlGenerator
                         }
                         $html .= "</td>";
                         break;
-                    
+
                     case "originalPrice":
                         $html .= "<td>$" . $game->getOriginalPrice() . "</td>";
                         break;
-                    
+
                     case "salePrice":
                         $html .= "<td>$" . $game->getSalePrice() . "</td>";
                         break;
@@ -121,6 +131,7 @@ class RowHtmlGenerator extends HtmlGenerator
         file_put_contents($outputHtml, "Generated " . date("F jS, Y g:ia T"), FILE_APPEND);
         file_put_contents($outputHtml, "</body>\n</html>\n", FILE_APPEND);
         Debugger::endTimer("generateHtml");
+        return TRUE;
     }
 }
 ?>

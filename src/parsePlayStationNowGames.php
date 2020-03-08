@@ -10,7 +10,6 @@ include_once "html/HtmlGenerator.php";
 include_once "PlayStationGameFilter.php";
 include_once "cache/PlayStationGameCache.php";
 
-// print_r($argv);
 $saleId = Properties::getProperty("default.containerid");
 if (isset($argv[1])) {
     $saleId = $argv[1];
@@ -26,19 +25,16 @@ $gameFilter->allowedGameContentType = array(
 );
 PlayStationGameCache::load();
 
-Debugger::info("Starting with all games");
-$start = time();
+Debugger::beginTimer("Fetching all games");
 $rootContainer = new PlayStationContainer($apiUrl, $gameFilter);
-Debugger::info("Fetched all games - ", time() - $start);
-
-$start = time();
 $fullGameList = PlayStationGameRepository::getInstance()->getAllGames();
-Debugger::info("Got all games (" . count($fullGameList) . ") - ", time() - $start);
+Debugger::endTimer("Fetching all games");
+Debugger::info("Total games: ", count($fullGameList));
 
 Debugger::info("Determining differences from cache and full list");
 $newGameList = PlayStationGameCache::getGamesNotInCache($fullGameList);
 
-$start = time();
+Debugger::beginTimer("Sorting new games");
 usort($newGameList, function ($a, $b) {
     $res = $b->getMetaCriticScore() - $a->getMetaCriticScore();
     if ($res != 0) {
@@ -46,12 +42,13 @@ usort($newGameList, function ($a, $b) {
     }
     return strcmp($a->getShortName(), $b->getShortName());
 });
-Debugger::info("Sorted new Games (" . count($fullGameList) . ") - ", time() - $start);
+Debugger::endTimer("Sorting new games");
 
 $outHtmlFilename = date("YmdHi") . "-PSNow.html";
 
-HtmlGenerator::getInstance()->write($outHtmlFilename, "New PlayStation Now Games", $fullGameList, array());
-RssGenerator::write("playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "New PlayStation Now Games for the Month of " . date("F Y"));
+if (HtmlGenerator::getInstance()->write($outHtmlFilename, "New PlayStation Now Games", $newGameList, array())) {
+    RssGenerator::write("playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "New PlayStation Now Games for the Month of " . date("F Y"));
+}
 
 PlayStationGameCache::replace($fullGameList);
 PlayStationGameCache::save();

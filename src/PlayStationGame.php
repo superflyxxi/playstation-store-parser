@@ -193,7 +193,7 @@ class PlayStationGame implements JsonSerializable
         $json["default_sku"]["rewards"][0]["price"] = $this->salePrice * 100;
         $json["images"][0]["url"] = $this->imageUrl;
         foreach ($this->gameContentTypes as $key) {
-            $json["gameContentTypesList"]["key"] = $key;
+            $json["gameContentTypesList"][]["key"] = $key;
         }
         return json_encode($json);
     }

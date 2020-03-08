@@ -4,7 +4,7 @@ include_once "../src/PlayStationGame.php";
 
 use PHPUnit\Framework\TestCase;
 
-final class MetaCriticMatchTest extends TestCase
+final class MetacriticMatchTest extends TestCase
 {
 
     private function getGameJson($gameId)

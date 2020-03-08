@@ -20,7 +20,7 @@ class PlayStationGameCache
                 self::$cache[$game->getID()] = $game;
             }
         }
-        Debugger::info("Fetched ", count(self::$cache), " previous games.");
+        Debugger::info("Loaded ", count(self::$cache), " previous games into cache.");
     }
 
     public static function replace($new)

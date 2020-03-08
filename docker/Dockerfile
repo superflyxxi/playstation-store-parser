@@ -8,7 +8,7 @@ RUN sed -i 's#^include_path = "\(.*\)"$#include_path = "\1:/home/ps-store/bin"#g
 
 ADD resources/ /home/ps-store/resources/
 ADD www ${WWW_DIR}
-RUN mkdir -p ${WWW_DIR}/logs ${WWW_DIR}/rss ${WWW_DIR}/entries
+RUN mkdir -p ${WWW_DIR}/logs ${WWW_DIR}/rss ${WWW_DIR}/entries ${WWW_DIR}/caches
 ADD resources/init.rss.xml ${WWW_DIR}/rss/playstationStore.rss.xml
 ADD resources/init.rss.xml ${WWW_DIR}/rss/playStationNow.rss.xml
 ADD docker/crontab /etc/crontabs/root

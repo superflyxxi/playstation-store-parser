@@ -10,22 +10,13 @@ env:
 
 script: skip
 
-deploy:
-  - provider: releases
-    api_key: ${GITHUB_OAUTH_TOKEN}
-    skip_cleanup: true
-    file: "playstation-store-parser-${TRAVIS_BRANCH}.tar.bz2"
-    on:
-      tags: true
-
+before_install:
+  - echo ${THIS_DOCKER_REGISTRY_PASSWORD} | docker login --username ${THIS_DOCKER_REGISTRY_USERNAME} --password-stdin ${THIS_DOCKER_REGISTRY}
+  
 jobs:
   include:
     - stage: "Build"
       name: "Build docker"
-      before_install:
-        - sudo mkdir -p "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}"
-        - openssl s_client -showcerts -connect ${THIS_DOCKER_REGISTRY} < /dev/null 2> /dev/null | openssl x509 -outform PEM | sudo tee "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}/ca.crt"
-        - echo ${THIS_DOCKER_REGISTRY_PASSWORD} | docker login --username ${THIS_DOCKER_REGISTRY_USERNAME} --password-stdin ${THIS_DOCKER_REGISTRY}
       before_script:
         - if [[ ! ${TRAVIS_BRANCH} =~ (master|v.*) ]]; then
             echo "Caching from ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:master";
@@ -38,22 +29,20 @@ jobs:
       after_success:
         - docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}
         - docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}
-        - if [[ ! -z "${TRAVIS_TAG}" ]]; then
-            docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
-            docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
-          fi
     - stage: "Validation"
       name: "Run tests"
-      before_install:
-        - sudo mkdir -p "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}"
-        - openssl s_client -showcerts -connect ${THIS_DOCKER_REGISTRY} < /dev/null 2> /dev/null | openssl x509 -outform PEM | sudo tee "/etc/docker/certs.d/${THIS_DOCKER_REGISTRY}/ca.crt"
-        - echo ${THIS_DOCKER_REGISTRY_PASSWORD} | docker login --username ${THIS_DOCKER_REGISTRY_USERNAME} --password-stdin ${THIS_DOCKER_REGISTRY}
       script:
         - cd tests/
         - find ./ -name "*.php" | xargs -L1 php -l
         - docker build -t ps-store:test --build-arg FROM_IMAGE=${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} .
         - docker run -t --rm --name tests ps-store:test
+      after_success:
+        - if [[ ! -z "${TRAVIS_TAG}" ]]; then
+            docker tag ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
+            docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:latest;
+          fi
     - name: "Checkstyle"
+      before_install: skip
       language: java
       script:
         - wget --progress=dot:mega "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.26/checkstyle-8.26-all.jar" -O checkstyle.jar

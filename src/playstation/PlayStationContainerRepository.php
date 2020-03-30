@@ -1,5 +1,5 @@
 <?php
-include_once "PlayStationContainer.php";
+include_once "playstation/PlayStationContainer.php";
 
 class PlayStationContainerRepository
 {

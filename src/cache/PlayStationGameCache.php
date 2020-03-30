@@ -1,49 +1,44 @@
 <?php
 include_once "Properties.php";
 include_once "Debugger.php";
+include_once "cache/Cache.php";
 
-class PlayStationGameCache
+class PlayStationGameCache extends Cache
 {
 
-    public static $cache = array();
+    private static $instance = NULL;
 
-    const version = 1;
-
-    public static function load()
+    public static function setInstance(PlayStationGameCache $cache)
     {
-        Debugger::debug("Loading cache");
-        self::$cache = array();
-        if (file_exists(self::getCacheFileName())) {
-            $local = json_decode(file_get_contents(self::getCacheFileName()));
-            foreach ($local as $json) {
-                $game = new PlayStationGame(json_decode($json));
-                self::$cache[$game->getID()] = $game;
-            }
-        }
-        Debugger::info("Loaded ", count(self::$cache), " previous games into cache.");
+        self::$instance = $cache;
     }
 
-    public static function replace($new)
+    public static function getInstance(): PlayStationGameCache
+    {
+        return self::$instance;
+    }
+
+    public function __construct()
+    {
+        parent::__construct(Properties::getProperty("psnow.cache.file", "psnow_cache.json"));
+    }
+
+    public function replace(array $new)
     {
         Debugger::debug("Replacing cache");
-        self::$cache = $new;
+        $this->reset();
+        $this->addAll($new);
     }
 
-    public static function save()
-    {
-        Debugger::debug("Saving cache");
-        file_put_contents(self::getCacheFileName(), json_encode(self::$cache));
-    }
-
-    public static function getGamesNotInCache($otherArray)
+    public function getGamesNotInCache($otherArray)
     {
         Debugger::debug("Getting difference");
-        return array_udiff($otherArray, self::$cache, 'comparePlayStationGame');
+        return array_udiff($otherArray, $this->getAll(), 'comparePlayStationGame');
     }
 
-    private static function getCacheFileName()
+    protected function newObject($decodedJson): CacheObject
     {
-        return Properties::getProperty("psnow.cache.file", "psnow_cache.json");
+        return new PlayStationGame($decodedJson);
     }
 }
 
@@ -52,4 +47,7 @@ function comparePlayStationGame(PlayStationGame $alpha, PlayStationGame $beta)
     return strcmp($alpha->getID(), $beta->getID());
 }
 
+PlayStationGameCache::setInstance(new PlayStationGameCache());
+
 ?>
+

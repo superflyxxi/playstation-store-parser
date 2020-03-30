@@ -21,7 +21,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("UP0891-CUSA14441_00-RATALAIKAGIANDME", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("I and Me", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("I and Me", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "OriginalPrice exits");
         $this->assertTrue($psGame->getSalePrice() > 0, "SalePrice exists");
@@ -35,7 +35,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("UP0001-CUSA01445_00-SCRABBLEGAMPS401", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Scrabble", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Scrabble", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "OriginalPrice exists");
         $this->assertTrue($psGame->getSalePrice() > 0, "SalePrice exists");
@@ -49,7 +49,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Thief", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Thief", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "OriginalPrice exists");
         $this->assertTrue($psGame->getSalePrice() > 0, "SalePrice exists");
@@ -63,7 +63,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("RESIDENT EVIL 2", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("RESIDENT EVIL 2", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "OriginalPrice exists");
         $this->assertTrue($psGame->getSalePrice() > 0, "SalePrice exists");
@@ -77,7 +77,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Hyper Sentinel", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Hyper Sentinel", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "OriginalPrice exists");
         $this->assertTrue($psGame->getSalePrice() > 0, "SalePrice exists");
@@ -91,7 +91,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Titanfall 2 Standard Edition", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Titanfall 2 Standard Edition", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertEquals("https://www.metacritic.com/game/playstation-4/titanfall-2", $psGame->getMetaCriticURL(), "MetaCriticURL");
         $this->assertEquals(89, $psGame->getMetaCriticScore(), "MetaCriticScore");
@@ -103,9 +103,8 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Dishonored Definitive Edition", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Dishonored Definitive Edition", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
-        $this->markTestIncomplete("A new game has released that causes the matching to be undeterministic");
         $this->assertEquals("https://www.metacritic.com/game/playstation-4/dishonored-definitive-edition", $psGame->getMetaCriticURL(), "MetaCriticURL");
     }
 
@@ -115,7 +114,7 @@ final class MetacriticMatchTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Patapon 2 Remastered", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Patapon 2 Remastered", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertEquals("https://www.metacritic.com/game/playstation-4/patapon-2-remastered", $psGame->getMetaCriticURL(), "MetaCriticURL");
     }

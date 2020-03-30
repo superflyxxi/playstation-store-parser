@@ -2,7 +2,7 @@
 include_once "../src/Debugger.php";
 include_once "../src/html/RowHtmlGenerator.php";
 include_once "helpers/PlayStationGameHelper.php";
-include_once "PlayStationGame.php";
+include_once "playstation/PlayStationGame.php";
 
 use PHPUnit\Framework\TestCase;
 

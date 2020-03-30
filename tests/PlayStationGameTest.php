@@ -30,7 +30,7 @@ final class PlayStationGameTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("123", $psGame->getID(), "ID");
         $this->assertEquals("https://store/product/123", $psGame->getURL(), "URL");
-        $this->assertEquals("Game", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Game", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platform[0]");
         $this->assertEquals(10, $psGame->getOriginalPrice(), "OriginalPrice");
         $this->assertEquals(10, $psGame->getSalePrice(), "SalePrice");
@@ -49,7 +49,7 @@ final class PlayStationGameTest extends TestCase
         $json = json_encode($game);
         Debugger::verbose("Input ", $json);
         $psGame = new PlayStationGame(json_decode($json));
-        $this->assertEquals("Battlefield V", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Battlefield V", $psGame->getDisplayName(), "Display Name");
     }
 
     public function testActualGame()
@@ -59,7 +59,7 @@ final class PlayStationGameTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("UP9000-CUSA00552_00-THELASTOFUS00000", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("The Last Of Us Remastered", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("The Last Of Us Remastered", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "OriginalPrice exists");
         $this->assertTrue($psGame->getSalePrice() <= $psGame->getOriginalPrice(), "SalePrice <= OriginalPrice");
@@ -73,7 +73,7 @@ final class PlayStationGameTest extends TestCase
 
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("UP0001-CUSA00010_00-AC4GAMEPS4000001", $psGame->getID(), "ID");
-        $this->assertEquals("Assassin's Creed IV Black Flag", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Assassin's Creed IV Black Flag", $psGame->getDisplayName(), "Display Name");
     }
 
     public function testActualGameWithScore()
@@ -84,7 +84,7 @@ final class PlayStationGameTest extends TestCase
 
         $this->assertEquals("UP9000-CUSA00552_00-THELASTOFUS00000", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("The Last Of Us Remastered", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("The Last Of Us Remastered", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "Has Original Price");
         $this->assertTrue($psGame->getSalePrice() <= $psGame->getOriginalPrice(), "Sale Price <= Original Price");
@@ -99,7 +99,7 @@ final class PlayStationGameTest extends TestCase
 
         $this->assertEquals("UP0006-CUSA02429_00-BATTLEFIELD01000", $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
-        $this->assertEquals("Battlefield 1", $psGame->getShortName(), "ShortName");
+        $this->assertEquals("Battlefield 1", $psGame->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertTrue($psGame->getOriginalPrice() > 0, "Has Original Price");
         $this->assertTrue($psGame->getSalePrice() <= $psGame->getOriginalPrice(), "Sale Price <= Original Price");

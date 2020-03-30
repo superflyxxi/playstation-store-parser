@@ -7,6 +7,7 @@ env:
     - THIS_DOCKER_REGISTRY=superflyxxi.dlinkddns.com:5000
     - THIS_DOCKER_REPO=superflyxxi
     - THIS_DOCKER_LABEL=${TRAVIS_BRANCH}
+    - HTTPD_CRON_IMAGE=superflyxxi.dlinkddns.com:5000/superflyxxi/httpd-cron:latest
 
 script: skip
 
@@ -34,6 +35,8 @@ jobs:
       script:
         - cd tests/
         - find ./ -name "*.php" | xargs -L1 php -l
+        - docker pull ${HTTPD_CRON_IMAGE}
+        - docker tag ${HTTPD_CRON_IMAGE} httpd-cron:latest
         - docker build -t ps-store:test --build-arg FROM_IMAGE=${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} .
         - docker run -t --rm --name tests ps-store:test
       after_success:

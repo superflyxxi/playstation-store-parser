@@ -1,13 +1,13 @@
 #!/usr/bin/php
 <?php
 include_once "Debugger.php";
-include_once "PlayStationContainer.php";
-include_once "PlayStationGame.php";
-include_once "PlayStationGameRepository.php";
+include_once "playstation/PlayStationContainer.php";
+include_once "playstation/PlayStationGame.php";
+include_once "playstation/PlayStationGameRepository.php";
 include_once "Properties.php";
 include_once "RssGenerator.php";
 include_once "html/HtmlGenerator.php";
-include_once "PlayStationGameFilter.php";
+include_once "playstation/PlayStationGameFilter.php";
 include_once "cache/PlayStationGameCache.php";
 
 $saleId = Properties::getProperty("default.containerid");
@@ -23,7 +23,7 @@ $gameFilter->allowedGameContentType = array(
     "cloud",
     "ps4_cloud"
 );
-PlayStationGameCache::load();
+PlayStationGameCache::getInstance()->load();
 
 Debugger::beginTimer("Fetching all games");
 $rootContainer = new PlayStationContainer($apiUrl, $gameFilter);
@@ -32,7 +32,7 @@ Debugger::endTimer("Fetching all games");
 Debugger::info("Total games: ", count($fullGameList));
 
 Debugger::info("Determining differences from cache and full list");
-$newGameList = PlayStationGameCache::getGamesNotInCache($fullGameList);
+$newGameList = PlayStationGameCache::getInstance()->getGamesNotInCache($fullGameList);
 
 Debugger::beginTimer("Sorting new games");
 usort($newGameList, function ($a, $b) {
@@ -40,7 +40,7 @@ usort($newGameList, function ($a, $b) {
     if ($res != 0) {
         return $res;
     }
-    return strcmp($a->getShortName(), $b->getShortName());
+    return strcmp($a->getDisplayName(), $b->getDisplayName());
 });
 Debugger::endTimer("Sorting new games");
 
@@ -50,8 +50,8 @@ if (HtmlGenerator::getInstance()->write($outHtmlFilename, "New PlayStation Now G
     RssGenerator::write("playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "New PlayStation Now Games for the Month of " . date("F Y"));
 }
 
-PlayStationGameCache::replace($fullGameList);
-PlayStationGameCache::save();
+PlayStationGameCache::getInstance()->replace($fullGameList);
+PlayStationGameCache::getInstance()->save();
 
 Debugger::info("Done!");
 

@@ -1,13 +1,13 @@
 #!/usr/bin/php
 <?php
 include_once "Debugger.php";
-include_once "PlayStationContainer.php";
-include_once "PlayStationGame.php";
-include_once "PlayStationGameRepository.php";
+include_once "playstation/PlayStationContainer.php";
+include_once "playstation/PlayStationGame.php";
+include_once "playstation/PlayStationGameRepository.php";
 include_once "Properties.php";
 include_once "RssGenerator.php";
 include_once "html/HtmlGenerator.php";
-include_once "PlayStationGameFilter.php";
+include_once "playstation/PlayStationGameFilter.php";
 
 // print_r($argv);
 $saleId = Properties::getProperty("default.containerid");
@@ -27,7 +27,8 @@ $hostBaseUrl = Properties::getProperty("host.base.url");
 $gameFilter = new PlayStationGameFilter();
 $gameFilter->allowedGameContentType = array(
     "FULL_GAME",
-    "PSN_GAME"
+    "PSN_GAME",
+    "BUNDLE"
 );
 $gameFilter->allowedPlayablePlatforms = array(
     "PS4"
@@ -59,7 +60,7 @@ usort($gameList, function ($a, $b) {
     if ($res != 0) {
         return $res;
     }
-    return strcmp($a->getShortName(), $b->getShortName());
+    return strcmp($a->getDisplayName(), $b->getDisplayName());
 });
 Debugger::endTimer("Sorting games");
 

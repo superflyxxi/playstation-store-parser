@@ -1,5 +1,5 @@
 <?php
-include_once "PlayStationGame.php";
+include_once "playstation/PlayStationGame.php";
 include_once "Debugger.php";
 
 class PlayStationGameFilter
@@ -15,14 +15,14 @@ class PlayStationGameFilter
     {
         if (NULL != $this->allowedGameContentType) {
             if (count(array_intersect($this->allowedGameContentType, $game->getGameContentTypes())) == 0) {
-                Debugger::debug($game->getID(), ": ", $game->getShortName(), " not a valid type (", $game->getGameContentTypes(), ") ", $this->allowedGameContentType);
+                Debugger::debug($game->getID(), ": ", $game->getDisplayName(), " not a valid type (", $game->getGameContentTypes(), ") ", $this->allowedGameContentType);
                 return false;
             }
         }
-        
+
         if (NULL != $this->allowedPlayablePlatforms) {
             if (count(array_intersect($this->allowedPlayablePlatforms, $game->getPlatforms())) == 0) {
-                Debugger::debug($game->getID(), ": ", $game->getShortName(), " not a valid platform (", $game->getPlatforms(), ") ", $this->allowedPlayablePlatforms);
+                Debugger::debug($game->getID(), ": ", $game->getDisplayName(), " not a valid platform (", $game->getPlatforms(), ") ", $this->allowedPlayablePlatforms);
                 return false;
             }
         }

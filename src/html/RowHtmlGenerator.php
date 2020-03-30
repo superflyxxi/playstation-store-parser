@@ -44,7 +44,7 @@ class RowHtmlGenerator extends HtmlGenerator
             if ($i > 0 && $i == $iMax - 1) {
                 $topFive .= "and ";
             }
-            $topFive .= "<a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a>";
+            $topFive .= "<a href='" . $webUrl . $game->getID() . "'>" . $game->getDisplayName() . "</a>";
             $i ++;
         }
         $topFive .= ".<!--more--><br />\n";
@@ -98,7 +98,7 @@ class RowHtmlGenerator extends HtmlGenerator
             } else {
                 $score = "TBD";
             }
-            $html = "<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getShortName() . "</a></td>";
+            $html = "<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getDisplayName() . "</a></td>";
             foreach ($columnList as $column) {
                 switch ($column) {
                     case "psNow":

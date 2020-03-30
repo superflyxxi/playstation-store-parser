@@ -1,13 +1,16 @@
 <?php
-include_once "Metacritic.php";
+include_once "metacritic/MetacriticApi.php";
 include_once "Debugger.php";
+include_once "cache/CacheObject.php";
 
-class PlayStationGame implements JsonSerializable
+class PlayStationGame implements JsonSerializable, CacheObject
 {
 
     private $actualName = "";
 
-    private $shortName = "";
+    private $gameName = "";
+
+    private $displayName = "";
 
     private $originalPrice = 0.00;
 
@@ -41,14 +44,13 @@ class PlayStationGame implements JsonSerializable
         $this->originalPrice = 0.0;
         $this->id = $decodedJson->id;
         $this->actualName = $decodedJson->name;
-        $arr = array();
-        $gameName = $decodedJson->name;
-        Debugger::verbose("PlayStation Game Name: ", $gameName);
-        $gameName = str_replace("’", "'", $gameName); // replace weird apostrophe with normal '
-        preg_match_all("/[A-Za-z0-9\-'&+!:.]+/", $gameName, $arr);
-        $this->shortName = implode($arr[0], " ");
-        $this->shortName = str_replace(" :", ":", $this->shortName); // remove space before :
-        Debugger::verbose("Converted Game Name: ", $this->shortName);
+        $this->displayName = $this->convertGameName($decodedJson->name);
+        if (isset($decodedJson->parent_name)) {
+            $this->gameName = $this->convertGameName($decodedJson->parent_name);
+        } else {
+            $this->gameName = $this->displayName;
+        }
+
         if (isset($decodedJson->playable_platform)) {
             foreach ($decodedJson->playable_platform as $platform) {
                 $arr = array();
@@ -101,14 +103,26 @@ class PlayStationGame implements JsonSerializable
         }
     }
 
+    private function convertGameName($in)
+    {
+        Debugger::verbose("PlayStation Game Name to convert: ", $in);
+        $out = str_replace("’", "'", $in); // replace weird apostrophe with normal '
+        $arr = array();
+        preg_match_all("/[A-Za-z0-9\-'&+!:.]+/", $out, $arr);
+        $out = implode($arr[0], " ");
+        $out = str_replace(" :", ":", $out); // remove space before :
+        Debugger::verbose("Converted Game Name: ", $out);
+        return $out;
+    }
+
     public function getID()
     {
         return $this->id;
     }
 
-    public function getShortName()
+    public function getDisplayName()
     {
-        return $this->shortName;
+        return $this->displayName;
     }
 
     public function getPlatforms()
@@ -149,18 +163,18 @@ class PlayStationGame implements JsonSerializable
     private function loadMetaCriticDataIfNecessary()
     {
         if (! $this->metaCriticLoaded) {
-            $testName = $this->shortName;
-            $testName = preg_replace("/\.\.\./", " ", $testName);
+            $testName = preg_replace("/\.\.\./", " ", $this->gameName);
             try {
                 $mcResult = self::testMetacritic($testName);
                 if ($mcResult !== FALSE) {
-                    $this->metaCriticScore = $mcResult["metaScore"];
-                    $this->metaCriticUrl = $mcResult["url"];
+                    $this->metaCriticScore = $mcResult->getScore();
+                    $this->metaCriticUrl = $mcResult->getUrl();
                 }
                 $this->metaCriticLoaded = true;
-                Debugger::debug("Loaded metacritic score for \"", $this->shortName, "\" = ", $this->metaCriticScore, " (", $this->metaCriticUrl, ")");
+                Debugger::debug("Loaded metacritic score for \"", $this->gameName, "\" = ", $this->metaCriticScore, " (", $this->metaCriticUrl, ")");
             } catch (Exception $e) {
                 Debugger::error("Got an error (", $e->getMessage(), ") while getting score for ", $testName);
+                Debugger::debug($e);
                 Debugger::debug("Skipping this for now.");
             }
         }
@@ -170,9 +184,10 @@ class PlayStationGame implements JsonSerializable
     {
         $testName = rtrim(trim($name), ":-");
         Debugger::debug("Testing Metacritic for ", $testName);
-        $mcApi = new Metacritic($testName);
+        $mcApi = new MetacriticApi($testName);
         $mcResult = $mcApi->find();
-        if (isset($mcResult["url"])) {
+        if ($mcResult != NULL) {
+            Debugger::verbose("MetaCritic Result: ", $mcResult);
             return $mcResult;
         } else if (preg_match("/Remaster[ed]*/i", $testName)) {
             return self::testMetacritic(preg_replace("/Remaster[ed]*/i", "", $testName));
@@ -211,6 +226,11 @@ class PlayStationGame implements JsonSerializable
             $json["gameContentTypesList"][]["key"] = $key;
         }
         return json_encode($json);
+    }
+
+    public function getCacheKey(): string
+    {
+        return $this->id;
     }
 }
 

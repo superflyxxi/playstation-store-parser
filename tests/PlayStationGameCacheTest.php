@@ -9,10 +9,18 @@ use PHPUnit\Framework\TestCase;
 final class PlayStationGameCacheTest extends TestCase
 {
 
+    private function assertCache(array $expected)
+    {
+        $this->assertEquals(count($expected), PlayStationGameCache::getInstance()->size(), "Size of cache");
+        foreach ($expected as $exKey => $exObj) {
+            $this->assertEquals($exObj, PlayStationGameCache::getInstance()->get($exKey), "Games equal for $exKey");
+        }
+    }
+
     public function test_01_No_Cache()
     {
-        PlayStationGameCache::load();
-        $this->assertEquals(0, count(PlayStationGameCache::$cache), "Size of cache");
+        PlayStationGameCache::getInstance()->load();
+        $this->assertEquals(0, PlayStationGameCache::getInstance()->size(), "Size of cache");
     }
 
     public function test_02_Basic_End_To_End()
@@ -42,33 +50,34 @@ final class PlayStationGameCacheTest extends TestCase
 
         Debugger::verbose("Array before replacement", $arr);
 
-        PlayStationGameCache::replace($arr);
-        $this->assertEquals($arr, PlayStationGameCache::$cache, "Cach updated in memory");
+        PlayStationGameCache::getInstance()->replace($arr);
 
-        PlayStationGameCache::save();
+        $this->assertCache($arr);
+
+        PlayStationGameCache::getInstance()->save();
         $this->assertTrue(file_exists("/usr/local/apache2/htdocs/caches/psnow_cache.json"), "File saved");
         Debugger::verbose("File contents: ", file_get_contents("/usr/local/apache2/htdocs/caches/psnow_cache.json"));
 
-        PlayStationGameCache::replace(array());
-        $this->assertEquals(0, count(PlayStationGameCache::$cache), "Reset");
+        PlayStationGameCache::getInstance()->replace(array());
+        $this->assertCache(array());
 
-        PlayStationGameCache::load();
-        $this->assertEquals(2, count(PlayStationGameCache::$cache), "Size of new cache");
+        PlayStationGameCache::getInstance()->load();
+        $this->assertEquals(2, PlayStationGameCache::getInstance()->size(), "Size of new cache");
 
-        $test = PlayStationGameCache::$cache["US123"];
+        $test = PlayStationGameCache::getInstance()->get("US123");
         Debugger::verbose("First entry in cache: ", $test);
         $this->assertEquals("US123", $test->getID(), "ID");
         $this->assertEquals("https://store/product/US123", $test->getURL(), "URL");
-        $this->assertEquals("Game", $test->getShortName(), "ShortName");
+        $this->assertEquals("Game", $test->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $test->getPlatforms()[0], "Platform[0]");
         $this->assertEquals(10, $test->getOriginalPrice(), "OriginalPrice");
         $this->assertEquals(10, $test->getSalePrice(), "SalePrice");
 
-        $test = PlayStationGameCache::$cache["US234"];
+        $test = PlayStationGameCache::getInstance()->get("US234");
         Debugger::verbose("Second entry in cache: ", $test);
         $this->assertEquals("US234", $test->getID(), "ID");
         $this->assertEquals("https://store/product/US234", $test->getURL(), "URL");
-        $this->assertEquals("Game2", $test->getShortName(), "ShortName");
+        $this->assertEquals("Game2", $test->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $test->getPlatforms()[0], "Platform[0]");
         $this->assertEquals("PS3", $test->getPlatforms()[1], "Platform[1]");
         $this->assertEquals(20, $test->getOriginalPrice(), "OriginalPrice");
@@ -97,8 +106,8 @@ final class PlayStationGameCacheTest extends TestCase
         $game2->default_sku->price = 2000;
         $arr[$game2->id] = new PlayStationGame(json_decode(json_encode($game2)));
 
-        PlayStationGameCache::replace($arr);
-        $this->assertEquals($arr, PlayStationGameCache::$cache, "Cach updated in memory");
+        PlayStationGameCache::getInstance()->replace($arr);
+        $this->assertCache($arr);
 
         $arr = array();
         $arr[$game2->id] = new PlayStationGame(json_decode(json_encode($game2)));
@@ -113,7 +122,7 @@ final class PlayStationGameCacheTest extends TestCase
         $game3->default_sku->price = 3000;
         $arr[$game3->id] = new PlayStationGame(json_decode(json_encode($game3)));
 
-        $newGameList = PlayStationGameCache::getGamesNotInCache($arr);
+        $newGameList = PlayStationGameCache::getInstance()->getGamesNotInCache($arr);
         Debugger::verbose("New Game List: ", $newGameList);
 
         $this->assertEquals(1, count($newGameList), "Count of new games");
@@ -121,7 +130,7 @@ final class PlayStationGameCacheTest extends TestCase
         $test = $newGameList["345"];
         $this->assertEquals("345", $test->getID(), "ID");
         $this->assertEquals("https://store/product/345", $test->getURL(), "URL");
-        $this->assertEquals("Game3", $test->getShortName(), "ShortName");
+        $this->assertEquals("Game3", $test->getDisplayName(), "Display Name");
         $this->assertEquals("PS4", $test->getPlatforms()[0], "Platform[0]");
         $this->assertEquals("PS3", $test->getPlatforms()[1], "Platform[1]");
         $this->assertEquals(30, $test->getOriginalPrice(), "OriginalPrice");

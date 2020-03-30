@@ -1,9 +1,9 @@
 <?php
 include_once "Debugger.php";
-include_once "PlayStationGame.php";
-include_once "PlayStationGameRepository.php";
-include_once "PlayStationContainerRepository.php";
-include_once "PlayStationGameFilter.php";
+include_once "playstation/PlayStationGame.php";
+include_once "playstation/PlayStationGameRepository.php";
+include_once "playstation/PlayStationContainerRepository.php";
+include_once "playstation/PlayStationGameFilter.php";
 
 class PlayStationContainer
 {
@@ -69,14 +69,14 @@ class PlayStationContainer
             Debugger::info($sale->id, " already loaded.");
             return;
         }
-        
+
         $total = $sale->total_results;
         $current = 1;
-        
+
         do {
-            
+
             foreach ($sale->links as $entry) {
-                
+
                 if (isset($entry->container_type))
                     switch ($entry->container_type) {
                         case "container":
@@ -84,16 +84,16 @@ class PlayStationContainer
                             $container = PlayStationContainerRepository::getInstance()->addContainer($container);
                             $this->arrContainers[] = $container->getID();
                             break;
-                        
+
                         case "product":
                             $game = new PlayStationGame($entry);
                             if (NULL == $this->gameFilter || $this->gameFilter->meetsCriteria($game)) {
-                                Debugger::verbose($game->getShortName(), " considered for container");
+                                Debugger::verbose($game->getDisplayName(), " considered for container");
                                 $game = PlayStationGameRepository::getInstance()->addGame($game);
                                 $this->arrGames[] = $game->getID();
                             }
                             break;
-                        
+
                         default:
                             // container_type
                             break;

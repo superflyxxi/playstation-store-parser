@@ -31,7 +31,7 @@ class Debugger
     private static function logmsg($arrData, $level)
     {
         if (self::getLogLevel() >= $level) {
-            print_r(date("Y-m-d H:i:s"));
+            print_r(date("Y-m-d H:i:sP"));
             print_r(":");
             switch ($level) {
                 case 1:

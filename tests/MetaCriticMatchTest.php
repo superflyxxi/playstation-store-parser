@@ -1,10 +1,10 @@
 <?php
-include_once "../src/Debugger.php";
-include_once "../src/PlayStationGame.php";
+include_once "Debugger.php";
+include_once "playstation/PlayStationGame.php";
 
 use PHPUnit\Framework\TestCase;
 
-final class MetacriticMatchTest extends TestCase
+final class MetaCriticMatchTest extends TestCase
 {
 
     private function getGameJson($gameId)

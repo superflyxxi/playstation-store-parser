@@ -1,6 +1,6 @@
 <?php
-include_once "../src/Debugger.php";
-include_once "../src/PlayStationGame.php";
+include_once "Debugger.php";
+include_once "playstation/PlayStationGame.php";
 include_once "helpers/PlayStationGameHelper.php";
 
 use PHPUnit\Framework\TestCase;

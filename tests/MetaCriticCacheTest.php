@@ -1,7 +1,7 @@
 <?php
-include_once "../src/Debugger.php";
-include_once "../src/cache/MetaCriticCache.php";
-include_once "../src/metacritic/MetaCriticObject.php";
+include_once "Debugger.php";
+include_once "cache/MetaCriticCache.php";
+include_once "metacritic/MetaCriticObject.php";
 
 use PHPUnit\Framework\TestCase;
 

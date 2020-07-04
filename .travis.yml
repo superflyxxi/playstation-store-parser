@@ -4,10 +4,8 @@ php:
 
 env:
   global:
-    - THIS_DOCKER_REGISTRY=superflyxxi.dlinkddns.com:5000
     - THIS_DOCKER_REPO=superflyxxi
     - THIS_DOCKER_LABEL=${TRAVIS_BRANCH}
-    - HTTPD_CRON_IMAGE=superflyxxi.dlinkddns.com:5000/superflyxxi/httpd-cron:latest
 
 script: skip
 
@@ -26,7 +24,7 @@ jobs:
           fi
       script:
         - find ./src -name "*.php" | xargs -L1 php -l
-        - docker build -t ps-store:build -f docker/Dockerfile ${CACHE_FROM_ARGS} .
+        - docker build -t ps-store:build --build-arg HTTPD_CRON=${HTTPD_CRON_IMAGE} -f docker/Dockerfile ${CACHE_FROM_ARGS} .
       after_success:
         - docker tag ps-store:build ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}
         - docker push ${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL}

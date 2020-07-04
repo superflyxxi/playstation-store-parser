@@ -1,4 +1,5 @@
-FROM superflyxxi.dlinkddns.com:5000/superflyxxi/httpd-cron:latest
+ARG HTTPD_CRON
+FROM ${HTTPD_CRON}
 MAINTAINER SuperFlyXXI <superflyxxi@yahoo.com>
 
 ENV WWW_DIR=/usr/local/apache2/htdocs

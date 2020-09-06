@@ -59,7 +59,13 @@ class Debugger
 
             print_r(": ");
             foreach ($arrData as $arg) {
-                print_r($arg);
+                if ($arg === TRUE) {
+                    print_r("true");
+                } else if ($arg === FALSE) {
+                    print_r("false");
+                } else {
+                    print_r($arg);
+                }
             }
             print_r("\n");
         }

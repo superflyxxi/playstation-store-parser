@@ -36,6 +36,8 @@ class PlayStationGame implements JsonSerializable, CacheObject
 
     private $isEaAccess = FALSE;
 
+    private $metadata = NULL;
+
     function __construct($decodedJson)
     {
         if (array_key_exists("url", $decodedJson)) {
@@ -44,7 +46,7 @@ class PlayStationGame implements JsonSerializable, CacheObject
         $this->originalPrice = 0.0;
         $this->id = $decodedJson->id;
         $this->actualName = $decodedJson->name;
-	$this->displayName = $this->convertGameName($this->actualName);
+        $this->displayName = $this->convertGameName($this->actualName);
         if (isset($decodedJson->title_name)) {
             $this->gameName = $this->convertGameName($decodedJson->title_name);
         } else {
@@ -100,6 +102,11 @@ class PlayStationGame implements JsonSerializable, CacheObject
             foreach ($decodedJson->gameContentTypesList as $content) {
                 $this->gameContentTypes[] = $content->key;
             }
+        }
+
+        if (isset($decodedJson->metadata)) {
+            $this->metadata = $decodedJson->metadata;
+            Debugger::verbose("Captured metadata: ", $this->metadata);
         }
     }
 
@@ -163,6 +170,11 @@ class PlayStationGame implements JsonSerializable, CacheObject
     public function getGameContentTypes()
     {
         return $this->gameContentTypes;
+    }
+
+    public function hasPsvr()
+    {
+        return (isset($this->metadata->cn_vrRequired) && in_array("TRUE", $this->metadata->cn_vrRequired->values)) || (isset($this->metadata->cn_vrEnabled) && in_array("TRUE", $this->metadata->cn_vrEnabled->values));
     }
 
     private function loadMetaCriticDataIfNecessary()

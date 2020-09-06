@@ -5,7 +5,10 @@ include_once "html/HtmlGenerator.php";
 class RowHtmlGenerator extends HtmlGenerator
 {
 
-    public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "price"))
+    public function write($outputHtml, $title, $gameList, $columnList = array(
+        "psNow",
+        "price"
+    ))
     {
         if (count($gameList) == 0) {
             Debugger::warn("No games to write.");
@@ -14,7 +17,6 @@ class RowHtmlGenerator extends HtmlGenerator
         Debugger::beginTimer("generateHtml");
         $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
         Debugger::verbose("Writing HTML to ", $outputHtml);
-        $hostBaseUrl = Properties::getProperty("host.base.url");
 
         file_put_contents($outputHtml, "<html>\n", FILE_APPEND);
         file_put_contents($outputHtml, "<head>\n", FILE_APPEND);
@@ -68,6 +70,13 @@ class RowHtmlGenerator extends HtmlGenerator
                     file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</button>)</th>", FILE_APPEND);
                     break;
 
+                case "psVr":
+                    file_put_contents($outputHtml, "<th id='psVr'>Has PSVR<br/>", FILE_APPEND);
+                    file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onPsVr\");showAllClasses(\".offPsVr\")'>hide</button>", FILE_APPEND);
+                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsVr\");hideAllClasses(\".offPsVr\")'>only</button>", FILE_APPEND);
+                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsVr\");showAllClasses(\".offPsVr\")'>all</button>)</th>", FILE_APPEND);
+                    break;
+
                 case "price":
                     file_put_contents($outputHtml, "<th id='price'>Price</th>", FILE_APPEND);
                     break;
@@ -104,6 +113,11 @@ class RowHtmlGenerator extends HtmlGenerator
                     case "psNow":
                         $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
                         $class .= $game->isPSNow() ? " onPsNow" : " offPsNow";
+                        break;
+
+                    case "psVr":
+                        $html .= "<td>" . ($game->hasPsvr() ? "Yes" : "No") . "</td>";
+                        $class .= $game->hasPsvr() ? " onPsVr" : " offPsVr";
                         break;
 
                     case "eaAccess":

@@ -92,6 +92,7 @@ final class MetaCriticMatchTest extends TestCase
         $this->assertEquals($gameId, $psGame->getID(), "ID");
         $this->assertEquals("", $psGame->getURL(), "URL");
         $this->assertEquals("Titanfall 2 Standard Edition", $psGame->getDisplayName(), "Display Name");
+        $this->assertEquals("Titanfall 2", $psGame->getGameName(), "Game Name");
         $this->assertEquals("PS4", $psGame->getPlatforms()[0], "Platforms[0]");
         $this->assertEquals("https://www.metacritic.com/game/playstation-4/titanfall-2", $psGame->getMetaCriticURL(), "MetaCriticURL");
         $this->assertEquals(89, $psGame->getMetaCriticScore(), "MetaCriticScore");

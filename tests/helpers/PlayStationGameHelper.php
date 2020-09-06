@@ -1,5 +1,14 @@
 <?php
 
+include_once "Debugger.php";
+
+function getGameJson($gameId)
+{
+    $json = file_get_contents("https://store.playstation.com/store/api/chihiro/00_09_000/container/US/en/999/" . $gameId);
+    Debugger::verbose($gameId, " JSON: ", $json);
+    return $json;
+}
+
 class GameJSON
 {
 

@@ -8,6 +8,11 @@ use PHPUnit\Framework\TestCase;
 final class MetaCriticCacheTest extends TestCase
 {
 
+    protected function setUp(): void
+    {
+        MetaCriticCache::setInstance(new MetaCriticCache());
+    }
+
     public function test_01_No_Cache()
     {
         $this->assertEquals(0, MetaCriticCache::getInstance()->size(), "Size of cache");

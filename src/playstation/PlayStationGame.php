@@ -44,9 +44,9 @@ class PlayStationGame implements JsonSerializable, CacheObject
         $this->originalPrice = 0.0;
         $this->id = $decodedJson->id;
         $this->actualName = $decodedJson->name;
-        $this->displayName = $this->convertGameName($decodedJson->name);
-        if (isset($decodedJson->parent_name)) {
-            $this->gameName = $this->convertGameName($decodedJson->parent_name);
+	$this->displayName = $this->convertGameName($this->actualName);
+        if (isset($decodedJson->title_name)) {
+            $this->gameName = $this->convertGameName($decodedJson->title_name);
         } else {
             $this->gameName = $this->displayName;
         }
@@ -123,6 +123,11 @@ class PlayStationGame implements JsonSerializable, CacheObject
     public function getDisplayName()
     {
         return $this->displayName;
+    }
+
+    public function getGameName()
+    {
+        return $this->gameName;
     }
 
     public function getPlatforms()

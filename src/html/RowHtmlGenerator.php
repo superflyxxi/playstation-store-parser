@@ -16,7 +16,7 @@ class RowHtmlGenerator extends HtmlGenerator
         }
         Debugger::beginTimer("generateHtml");
         $outputHtml = Properties::getProperty("html.dir") . "/" . $outputHtml;
-        Debugger::verbose("Writing HTML to ", $outputHtml);
+        Debugger::info("Writing HTML to ", $outputHtml);
 
         file_put_contents($outputHtml, "<html>\n", FILE_APPEND);
         file_put_contents($outputHtml, "<head>\n", FILE_APPEND);
@@ -122,7 +122,7 @@ class RowHtmlGenerator extends HtmlGenerator
 
                     case "eaAccess":
                         $html .= "<td>" . ($game->isEAAccess() ? "Yes" : "No") . "</td>";
-                        $class .= $game->isEAccess() ? " onEaAccess" : " offEaAccess";
+                        $class .= $game->isEAAccess() ? " onEaAccess" : " offEaAccess";
                         break;
 
                     case "price":

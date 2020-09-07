@@ -66,7 +66,9 @@ Debugger::endTimer("Sorting games");
 
 $outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
 
-if (HtmlGenerator::getInstance()->write($outHtmlFilename, $saleIdMapping[$saleId], $gameList)) {
+$arrColumns = explode(" ", Properties::getProperty("parse.store." . $saleId . ".columns", Properties::getProperty("parse.store.columns")));
+Debugger::debug("Columns to include, ", $arrColumns);
+if (HtmlGenerator::getInstance()->write($outHtmlFilename, $saleIdMapping[$saleId], $gameList, $arrColumns)) {
     RssGenerator::write("playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
 }
 

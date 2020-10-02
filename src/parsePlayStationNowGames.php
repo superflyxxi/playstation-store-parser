@@ -46,11 +46,13 @@ Debugger::endTimer("Sorting new games");
 
 $outHtmlFilename = date("YmdHi") . "-PSNow.html";
 
-$arrColumns = explode(" ", Properties::getProperty("prase.psnow.columns"));
+$arrColumns = explode(" ", Properties::getProperty("parse.psnow.columns"));
 Debugger::debug("Columns to include, ", $arrColumns);
 if (HtmlGenerator::getInstance()->write($outHtmlFilename, "New PlayStation Now Games", $newGameList, $arrColumns)) {
     RssGenerator::write("playStationNow.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, "New PlayStation Now Games for the Month of " . date("F Y"));
 }
+Debugger::info("Saving the full list");
+HtmlGenerator::getInstance()->write("All-PSNow.html", "All PlayStation Now Games", $fullGameList, $arrColumns);
 
 PlayStationGameCache::getInstance()->replace($fullGameList);
 PlayStationGameCache::getInstance()->save();

@@ -80,7 +80,8 @@ final class RowHtmlGeneratorTest extends TestCase
         RowHtmlGenerator::write("test_complex.html", "Testing Complex Scenario", $list, array(
             "psNow",
             "psVr",
-            "price"
+            "price",
+            "metaCriticScore"
         ));
         $date = date("F jS, Y g:ia T");
         $this->assertFileExists("/tmp/html/test_complex.html");

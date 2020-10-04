@@ -7,7 +7,8 @@ class RowHtmlGenerator extends HtmlGenerator
 
     public function write($outputHtml, $title, $gameList, $columnList = array(
         "psNow",
-        "price"
+        "price",
+        "metaCriticScore"
     ))
     {
         if (count($gameList) == 0) {
@@ -52,9 +53,10 @@ class RowHtmlGenerator extends HtmlGenerator
         $topFive .= ".<!--more--><br />\n";
         file_put_contents($outputHtml, $topFive, FILE_APPEND);
         file_put_contents($outputHtml, "<table border=\"1\">\n", FILE_APPEND);
-        file_put_contents($outputHtml, "<tr><th id='gameTitle'>Game</th>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "\t<tr>\n\t\t<th id='gameTitle'>Game</th>\n", FILE_APPEND);
 
         foreach ($columnList as $column) {
+            file_put_contents($outputHtml, "\t\t", FILE_APPEND);
             switch ($column) {
                 case "eaAccess":
                     file_put_contents($outputHtml, "<th id='eaAccess'>On EA Access<br/>", FILE_APPEND);
@@ -88,13 +90,19 @@ class RowHtmlGenerator extends HtmlGenerator
                 case "salePrice":
                     file_put_contents($outputHtml, "<th id='salePrice'>Sale Price</th>", FILE_APPEND);
                     break;
+
+                case "metaCriticScore":
+                    file_put_contents($outputHtml, "<th id='metaCritic'>Metacritic Score<br/>\n(", FILE_APPEND);
+                    file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</button>|", FILE_APPEND);
+                    file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</button>|", FILE_APPEND);
+                    file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</button>|", FILE_APPEND);
+                    file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</button>)</th>", FILE_APPEND);
+                    break;
             }
+            file_put_contents($outputHtml, "\n", FILE_APPEND);
         }
-        file_put_contents($outputHtml, "<th id='metaCritic'>Metacritic Score<br/>\n(", FILE_APPEND);
-        file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</button>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</button>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</button>|", FILE_APPEND);
-        file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</button>)</th></tr>\n", FILE_APPEND);
+        file_put_contents($outputHtml, "\t</tr>\n", FILE_APPEND);
+
         foreach ($gameList as $game) {
             $score = $game->getMetaCriticScore();
             $class = "";
@@ -107,8 +115,9 @@ class RowHtmlGenerator extends HtmlGenerator
             } else {
                 $score = "TBD";
             }
-            $html = "<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getDisplayName() . "</a></td>";
+            $html = "\t\t<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getDisplayName() . "</a></td>\n";
             foreach ($columnList as $column) {
+                $html .= "\t\t";
                 switch ($column) {
                     case "psNow":
                         $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
@@ -140,17 +149,22 @@ class RowHtmlGenerator extends HtmlGenerator
                     case "salePrice":
                         $html .= "<td>$" . $game->getSalePrice() . "</td>";
                         break;
+
+                    case "metaCriticScore":
+                        $html .= "<td >";
+                        if ($game->getMetaCriticURL() == "") {
+                            $html .= "Not Found";
+                        } else {
+                            $html .= "<a href='" . $game->getMetaCriticURL() . "'>" . $score . "</a>";
+                        }
+                        $html .= "</td>";
+                        break;
                 }
+                $html .= "\n";
             }
-            $html .= "<td >";
-            if ($game->getMetaCriticURL() == "") {
-                $html .= "Not Found";
-            } else {
-                $html .= "<a href='" . $game->getMetaCriticURL() . "'>" . $score . "</a>";
-            }
-            $html .= "</td>";
-            $html .= "</tr>\n";
-            $html = "<tr class='" . $class . "' >" . $html;
+
+            $html .= "\t</tr>\n";
+            $html = "\t<tr class='" . $class . "' >\n" . $html;
             file_put_contents($outputHtml, $html, FILE_APPEND);
         }
         file_put_contents($outputHtml, "</table>\n", FILE_APPEND);

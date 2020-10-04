@@ -44,7 +44,6 @@ final class PlayStationGameTest extends TestCase
         $psGame = new PlayStationGame(json_decode($json));
         $this->assertEquals("Battlefield V", $psGame->getDisplayName(), "Display Name");
     }
-
 }
 ?>
 

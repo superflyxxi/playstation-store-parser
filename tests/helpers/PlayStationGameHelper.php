@@ -1,5 +1,4 @@
 <?php
-
 include_once "Debugger.php";
 
 function getGameJson($gameId)

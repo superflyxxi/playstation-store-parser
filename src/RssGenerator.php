@@ -7,7 +7,7 @@ class RssGenerator
     public static function write($rssFile, $newLink, $saleTitle)
     {
         $rssFile = Properties::getProperty("rss.dir") . "/" . $rssFile;
-        
+
         Debugger::verbose("Writing RSS to ", $rssFile);
         if (! file_exists($rssFile)) {
             copy("../resources/init.rss.xml", $rssFile);
@@ -29,19 +29,19 @@ class RssGenerator
         } else {
             $channel->insertBefore($item, $firstItem);
         }
-        
+
         $title = $item->appendChild($rss->createElement("title"));
         $title->appendChild($rss->createTextNode($saleTitle));
-        
+
         $link = $item->appendChild($rss->createElement("link"));
         $link->appendChild($rss->createTextNode($newLink));
-        
+
         $desc = $item->appendChild($rss->createElement("description"));
         $desc->appendChild($rss->createTextNode(self::getDescription($newLink)));
-        
+
         $pubDate = $item->appendChild($rss->createElement("pubDate"));
         $pubDate->appendChild($rss->createTextNode(date(DATE_RSS)));
-        
+
         $rss->save($rssFile);
     }
 

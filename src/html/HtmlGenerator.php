@@ -21,7 +21,11 @@ class HtmlGenerator
         return self::$instance;
     }
 
-    public function write($outputHtml, $title, $gameList, $columnList = array("psNow", "originalPrice", "salePrice"))
+    public function write($outputHtml, $title, $gameList, $columnList = array(
+        "psNow",
+        "originalPrice",
+        "salePrice"
+    ))
     {
         throw new Exception("Missing html.generator implementation.");
     }

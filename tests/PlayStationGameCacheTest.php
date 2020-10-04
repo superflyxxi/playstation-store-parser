@@ -55,8 +55,8 @@ final class PlayStationGameCacheTest extends TestCase
         $this->assertCache($arr);
 
         PlayStationGameCache::getInstance()->save();
-        $this->assertTrue(file_exists("/usr/local/apache2/htdocs/caches/psnow_cache.json"), "File saved");
-        Debugger::verbose("File contents: ", file_get_contents("/usr/local/apache2/htdocs/caches/psnow_cache.json"));
+        $this->assertTrue(file_exists("./psnow_cache.json"), "File saved");
+        Debugger::verbose("File contents: ", file_get_contents("./psnow_cache.json"));
 
         PlayStationGameCache::getInstance()->replace(array());
         $this->assertCache(array());

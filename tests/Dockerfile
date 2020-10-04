@@ -1,7 +1,8 @@
 ARG FROM_IMAGE
+ARG HTTPD_CRON
 FROM ${FROM_IMAGE}
 
-FROM httpd-cron:latest
+FROM ${HTTPD_CRON}
 WORKDIR /home/ps-store/tests
 
 RUN apk add --no-cache php-simplexml php-phar php-mbstring php php-openssl php-json php-curl php-dom

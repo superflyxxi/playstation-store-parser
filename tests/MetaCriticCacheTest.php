@@ -46,8 +46,8 @@ final class MetaCriticCacheTest extends TestCase
 
         $this->assertEquals(2, MetaCriticCache::getInstance()->size(), "Size of cache after adding second");
 
-        $this->assertTrue(file_exists("/usr/local/apache2/htdocs/caches/metacritic_cache.json"), "File not saved");
-        Debugger::verbose("File contents: ", file_get_contents("/usr/local/apache2/htdocs/caches/metacritic_cache.json"));
+        $this->assertTrue(file_exists("./metacritic_cache.json"), "File not saved");
+        Debugger::verbose("File contents: ", file_get_contents("./metacritic_cache.json"));
 
         MetaCriticCache::getInstance()->load();
         $this->assertEquals(1, MetaCriticCache::getInstance()->size(), "Size of cache after loading");

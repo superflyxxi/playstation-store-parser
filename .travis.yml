@@ -33,9 +33,7 @@ jobs:
       script:
         - cd tests/
         - find ./ -name "*.php" | xargs -L1 php -l
-        - docker pull ${HTTPD_CRON_IMAGE}
-        - docker tag ${HTTPD_CRON_IMAGE} httpd-cron:latest
-        - docker build -t ps-store:test --build-arg FROM_IMAGE=${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} .
+        - docker build -t ps-store:test --build-arg HTTPD_CRON=${HTTPD_CRON_IMAGE} --build-arg FROM_IMAGE=${THIS_DOCKER_REGISTRY}/${THIS_DOCKER_REPO}/ps-store:${THIS_DOCKER_LABEL} .
         - docker run -t --rm --name tests ps-store:test
       after_success:
         - if [[ ! -z "${TRAVIS_TAG}" ]]; then

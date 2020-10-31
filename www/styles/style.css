@@ -1,12 +1,12 @@
-.metaBad {
+.metaCriticScoreBad {
 	background-color: red
 }
 
-.metaOkay {
+.metaCriticScoreOkay {
 	background-color: orange
 }
 
-.metaGood {
+.metaCriticScoreGood {
 	background-color: green
 }
 

@@ -10,7 +10,8 @@ class RssGenerator
 
         Debugger::verbose("Writing RSS to ", $rssFile);
         if (! file_exists($rssFile)) {
-            copy("../resources/init.rss.xml", $rssFile);
+            Debugger::error("File not found, ", $rssFile, ", not writing RSS.");
+	    return;
         }
         $rss = DOMDocument::load($rssFile);
         $channel = $rss->documentElement->getElementsByTagName("channel")->item(0);

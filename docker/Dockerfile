@@ -18,7 +18,6 @@ ADD docker/before_entrypoint.sh /
 ADD resources/ /home/ps-store/resources/
 ADD www ${WWW_DIR}
 RUN mkdir -p ${WWW_DIR}/logs ${WWW_DIR}/rss ${WWW_DIR}/entries ${WWW_DIR}/caches
-ADD resources/init.rss.xml ${WWW_DIR}/rss/playstationStore.rss.xml
-ADD resources/init.rss.xml ${WWW_DIR}/rss/playStationNow.rss.xml
+ADD resources/*.rss.xml ${WWW_DIR}/rss/
 ADD docker/crontab /etc/crontabs/root
 ADD src/ /home/ps-store/bin/

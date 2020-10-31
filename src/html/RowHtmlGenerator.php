@@ -53,125 +53,196 @@ class RowHtmlGenerator extends HtmlGenerator
         $topFive .= ".<!--more--><br />\n";
         file_put_contents($outputHtml, $topFive, FILE_APPEND);
         file_put_contents($outputHtml, "<table border=\"1\">\n", FILE_APPEND);
-        file_put_contents($outputHtml, "\t<tr>\n\t\t<th id='gameTitle'>Game</th>\n", FILE_APPEND);
-
-        foreach ($columnList as $column) {
-            file_put_contents($outputHtml, "\t\t", FILE_APPEND);
-            switch ($column) {
-                case "eaAccess":
-                    file_put_contents($outputHtml, "<th id='eaAccess'>On EA Access<br/>", FILE_APPEND);
-                    file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onEaAccess\");showAllClasses(\".offEaAccess\")'>hide</button>", FILE_APPEND);
-                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onEaAccess\");hideAllClasses(\".offEaAccess\")'>only</button>", FILE_APPEND);
-                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onEaAccess\");showAllClasses(\".offEaAccess\")'>all</button>)</th>", FILE_APPEND);
-                    break;
-
-                case "psNow":
-                    file_put_contents($outputHtml, "<th id='psNow'>On PS Now<br/>", FILE_APPEND);
-                    file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>hide</button>", FILE_APPEND);
-                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");hideAllClasses(\".offPsNow\")'>only</button>", FILE_APPEND);
-                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsNow\");showAllClasses(\".offPsNow\")'>all</button>)</th>", FILE_APPEND);
-                    break;
-
-                case "psVr":
-                    file_put_contents($outputHtml, "<th id='psVr'>Has PSVR<br/>", FILE_APPEND);
-                    file_put_contents($outputHtml, "(<button class='filter' onclick='hideAllClasses(\".onPsVr\");showAllClasses(\".offPsVr\")'>hide</button>", FILE_APPEND);
-                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsVr\");hideAllClasses(\".offPsVr\")'>only</button>", FILE_APPEND);
-                    file_put_contents($outputHtml, "|<button class='filter' onclick='showAllClasses(\".onPsVr\");showAllClasses(\".offPsVr\")'>all</button>)</th>", FILE_APPEND);
-                    break;
-
-                case "price":
-                    file_put_contents($outputHtml, "<th id='price'>Price</th>", FILE_APPEND);
-                    break;
-
-                case "originalPrice":
-                    file_put_contents($outputHtml, "<th id='originalPrice'>Original Price</th>", FILE_APPEND);
-                    break;
-
-                case "salePrice":
-                    file_put_contents($outputHtml, "<th id='salePrice'>Sale Price</th>", FILE_APPEND);
-                    break;
-
-                case "metaCriticScore":
-                    file_put_contents($outputHtml, "<th id='metaCritic'>Metacritic Score<br/>\n(", FILE_APPEND);
-                    file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>good</button>|", FILE_APPEND);
-                    file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");hideAllClasses(\".metaBad\")'>okay</button>|", FILE_APPEND);
-                    file_put_contents($outputHtml, "<button class='filter' onclick='hideAllClasses(\".metaGood\");hideAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>bad</button>|", FILE_APPEND);
-                    file_put_contents($outputHtml, "<button class='filter' onclick='showAllClasses(\".metaGood\");showAllClasses(\".metaOkay\");showAllClasses(\".metaBad\")'>all</button>)</th>", FILE_APPEND);
-                    break;
-            }
-            file_put_contents($outputHtml, "\n", FILE_APPEND);
-        }
-        file_put_contents($outputHtml, "\t</tr>\n", FILE_APPEND);
-
+        $mapFilterableValues = array();
+        $rowHtml = "";
         foreach ($gameList as $game) {
-            $score = $game->getMetaCriticScore();
-            $class = "";
-            if ($score >= 75) {
-                $class .= " metaGood";
-            } else if ($score >= 60) {
-                $class .= " metaOkay";
-            } else if ($score > 0) {
-                $class .= " metaBad";
-            } else {
-                $score = "TBD";
-            }
-            $html = "\t\t<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getDisplayName() . "</a></td>\n";
-            foreach ($columnList as $column) {
-                $html .= "\t\t";
-                switch ($column) {
-                    case "psNow":
-                        $html .= "<td>" . ($game->isPSNow() ? "Yes" : "No") . "</td>";
-                        $class .= $game->isPSNow() ? " onPsNow" : " offPsNow";
-                        break;
-
-                    case "psVr":
-                        $html .= "<td>" . ($game->hasPsvr() ? "Yes" : "No") . "</td>";
-                        $class .= $game->hasPsvr() ? " onPsVr" : " offPsVr";
-                        break;
-
-                    case "eaAccess":
-                        $html .= "<td>" . ($game->isEAAccess() ? "Yes" : "No") . "</td>";
-                        $class .= $game->isEAAccess() ? " onEaAccess" : " offEaAccess";
-                        break;
-
-                    case "price":
-                        $html .= "<td>" . $game->getSalePrice();
-                        if ($game->getOriginalPrice() != $game->getSalePrice()) {
-                            $html .= " (<strike>" . $game->getOriginalPrice() . "</strike>)";
-                        }
-                        $html .= "</td>";
-                        break;
-
-                    case "originalPrice":
-                        $html .= "<td>$" . $game->getOriginalPrice() . "</td>";
-                        break;
-
-                    case "salePrice":
-                        $html .= "<td>$" . $game->getSalePrice() . "</td>";
-                        break;
-
-                    case "metaCriticScore":
-                        $html .= "<td >";
-                        if ($game->getMetaCriticURL() == "") {
-                            $html .= "Not Found";
-                        } else {
-                            $html .= "<a href='" . $game->getMetaCriticURL() . "'>" . $score . "</a>";
-                        }
-                        $html .= "</td>";
-                        break;
-                }
-                $html .= "\n";
-            }
-
-            $html .= "\t</tr>\n";
-            $html = "\t<tr class='" . $class . "' >\n" . $html;
-            file_put_contents($outputHtml, $html, FILE_APPEND);
+            $rowHtml .= $this->generateRowHTML($columnList, $mapFilterableValues, $webUrl, $game);
         }
+        $this->writeTableHeader($outputHtml, $columnList, $mapFilterableValues);
+        file_put_contents($outputHtml, $rowHtml, FILE_APPEND);
         file_put_contents($outputHtml, "</table>\n", FILE_APPEND);
         file_put_contents($outputHtml, "Generated " . date("F jS, Y g:ia T"), FILE_APPEND);
         file_put_contents($outputHtml, "</body>\n</html>\n", FILE_APPEND);
         Debugger::endTimer("generateHtml");
         return TRUE;
+    }
+    
+    
+    /**
+     * @param outputHtml
+     * @param columnList
+     */
+     private function writeTableHeader($outputHtml, $columnList, $mapFilterableValues) 
+    {
+        file_put_contents($outputHtml, "\t<tr>\n\t\t<th id='gameTitle'>Game</th>\n", FILE_APPEND);
+
+        foreach ($columnList as $column) {
+            file_put_contents($outputHtml, "\t\t<th id='" . $column . "'>", FILE_APPEND);
+            switch ($column) {
+                case "platforms":
+                    file_put_contents($outputHtml, "Platforms", FILE_APPEND);
+                    file_put_contents($outputHtml, $this->generateFilterButtonsHtml($column, $mapFilterableValues), FILE_APPEND);
+                    break;
+
+                case "eaAccess":
+                    file_put_contents($outputHtml, "On EA Access", FILE_APPEND);
+                    file_put_contents($outputHtml, $this->generateFilterButtonsHtml($column, $mapFilterableValues), FILE_APPEND);
+                    break;
+
+                case "psNow":
+                    file_put_contents($outputHtml, "On PS Now", FILE_APPEND);
+                    file_put_contents($outputHtml, $this->generateFilterButtonsHtml($column, $mapFilterableValues), FILE_APPEND);
+                    break;
+
+                case "psVr":
+                    file_put_contents($outputHtml, "Has PSVR", FILE_APPEND);
+                    file_put_contents($outputHtml, $this->generateFilterButtonsHtml($column, $mapFilterableValues), FILE_APPEND);
+                    break;
+
+                case "price":
+                    file_put_contents($outputHtml, "Price", FILE_APPEND);
+                    break;
+
+                case "originalPrice":
+                    file_put_contents($outputHtml, "Original Price", FILE_APPEND);
+                    break;
+
+                case "salePrice":
+                    file_put_contents($outputHtml, "Sale Price", FILE_APPEND);
+                    break;
+
+                case "metaCriticScore":
+                    file_put_contents($outputHtml, "Metacritic Score", FILE_APPEND);
+                    file_put_contents($outputHtml, $this->generateFilterButtonsHtml($column, $mapFilterableValues), FILE_APPEND);
+                    break;
+            }
+            file_put_contents($outputHtml, "</th>\n", FILE_APPEND);
+        }
+        file_put_contents($outputHtml, "\t</tr>\n", FILE_APPEND);
+    }
+
+    private function generateRowHTML($columnList, &$mapFilterableValues, $webUrl, $game)
+    {
+        $html = "\t\t<td ><a href='" . $webUrl . $game->getID() . "'>" . $game->getDisplayName() . "</a></td>\n";
+        $class = "";
+        foreach ($columnList as $column) {
+            $html .= "\t\t<td>";
+            switch ($column) {
+                case "platforms":
+                    foreach ($game->getPlatforms() as $plt) {
+                        $html .= $plt . " ";
+                        $mapFilterableValues["platforms"][$plt] = TRUE;
+                    	$class .= ' '. $this->getClassNameFor($column, $plt);
+                    }
+                    break;
+
+                case "psNow":
+                    $filter = $game->isPSNow() ? "Yes" : "No";
+                    $html .= $filter;
+                    $class .= ' '.$this->getClassNameFor($column, $filter);
+                    $mapFilterableValues[$column][$filter] = TRUE;
+                    break;
+
+                case "psVr":
+		    $filter = $game->hasPsvr() ? "Yes" : "No";
+                    $html .= $filter;
+                    $class .= ' '.$this->getClassNameFor($column, $filter);// ? " onEaAccess" : " offEaAccess";
+                    $mapFilterableValues[$column][$filter] = TRUE;
+                    break;
+
+                case "eaAccess":
+		    $filter = $game->isEAAccess() ? "Yes" : "No";
+                    $html .= $filter;
+                    $class .= ' '.$this->getClassNameFor($column, $filter);// ? " onEaAccess" : " offEaAccess";
+                    $mapFilterableValues[$column][$filter] = TRUE;
+                    break;
+
+                case "price":
+                    $html .= $game->getSalePrice();
+                    if ($game->getOriginalPrice() != $game->getSalePrice()) {
+                        $html .= " (<strike>" . $game->getOriginalPrice() . "</strike>)";
+                    }
+                    break;
+
+                case "originalPrice":
+                    $html .= "$" . $game->getOriginalPrice();
+                    break;
+
+                case "salePrice":
+                    $html .= "$" . $game->getSalePrice();
+                    break;
+
+                case "metaCriticScore":
+                    $score = $game->getMetaCriticScore();
+                    if ($score >= 75) {
+                        $filter = "Good";
+                    } else if ($score >= 60) {
+                        $filter = "Okay";
+                    } else if ($score > 0) {
+                        $filter = "Bad";
+                    } else {
+                        $score = "TBD";
+			$filter = "TBD";
+                    }
+                    $mapFilterableValues[$column][$filter] = TRUE;
+		    $class .= " " . $this->getClassNameFor($column, $filter);
+                    if ($game->getMetaCriticURL() == "") {
+                        $html .= "Not Found";
+                    } else {
+                        $html .= "<a href='" . $game->getMetaCriticURL() . "'>" . $score . "</a>";
+                    }
+                    break;
+            }
+            $html .= "</td>\n";
+        }
+
+        $html .= "\t</tr>\n";
+        $html = "\t<tr class='" . $class . "' >\n" . $html;
+        return $html;
+    }
+    
+    private function generateFilterButtonsHtml($prefix, $mapFilterableValues) {
+        Debugger::verbose("Filterable map ", $mapFilterableValues);
+        if (!array_key_exists($prefix, $mapFilterableValues)) { $mapFilterableValues[$prefix] = array(); }
+        $values = array_keys($mapFilterableValues[$prefix]);
+	ksort($values);
+        $maxValues = count($values);
+        
+        if ($maxValues < 2){
+	    Debugger::debug($prefix, " doesn't have enough values to filter: ", $maxValues);
+            return ""; 
+        }
+        $res = "<br/>(";
+        for ($i=-1; $i<$maxValues; $i++)  {
+            $button = "<button class='filter' onclick='";
+            $j=0;
+            foreach ($values as $val) {
+                if ($i == $j++ || $i == -1) {
+                    $button .= 'showAllClasses(".';
+                } else {
+                    $button .= 'hideAllClasses(".';
+                }
+                $button .= $this->getClassNameFor($prefix, $val).'");';
+            }
+            $button.="'>";
+            if ($i < 0) { 
+                $button .="All";
+            } else {
+                $button .= $values[$i];
+            }
+            $button.="</button>";
+            if ($i < $maxValues - 1) {
+                $button.="|";
+            }
+            $res .= $button;
+        }
+        $res .= ")";
+        return $res;
+    }
+
+    private function getClassNameFor($column, $value)
+    {
+        return $column . '' . str_replace(" ", "", $value);
     }
 }
 ?>

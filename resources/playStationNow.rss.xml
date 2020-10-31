@@ -1,9 +1,8 @@
 <rss version="2.0">
 	<channel>
-		<title>U.S. PlayStation Store Parser</title>
+		<title>U.S. PlayStation Now Games</title>
 		<description>
-			The results of the U.S. PlayStation Store collections
-			being parsed.
+			The results of the U.S. PlayStation Now	being parsed.
 		</description>
 		<language>en-us</language>
 		<lastBuildDate>Tue, 19 Oct 2004 13:39:14 -0400</lastBuildDate>

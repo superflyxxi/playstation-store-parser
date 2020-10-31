@@ -9,11 +9,8 @@ include_once "RssGenerator.php";
 include_once "html/HtmlGenerator.php";
 include_once "playstation/PlayStationGameFilter.php";
 
-// print_r($argv);
-$saleId = Properties::getProperty("default.containerid");
-if (isset($argv[1])) {
-    $saleId = $argv[1];
-}
+$saleId = isset($argv[1]) ? $argv[1] : Properties::getProperty("default.containerid");
+$platforms = explode(" ", isset($argv[2]) ? $argv[2] : Properties::getProperty("default.platforms"));
 
 $saleIdMapping = array(
     "STORE-MSF77008-WEEKLYDEALS" => "Weekly Deals for " . date("F jS, Y"),
@@ -30,9 +27,7 @@ $gameFilter->allowedGameContentType = array(
     "PSN_GAME",
     "BUNDLE"
 );
-$gameFilter->allowedPlayablePlatforms = array(
-    "PS4"
-);
+$gameFilter->allowedPlayablePlatforms = $platforms;
 
 Debugger::info("Starting with sale: ", $saleId);
 
@@ -45,10 +40,11 @@ Debugger::info("Got all games: " . count($gameList));
 
 Debugger::beginTimer("Prefetch Metacritic");
 $i = 0;
-$iPrintEvery = max(1, intval(count($gameList) * .1));
+$maxGames = count($gameList);
+$iPrintEvery = max(1, intval($maxGames * .1));
 foreach ($gameList as $game) {
     if (($i ++) % $iPrintEvery == 0) {
-        Debugger::info("Fetched " . $i . " of " . count($gameList) . " games.");
+        Debugger::info("Fetched " . (intval($i/$maxGames*100)) . "% (" . $i . " of " . $maxGames . ") games.");
     }
     $game->getMetaCriticScore();
 }
@@ -64,12 +60,12 @@ usort($gameList, function ($a, $b) {
 });
 Debugger::endTimer("Sorting games");
 
-$outHtmlFilename = date("YmdHi") . "-" . $saleId . ".html";
+$outHtmlFilename = $saleId . "-" . date("YmdHi") . ".html";
 
 $arrColumns = explode(" ", Properties::getProperty("parse.store." . $saleId . ".columns", Properties::getProperty("parse.store.columns")));
 Debugger::debug("Columns to include, ", $arrColumns);
 if (HtmlGenerator::getInstance()->write($outHtmlFilename, $saleIdMapping[$saleId], $gameList, $arrColumns)) {
-    RssGenerator::write("playstationStore.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
+    RssGenerator::write("playStationSale.rss.xml", $hostBaseUrl . "/" . $outHtmlFilename, $saleIdMapping[$saleId]);
 }
 
 Debugger::info("Done!");

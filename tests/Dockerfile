@@ -20,5 +20,6 @@ COPY --from=0 /home/ps-store /home/ps-store
 
 RUN ln -s /home/ps-store/bin /home/ps-store/src
 ADD settings_override.ini /home/ps-store/resources/
+ADD test.rss.xml /tmp/common.rss.xml
 ADD . /home/ps-store/tests
 
